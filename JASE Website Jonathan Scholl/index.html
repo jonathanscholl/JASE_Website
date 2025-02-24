@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link href="style.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/e03bc87316.js" crossorigin="anonymous"></script>
+
+<title>Jase</title>
+
+</head>
+
+<body>
+
+    <nav>
+        <a href=""><img src="images/logo.jpeg" alt="Jase logo"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa-regular fa-x" onclick="closeMenu()"></i>  
+            <ul id="menu">
+                <li><a href="index.html"><span lang="en">HOME</span></a></li>
+                <li><a href="about.html"><span lang="en">ABOUT</span></a></li>
+                <li><a href="contact.html"><span lang="en">CONTACT</span></a></li>
+            </ul>
+        </div>
+        <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <section class="home" id="home">
+        <p>Jase: Mobile App <br><br> Challenge your friends to an epic battle outside!</p>
+        <a href=""><img src="images/mockup.png" alt="example screen from jase the app" class="mockup"></a>
+    </section>
+
+<script>
+
+    var navLinks = document.getElementById("navLinks");
+    var menu = document.getElementById("menu");
+
+    function showMenu() {
+        navLinks.style.right = "0";
+    }
+
+    function closeMenu() {
+        navLinks.style.right = "-200px";
+    }
+
+</script>
+
+</body>
+
+<footer>
+    <h3>Jase</h3>
+    <div class="menu-footer" id="menu-footer">
+        <ul>
+            <li><a href="index.html"><span lang="en">HOME</span></a></li>
+            <li><a href="about.html"><span lang="en">ABOUT</span></a></li>
+            <li><a href="contact.html"><span lang="en">CONTACT</span></a></li>
+        </ul>
+    </div>
+
+    <div class="icons">
+        <a href=""><i class="fa fa-instagram"></i></a>
+        <a href=""><i class="fa fa-whatsapp"></i></a>
+        <a href=""><i class="fa fa-envelope"></i></a>
+    </div>
+    <p>made by Jonathan Scholl</p>
+</footer>
+
+</html>
