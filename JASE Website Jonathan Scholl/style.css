@@ -287,7 +287,7 @@ p {
 }
 
 .contact a:hover {
-    color: #fff;
+    color: #000;
 }
 
 .contact a:hover:after {
@@ -351,8 +351,9 @@ h2 {
 .submit:hover {
     background-color: #FFB347;
     outline-style: solid;
-    color: #fff;
+    color: #000;
     transition: .2s;
+
 }
 
 @media (max-width: 700px) {
