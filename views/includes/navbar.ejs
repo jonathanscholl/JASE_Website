@@ -1,0 +1,30 @@
+
+<nav>
+    <a href=""><img src="/public/images/logo.jpeg" alt="Jase logo"></a>
+    <div class="nav-links" id="navLinks">
+        <i class="fa-regular fa-x" onclick="closeMenu()"></i>  
+        <ul id="menu">
+            <li><a href="/"><span lang="en">HOME</span></a></li>
+            <li><a href="/about"><span lang="en">ABOUT</span></a></li>
+            <li><a href="/contact"><span lang="en">CONTACT</span></a></li>
+        </ul>
+    </div>
+    <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+</nav>
+
+
+
+<script>
+
+var navLinks = document.getElementById("navLinks");
+var menu = document.getElementById("menu");
+
+function showMenu() {
+    navLinks.style.right = "0";
+}
+
+function closeMenu() {
+    navLinks.style.right = "-200px";
+}
+
+</script>

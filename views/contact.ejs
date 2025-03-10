@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+<%- include('includes/head') %>
+
+<body>
+
+    <%- include('includes/navbar') %>
+
+    <section class="contact">
+        <h1 lang="en">Contact </h1>
+        <div class="icons-links">
+            <a href=""><i class="fa fa-instagram" alt="instagram icon"></i></a>
+            <a href=""><i class="fa fa-whatsapp" alt="whatsapp icon"></i></a>
+            <a href=""><i class="fa fa-envelope" alt="mail icon"></i></a>
+        </div>
+            <div class="contact-box">
+                <form class="contact-content" action="/contact" method="POST">
+    
+                    <input type="text" class="field" lang="en" placeholder="Name" name="Name">
+                    <input type="email" class="field" lang="en" placeholder="E-Mail" name="Email">
+                    <textarea class="field-text" lang="en" placeholder="Message" name="Text"></textarea>
+                    <button class="submit">
+                        <span lang="en">Submit</span>
+                    </button>
+                </form>
+
+            </div>
+    </section>
+    
+
+    
+</body>
+<%- include('includes/footer') %>
+
+</html>
