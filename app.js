@@ -44,6 +44,12 @@ app.get('/', (request, response) => {
   })
 
 
+  app.get('/challenges', (request, response) => {
+
+    response.render('challenges')
+  })
+
+
 
   app.get('*', (request, response) => {
 
