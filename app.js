@@ -1,6 +1,8 @@
 import express from "express";
 import morgan from "morgan";
 
+import data from "./data.json" with { type: "json" };
+
 
 const app = express()
 const PORT = 3000
@@ -46,7 +48,8 @@ app.get('/', (request, response) => {
   app.get('*', (request, response) => {
 
     const url = request.url
-    response.render('404_notfound', {url: url})
+    const template_message = ` Error 404: The url  "${url}" could not be found.`
+    response.render('template', {template_message: template_message} )
   })
 
 
