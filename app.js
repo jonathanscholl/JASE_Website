@@ -1,7 +1,9 @@
 import express from "express";
 import morgan from "morgan";
+import { supabase } from "./lib/supabase.js";
 
-import data from "./data.json" with { type: "json" };
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 const app = express()
@@ -49,6 +51,25 @@ app.get('/', (request, response) => {
     response.render('challenges')
   })
 
+  
+  app.get('/get-challenge', async (req, res) => {
+    try {
+
+      const challenge_nr = Math.floor(Math.random() * 150) + 1
+      const { data, error } = await supabase
+        .from("challenges")
+        .select("name, description")
+        .eq("challenge_nr", challenge_nr)
+        .limit(1)
+        .single();
+  
+      if (error) throw error;
+      res.json(data);
+    } catch (error) {
+      console.error('Error fetching challenge:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 
 
   app.get('*', (request, response) => {
