@@ -1,0 +1,306 @@
+
+@font-face {
+    font-family: 'beon';
+    src: url("/public/fonts/Beon\ Regular.ttf"); 
+}
+
+* {
+    /* padding: 0;
+    margin: 0; */
+    font-family: 'beon';
+    overflow-x: hidden;
+
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 2% 6%;
+    box-sizing: border-box;
+    overflow-y: hidden;
+}
+
+body {
+
+    background-color: #000;
+}
+
+.nav-links {
+    flex: 1;
+    text-align: right;
+}
+
+.nav-links ul {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+nav img {
+    width: 150px;
+}
+
+.nav-links ul li a {
+    color: var(--green_default);
+    text-shadow: var(--green_default); 
+    text-decoration: none;
+    font-size: 13px;
+
+}
+
+.nav-links ul li a:hover {
+
+    color: var(--green_hover); /* Adjusted color */
+    text-shadow: var(--green_hover); /* Stronger text shadow */
+
+}
+
+
+.nav-links .fa-regular {
+    display: none;
+}
+
+nav .fa-solid {
+    display: none;
+}
+
+.hero-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    border: 1px solid #FFABAD;
+    background: #FFB347;
+    transition: 0.5s;
+}
+
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+    background-color: black;
+}
+
+footer h3 {
+    color: #FFB347;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+footer p {
+    color: grey;
+    font-size: 15px;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+.menu-footer ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+.menu-footer ul li a {
+    color: var(--green_default);
+    text-shadow: var(--green_default);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+
+.menu-footer ul li:hover::after {
+    width: 100%;
+}
+
+
+.menu-footer ul li a:hover {
+
+    color: var(--green_hover); /* Adjusted color */
+    text-shadow: var(--green_hover); /* Stronger text shadow */
+
+}
+
+.icons .fa {
+    color: var(--green_default);
+    text-shadow: var(--green_default);
+    margin: 0 13px;
+    cursor: pointer;
+    padding: 18px 0;
+}
+
+.icons .fa:hover {
+
+    color: var(--green_hover); /* Adjusted color */
+    text-shadow: var(--green_hover); 
+
+}
+
+
+
+.template {
+
+    min-height: 65vh;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.template h2 {
+    color: lightgray;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 22px;
+    padding: 20px;
+    text-align: center;
+    width: 50%;
+}
+
+/* Neon Button Styles */
+.neon-button {
+    position: relative;
+    display: inline-block;
+    width: 200px; /* Adjusted width */
+    height: 7cap; /* Adjusted height */
+    border: 2px solid #A8FFC8; /*  Thicker border and color*/
+    background-color: rgba(12, 255, 101, 0.0); /* More transparent background */
+    box-shadow: 0 0 15px rgba(12, 255, 101, 0.85); /* Stronger shadow */
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    border-radius: 5px; /* Add some rounding */
+  }
+
+  .neon-button-text {
+    position: relative;
+    z-index: 2;
+    font-size: 18px; /* Adjusted font size */
+    color: rgba(137, 253, 179, 0.8); /* Adjusted color */
+    text-shadow: 0 0 7px rgba(0, 255, 94, 0.85); /* Stronger text shadow */
+    text-align: center;
+    line-height: 50px; 
+
+  }
+  
+  .neon-button:hover {
+    box-shadow: 0 0 15px rgba(12, 255, 101, 1);
+    .neon-button-text{
+
+        color: rgba(137, 253, 179, 1); /* Adjusted color */
+        text-shadow: 0 0 7px rgba(0, 255, 94, 1); /* Stronger text shadow */
+    }
+  }
+  
+
+  
+@media (max-width: 700px) {
+    html,
+    body {
+        overflow-x: hidden;
+        position: relative;
+        height: 100%;
+    }
+
+    .nav-links ul li {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed; 
+        background: black;
+        border-color: black;
+        height: 100vh; 
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 1000; 
+        transition: 0.5s;
+        overflow-y: auto;
+        padding-top: 60px; 
+    }
+
+    .nav-links.active {
+        right: 0; 
+    }
+
+    .nav-links .fa-regular {
+        display: block;
+        color: var(--green_default);
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+        position: absolute; 
+        top: 10px;
+        z-index: 1001; 
+    }
+
+    nav .fa-solid {
+        display: block;
+        color: var(--green_default);
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    .nav-links ul {
+        padding: 20px;
+        color: black;
+    }
+
+    .nav-links ul li a {
+        color: var(--green_default);
+        text-shadow: var(--green_default);
+        text-decoration: none;
+        font-size: 13px;
+    }
+
+
+    footer h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+
+    footer p {
+        font-size: 14px;
+    }
+
+    .menu-footer ul li {
+       
+        flex-direction: row;
+
+    }
+
+}

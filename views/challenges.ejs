@@ -2,7 +2,10 @@
 <!doctype html>
 <html>
 
+<link href="/public/stylesheets/challenges.css" rel="stylesheet" type="text/css">
+
 <%- include('includes/head') %>
+
 
 <body >
 
@@ -12,7 +15,9 @@
     <section class="challenges" id="challenges">
         <div class="iphone-mockup">
             <div class="iphone-screen">
-                <h2>test</h2>
+                <img src="/public/images/logo.jpeg" alt="Jase logo" class="iphone-screen-logo">
+                <p class="challenge-name"> Try out now!</p>
+                <p class="challenge-description"> Get some real examples of our challenges</p>
                 <button class="neon-button">
                     <span class="neon-button-text">
                          Get Challenge</span>
@@ -25,26 +30,30 @@
     </section>
 
     <script>
-        async function getChallenge() {
-          try {
-            console.log('Fetching challenge...');
-            const response = await fetch('/get-challenge');
-            const data = await response.json();
-            console.log('Challenge data:', data);
-            // Update the UI with the challenge data
-            document.querySelector('h2').textContent = data.name;
-            // Add more UI updates as needed
-          } catch (error) {
-            console.error('Error fetching challenge:', error);
-          }
+
+    async function getChallenge() {
+        try {
+          
+          console.log('Fetching challenge...');
+          const response = await fetch('/get-challenge');
+          const data = await response.json();
+          console.log('Challenge data:', data);
+          // Update the UI with the challenge data
+          document.querySelector('.challenge-name').textContent = data.name;
+          document.querySelector('.challenge-description').textContent= data.description
+          // Add more UI updates as needed
+        } catch (error) {
+          console.error('Error fetching challenge:', error);
         }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-          const challengeButton = document.querySelector('.neon-button');
-          challengeButton.addEventListener('click', getChallenge);
-          console.log('Event listener added');
-        });
-        </script>
+      }
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        const challengeButton = document.querySelector('.neon-button');
+        challengeButton.addEventListener('click', getChallenge);
+        console.log('Event listener added');
+      });
+
+    </script>
 
 </body>
 
