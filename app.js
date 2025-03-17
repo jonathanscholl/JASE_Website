@@ -16,6 +16,9 @@ app.use('/public', express.static('public'))
 
 app.use(express.urlencoded({ extended: true }))
 
+app.use('/lib', express.static('lib'));
+
+
 app.set('view engine', 'ejs')
 
 
@@ -50,6 +53,13 @@ app.get('/', (request, response) => {
 
     response.render('challenges')
   })
+
+
+  app.get('/download', (request, response) => {
+
+    response.render('download')
+  })
+
 
   
   app.get('/get-challenge', async (req, res) => {

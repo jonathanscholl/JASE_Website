@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 
@@ -6,54 +5,25 @@
 
 <%- include('includes/head') %>
 
-
-<body >
+<body>
 
     <%- include('includes/navbar') %>
-
 
     <section class="challenges" id="challenges">
         <div class="iphone-mockup">
             <div class="iphone-screen">
                 <img src="/public/images/logo.jpeg" alt="Jase logo" class="iphone-screen-logo">
-                <p class="challenge-name"> Try out now!</p>
-                <p class="challenge-description"> Get some real examples of our challenges</p>
+                <p class="challenge-name"></p>
+                <p class="challenge-description"></p>
                 <button class="neon-button">
                     <span class="neon-button-text">
-                         Get Challenge</span>
-                  </button>
+                         Get New Challenge</span>
+                </button>
             </div>
         </div>
-
-
-
     </section>
 
-    <script>
-
-    async function getChallenge() {
-        try {
-          
-          console.log('Fetching challenge...');
-          const response = await fetch('/get-challenge');
-          const data = await response.json();
-          console.log('Challenge data:', data);
-          // Update the UI with the challenge data
-          document.querySelector('.challenge-name').textContent = data.name;
-          document.querySelector('.challenge-description').textContent= data.description
-          // Add more UI updates as needed
-        } catch (error) {
-          console.error('Error fetching challenge:', error);
-        }
-      }
-      
-      document.addEventListener('DOMContentLoaded', () => {
-        const challengeButton = document.querySelector('.neon-button');
-        challengeButton.addEventListener('click', getChallenge);
-        console.log('Event listener added');
-      });
-
-    </script>
+    <script src="/lib/get-challenges.js"></script>
 
 </body>
 
