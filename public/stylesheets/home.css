@@ -16,13 +16,6 @@
     padding-top: 150px
 }
 
-.home h2 {
-    font-size: 30px;
-    text-align: center;
-    color: rgba(241, 124, 109, 0.963); /* Adjusted color */
-    text-shadow: 7px rgba(252, 109, 109, 0.85); /* Stronger text shadow */
-
-}
 .home p {
     color: var(--grey_default);
     text-shadow: var(--grey_shadow);
@@ -33,33 +26,6 @@
     text-align: center;
 }
 
-.app-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.playstore-button {
-    width: 170px;
-    height: 50px;
-}
-
-.appstore-button {
-    width: 150px;
-    height: 50px;
-}
-
-.playstore-button:hover {
-    background-color: var(--green_hover);
-    border-radius: 5.3px;
-}
-
-.appstore-button:hover {
-
-    background-color: var(--green_hover);
-    border-radius: 9px;
-}
 
 
 .mockup {
@@ -103,20 +69,10 @@
         padding: 0
     }
 
-    .home h2 {
-        width: 100%;
-        font-size: 24px;
-    }
-    
     .home p {
         width: 100%;
         padding: 20px;
         font-size: 16px;
-    }
-
-    .app-buttons {
-        flex-direction: column;
-        align-items: center;
     }
 
     .mockup {

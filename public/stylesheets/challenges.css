@@ -11,7 +11,6 @@
 
 }
 
-
 .iphone-mockup {
     width: 375px;
     height: 812px;
@@ -48,9 +47,6 @@
 }
 
 
-
-
-
   .challenge-name {
 
     z-index: 2;
@@ -70,4 +66,33 @@
     text-align: center;
 
   }
+
+  @media screen and (max-width: 768px) {
+    .iphone-mockup {
+        width: 300px;  /* Smaller mockup for tablets */
+        height: 650px;
+    }
+
+    .iphone-screen {
+        width: 204px;  /* Proportionally reduced */
+        height: 428px;
+        top: 56px;
+    }
+
+    .iphone-screen-logo {
+        width: 120px;
+    }
+
+    .challenge-name {
+        font-size: 20px;
+    }
+
+    .challenge-description {
+        font-size: 16px;
+    }
+
+
+}
+
+
 

@@ -3,6 +3,7 @@
 
 <link href="/public/stylesheets/home.css" rel="stylesheet" type="text/css">
 <link href="/public/stylesheets/rating.css" rel="stylesheet" type="text/css">
+<link href="/public/stylesheets/challenges.css" rel="stylesheet" type="text/css">
 
 <%- include('includes/head') %>
 
@@ -28,7 +29,7 @@
 
 
 <section class="rating" id="rating">
-    <h1 lang="en">Others said</h1> 
+    <h2 lang="en">Others said</h2> 
     <br> 
     <div class="slider-container">
         <div class="slider">
@@ -119,10 +120,30 @@
        <script src="/lib/slider.js"></script>
 
 
-<%- include('challenges') %>
+
+
+       <h2>Try out here!</h2>
+       <section class="challenges" id="challenges">
+
+        <div class="iphone-mockup">
+            <div class="iphone-screen">
+                <img src="/public/images/logo.jpeg" alt="Jase logo" class="iphone-screen-logo">
+                <p class="challenge-name"></p>
+                <p class="challenge-description"></p>
+                <button class="neon-button">
+                    <span class="neon-button-text">
+                         Get New Challenge</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script src="/lib/get-challenges.js"></script>
+
 
 
 </body>
 
+<%- include('includes/footer') %>
 
 </html>

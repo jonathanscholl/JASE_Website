@@ -73,13 +73,6 @@
     box-sizing: border-box;
 }
 
-h1 {
-    font-size: 32px;
-    font-weight: 700;
-    text-align: center;
-    color: rgba(241, 124, 109, 0.963); /* Adjusted color */
-    text-shadow: 7px rgba(252, 109, 109, 0.85); /* Stronger text shadow */
-    }
 
 
     .field,
