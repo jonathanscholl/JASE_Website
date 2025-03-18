@@ -31,7 +31,11 @@
 <section class="rating" id="rating">
     <h2 lang="en">Others said</h2> 
     <br> 
+    <button class="prev">
+        <i class="fa-solid fa-less-than"></i>
+    </button>
     <div class="slider-container">
+
         <div class="slider">
             <% ratings.forEach(function(rating) { %>
                 <div class="slider-col">
@@ -51,9 +55,15 @@
                 </div>
             <% }); %>
         </div>
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
+
+        <div class="slider-indicators"></div>
+
+
+
     </div>
+    <button class="next">
+        <i class="fa-solid fa-greater-than"></i>
+    </button>
 </section>
 
 
