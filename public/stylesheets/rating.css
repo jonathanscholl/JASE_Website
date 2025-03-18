@@ -8,9 +8,16 @@
 }
 
 .slider-container {
-    width: 100%; /* Keep the container at full width within .rating */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 2s ease-out, transform 2s ease-out;
+}
+
+/* When visible, fade in and move up */
+.slider-container.visible {
+    opacity: 1;
+    transform: translateY(0);
     overflow: hidden;
-    position: relative;
 }
 
 .slider {
@@ -24,8 +31,7 @@
     padding: 20px;
     box-sizing: border-box;
     background-color: #111111; /* Black background */
-    border-radius: 10px; /* Optional: rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: soft shadow */
+/* Optional: rounded corners */ /* Optional: soft shadow */
 }
 
 
