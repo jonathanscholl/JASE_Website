@@ -33,95 +33,37 @@
     <br> 
     <div class="slider-container">
         <div class="slider">
-
-        <div class="slider-col">
-   
-
-            <h3 lang="en">"I have never had so much fun playing an app!"</h3>
-             <p lang="en">- Jonathan Scholl via AppStore</p> 
-             <div class="rating-icons">
-                <i class="fa fa-star" alt="star icon"></i>
-                <i class="fa fa-star" alt="star icon"></i>            
-                <i class="fa fa-star" alt="star icon"></i>
-                <i class="fa fa-star" alt="star icon"></i>
-                <i class="fa fa-star" alt="star icon"></i>
-
-           </div>
-        </div>
-            <div class="slider-col">
-                <h3 lang="en">"Makes you hate each other in a good way haha"</h3>
-                 <p lang="en">- Someone else via Playstore </p> 
-                 <div class="rating-icons">
-                    <i class="fa fa-star" alt="star icon"></i>
-                    <i class="fa fa-star" alt="star icon"></i>            
-                    <i class="fa fa-star" alt="star icon"></i>
-                    <i class="fa fa-star" alt="star icon"></i>
-                    <i class="fa-regular fa-star-half-stroke" alt="half star icon"></i>
-    
-               </div>
-               </div>
-                <div class="slider-col"> 
-                   <h3 lang="en">"Innovative challenges and a lot of good memories"</h3> 
-                   <p lang="en">- Also someone else via my mind</p> 
-                   <div class="rating-icons">
-                    <i class="fa fa-star" alt="star icon"></i>
-                    <i class="fa fa-star" alt="star icon"></i>            
-                    <i class="fa fa-star" alt="star icon"></i>
-                    <i class="fa fa-star" alt="star icon"></i>
-                    <i class="fa-regular fa-star" alt="half star icon"></i>
-    
-               </div>
-               </div> 
-               <div class="slider-col"> 
-                <h3 lang="en">"This is the best app ever"</h3> 
-                <p lang="en">- anonymous via contact form</p> 
-                <div class="rating-icons">
-                 <i class="fa fa-star" alt="star icon"></i>
-                 <i class="fa fa-star" alt="star icon"></i>            
-                 <i class="fa fa-star" alt="star icon"></i>
-                 <i class="fa fa-star" alt="star icon"></i>
-                 <i class="fa fa-star" alt="star icon"></i>
-  
- 
-            </div>
-            </div> 
-            <div class="slider-col"> 
-                <h3 lang="en">"I would love to have powerups"</h3> 
-                <p lang="en">- Feedback form</p> 
-                <div class="rating-icons">
-                 <i class="fa fa-star" alt="star icon"></i>
-                 <i class="fa fa-star" alt="star icon"></i>            
-                 <i class="fa fa-star" alt="star icon"></i>
-                 <i class="fa fa-star" alt="star icon"></i>
-                 <i class="fa-regular fa-star" alt="half star icon"></i>
- 
-            </div>
-            </div> 
-            <div class="slider-col"> 
-                <h3 lang="en">"Give me different game modes and I would give 6/5 stars"</h3> 
-                <p lang="en">- Also feedback</p> 
-                <div class="rating-icons">
-                 <i class="fa fa-star" alt="star icon"></i>
-                 <i class="fa fa-star" alt="star icon"></i>            
-                 <i class="fa fa-star" alt="star icon"></i>
-                 <i class="fa fa-star" alt="star icon"></i>
-                 <i class="fa-regular fa-star" alt="half star icon"></i>
- 
-            </div>
-            </div> 
-
+            <% ratings.forEach(function(rating) { %>
+                <div class="slider-col">
+                    <h3 lang="en">"<%= rating.quote %>"</h3>
+                    <p lang="en">- <%= rating.author %></p> 
+                    <div class="rating-icons">
+                        <% for(let i = 1; i <= 5; i++) { %>
+                            <% if (i <= rating.stars) { %>
+                                <i class="fa fa-star" alt="star icon"></i>
+                            <% } else if (i - rating.stars === 0.5) { %>
+                                <i class="fa-regular fa-star-half-stroke" alt="half star icon"></i>
+                            <% } else { %>
+                                <i class="fa-regular fa-star" alt="empty star icon"></i>
+                            <% } %>
+                        <% } %>
+                    </div>
+                </div>
+            <% }); %>
         </div>
         <button class="prev">&#10094;</button>
         <button class="next">&#10095;</button>
     </div>
-       </section> 
+</section>
 
 
-       <script src="/lib/slider.js"></script>
+<script src="/lib/slider.js"></script>
 
 
 
+       
 
+       <div class="section-divider"></div>
        <h2>Try out here!</h2>
        <section class="challenges" id="challenges">
 

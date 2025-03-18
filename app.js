@@ -2,6 +2,8 @@ import express from "express";
 import morgan from "morgan";
 import { supabase } from "./lib/supabase.js";
 
+import ratings from "./public/ratings.json" with { type: "json" };
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -29,8 +31,14 @@ app.listen(PORT,() => {
 })
 
 app.get('/', (request, response) => {
-    response.render('index')
-  })
+
+  const ratingsData = ratings.ratings
+
+
+  response.render('index', {
+      ratings: ratingsData
+  });
+});
 
   app.get('/about', (request, response) => {
     response.render('about')

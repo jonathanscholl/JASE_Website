@@ -2,11 +2,11 @@
 .challenges{
     width: 100%;
     margin: auto;
-    text-align: center;
-    padding-top: 110px;
+    text-align: center; 
     background-color: #000;
     display: flex;
     justify-content: center;
+    padding-top: 80px;
 
 
 }
@@ -69,12 +69,12 @@
 
   @media screen and (max-width: 768px) {
     .iphone-mockup {
-        width: 300px;  /* Smaller mockup for tablets */
+        width: 300px;  
         height: 650px;
     }
 
     .iphone-screen {
-        width: 204px;  /* Proportionally reduced */
+        width: 204px;  
         height: 428px;
         top: 56px;
     }
