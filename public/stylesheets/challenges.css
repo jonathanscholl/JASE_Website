@@ -48,42 +48,7 @@
 }
 
 
-/* Neon Button Styles */
-.neon-button {
-    position: relative;
-    display: inline-block;
-    width: 200px; /* Adjusted width */
-    height: 7cap; /* Adjusted height */
-    border: 2px solid #A8FFC8; /*  Thicker border and color*/
-    background-color: rgba(12, 255, 101, 0.0); /* More transparent background */
-    box-shadow: 0 0 15px rgba(12, 255, 101, 0.85); /* Stronger shadow */
-    overflow: hidden;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    opacity: 1;
-    border-radius: 5px; /* Add some rounding */
-  }
 
-  .neon-button-text {
-    position: relative;
-    z-index: 2;
-    font-size: 18px; /* Adjusted font size */
-    color: rgba(137, 253, 179, 0.8); /* Adjusted color */
-    text-shadow: 0 0 7px rgba(0, 255, 94, 0.85); /* Stronger text shadow */
-    text-align: center;
-    line-height: 50px; 
-
-  }
-  
-  .neon-button:hover {
-    box-shadow: 0 0 15px rgba(12, 255, 101, 1);
-    .neon-button-text{
-
-        color: rgba(137, 253, 179, 1); /* Adjusted color */
-        text-shadow: 0 0 7px rgba(0, 255, 94, 1); /* Stronger text shadow */
-    }
-  }
-  
 
 
   .challenge-name {

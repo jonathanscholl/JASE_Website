@@ -1,0 +1,101 @@
+
+.download {
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 110px
+}
+
+.download p {
+    color: var(--red_default); /* Adjusted color */
+    text-shadow: var(--red_shadow); /* Stronger text shadow */
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 22px;
+    padding: 20px;
+    text-align: center;
+    width: 50%;
+}
+
+.download-mockup {
+    max-width: 600px;
+    width: 50%;
+    height: auto;
+    margin-left: 10%
+}
+
+
+.download-buttons {
+
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 100px;
+    padding-top: 30px
+
+}
+
+.playstore-button, .appstore-button {
+
+    padding: 20px;
+    border-radius: 20px;
+
+}
+
+
+
+
+
+
+@media (max-width: 700px) {
+    html,
+    body {
+        overflow-x: hidden;
+        position: relative;
+        height: 100%;
+    }
+
+    .download {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        text-align: center;
+        padding-top: 10%;
+        padding: 0
+    }
+
+    .download p {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 10%;
+        font-size: 20px;
+    }
+
+
+    .download-buttons {
+
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        padding-top: 0;
+
+
+    
+    }
+    
+    .playstore-button, .appstore-button {
+    
+    
+        border-radius: 20px;
+    
+    }
+
+
+}

@@ -17,7 +17,7 @@ color: rgba(241, 124, 109, 0.963); /* Adjusted color */
 text-shadow: 7px rgba(252, 109, 109, 0.85); /* Stronger text shadow */
 }
 
-h3 {
+.about h3 {
     color: rgb(137, 137, 137); /* Adjusted color */
     text-shadow: 0 0 7px rgba(195, 195, 195, 0.5); 
 text-align: center;

@@ -8,6 +8,18 @@
             <li><a href="/about"><span lang="en">ABOUT</span></a></li>
             <li><a href="/challenges"><span lang="en">CHALLENGES</span></a></li>
             <li><a href="/contact"><span lang="en">CONTACT</span></a></li>
+
+                <li>   
+                    <button class="nav-neon-button" onClick="getDownload()">  
+ 
+                        <span class="nav-neon-button-text">
+                     DOWNLOAD
+                    </span>
+                  
+                     </button>
+            
+                </li>
+
         </ul>
     </div>
     <i class="fa-solid fa-bars" onclick="showMenu()"></i>
@@ -26,6 +38,11 @@ function showMenu() {
 
 function closeMenu() {
     navLinks.style.right = "-200px";
+}
+
+function getDownload() {
+
+    window.location.href = '/download';
 }
 
 </script>
