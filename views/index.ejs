@@ -1,26 +1,128 @@
 <!doctype html>
 <html>
 
-
 <link href="/public/stylesheets/home.css" rel="stylesheet" type="text/css">
+<link href="/public/stylesheets/rating.css" rel="stylesheet" type="text/css">
 
 <%- include('includes/head') %>
-
-
 
 <body>
 
     <%- include('includes/navbar') %>
 
-
 <section class="home" id="home">
-    <p>Jase: Mobile App <br><br> Challenge your friends to an epic battle outside!</p>
-  <img src="/public/images/mockup.png" alt="example screen from jase the app" class="mockup">
+    <div class="home-content">
+        <h2>Jase: Mobile App </h2>
+        <p> Challenge your friends to an epic battle outside!</p>
+        <div class="app-buttons">
+            <a href="/" tabIndex="0"><img class="appstore-button" src="/public/images/appstore-button.svg"alt="appstore-button"/></a>
+          <a href="/" tabIndex="0"><img class="playstore-button" src="/public/images/playstore-button.png" alt="playstore-button"/></a>
+
+        </div>
+    </div>
+    <img src="/public/images/mockup.png" alt="example screen from the app JASE" class="mockup">
+
+
+    
 </section>
+
+
+<section class="rating" id="rating">
+    <h1 lang="en">Others said</h1> 
+    <br> 
+    <div class="slider-container">
+        <div class="slider">
+
+        <div class="slider-col">
+   
+
+            <h3 lang="en">"I have never had so much fun playing an app!"</h3>
+             <p lang="en">- Jonathan Scholl via AppStore</p> 
+             <div class="rating-icons">
+                <i class="fa fa-star" alt="star icon"></i>
+                <i class="fa fa-star" alt="star icon"></i>            
+                <i class="fa fa-star" alt="star icon"></i>
+                <i class="fa fa-star" alt="star icon"></i>
+                <i class="fa fa-star" alt="star icon"></i>
+
+           </div>
+        </div>
+            <div class="slider-col">
+                <h3 lang="en">"Makes you hate each other in a good way haha"</h3>
+                 <p lang="en">- Someone else via Playstore </p> 
+                 <div class="rating-icons">
+                    <i class="fa fa-star" alt="star icon"></i>
+                    <i class="fa fa-star" alt="star icon"></i>            
+                    <i class="fa fa-star" alt="star icon"></i>
+                    <i class="fa fa-star" alt="star icon"></i>
+                    <i class="fa-regular fa-star-half-stroke" alt="half star icon"></i>
+    
+               </div>
+               </div>
+                <div class="slider-col"> 
+                   <h3 lang="en">"Innovative challenges and a lot of good memories"</h3> 
+                   <p lang="en">- Also someone else via my mind</p> 
+                   <div class="rating-icons">
+                    <i class="fa fa-star" alt="star icon"></i>
+                    <i class="fa fa-star" alt="star icon"></i>            
+                    <i class="fa fa-star" alt="star icon"></i>
+                    <i class="fa fa-star" alt="star icon"></i>
+                    <i class="fa-regular fa-star" alt="half star icon"></i>
+    
+               </div>
+               </div> 
+               <div class="slider-col"> 
+                <h3 lang="en">"This is the best app ever"</h3> 
+                <p lang="en">- anonymous via contact form</p> 
+                <div class="rating-icons">
+                 <i class="fa fa-star" alt="star icon"></i>
+                 <i class="fa fa-star" alt="star icon"></i>            
+                 <i class="fa fa-star" alt="star icon"></i>
+                 <i class="fa fa-star" alt="star icon"></i>
+                 <i class="fa fa-star" alt="star icon"></i>
+  
+ 
+            </div>
+            </div> 
+            <div class="slider-col"> 
+                <h3 lang="en">"I would love to have powerups"</h3> 
+                <p lang="en">- Feedback form</p> 
+                <div class="rating-icons">
+                 <i class="fa fa-star" alt="star icon"></i>
+                 <i class="fa fa-star" alt="star icon"></i>            
+                 <i class="fa fa-star" alt="star icon"></i>
+                 <i class="fa fa-star" alt="star icon"></i>
+                 <i class="fa-regular fa-star" alt="half star icon"></i>
+ 
+            </div>
+            </div> 
+            <div class="slider-col"> 
+                <h3 lang="en">"Give me different game modes and I would give 6/5 stars"</h3> 
+                <p lang="en">- Also feedback</p> 
+                <div class="rating-icons">
+                 <i class="fa fa-star" alt="star icon"></i>
+                 <i class="fa fa-star" alt="star icon"></i>            
+                 <i class="fa fa-star" alt="star icon"></i>
+                 <i class="fa fa-star" alt="star icon"></i>
+                 <i class="fa-regular fa-star" alt="half star icon"></i>
+ 
+            </div>
+            </div> 
+
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+       </section> 
+
+
+       <script src="/lib/slider.js"></script>
+
+
+<%- include('challenges') %>
 
 
 </body>
 
-<%- include('includes/footer') %>
 
 </html>
