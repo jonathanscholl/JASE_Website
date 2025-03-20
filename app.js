@@ -22,23 +22,24 @@ const app = express()
 
 app.use(morgan("tiny"))
 
-app.use('/public', express.static('public'))
+app.use(express.static('public'));
+
 
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/lib', express.static('lib'));
+app.use(express.static('lib'));
 
 
 app.set('views', path.join(process.cwd(), 'netlify/functions/views'));
 app.set('view engine', 'ejs')
 
 
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = 3000;
-  app.listen(PORT, () => {
-    console.log("Server started on port", PORT);
-  });
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   const PORT = 3000;
+//   app.listen(PORT, () => {
+//     console.log("Server started on port", PORT);
+//   });
+// }
 
 app.get('/', (request, response) => {
 

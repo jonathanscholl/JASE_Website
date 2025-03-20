@@ -14,7 +14,7 @@
 .iphone-mockup {
     width: 375px;
     height: 812px;
-    background-image: url('/public/images/empty_mockup.png');
+    background-image: url('/images/empty_mockup.png');
     background-size: contain;
     background-repeat: no-repeat;
     position: relative;
