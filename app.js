@@ -22,7 +22,8 @@ const app = express()
 
 app.use(morgan("tiny"))
 
-app.use('/public', express.static('public'))
+app.use(express.static(path.join(process.cwd(), 'public')));
+
 
 app.use(express.urlencoded({ extended: true }))
 
