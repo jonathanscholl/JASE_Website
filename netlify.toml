@@ -5,7 +5,7 @@
 [functions]
   external_node_modules = ["express", "ejs", "morgan", "supabase-js"]
   node_bundler = "esbuild"
-  included_files = ["public/**", "lib/**", "public/data/*.json", "netlify/functions/views/**"]
+  included_files = ["public/stylesheets/*.css", "lib/**", "public/data/*.json", "netlify/functions/views/**"]
 
 
 [[redirects]]
@@ -22,5 +22,5 @@
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/server/:splat"
+  to = "/.netlify/functions/server/"
   status = 200
