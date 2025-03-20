@@ -4,13 +4,23 @@ import { supabase } from "./lib/supabase.js";
 
 import { readFileSync } from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import dotenv from 'dotenv';
 dotenv.config();
 
 
-const ratings = JSON.parse(readFileSync(path.join(process.cwd(), 'public/data/ratings.json'), 'utf-8'));
-const benefits = JSON.parse(readFileSync(path.join(process.cwd(), 'public/data/benefits.json'), 'utf-8'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Use an absolute path
+const ratings = JSON.parse(
+  readFileSync(path.join(__dirname, 'public/data/ratings.json'), 'utf-8')
+);
+
+const benefits = JSON.parse(
+  readFileSync(path.join(__dirname, 'public/data/benefits.json'), 'utf-8')
+);
 
 
 const app = express()
