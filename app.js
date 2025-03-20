@@ -29,6 +29,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/lib', express.static('lib'));
 
 
+app.set('views', path.join(process.cwd(), 'netlify/functions/views'));
 app.set('view engine', 'ejs')
 
 
