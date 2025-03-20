@@ -10,10 +10,9 @@
 .slider-container {
     opacity: 0;
     transform: translateY(50px);
-    transition: opacity 2s ease-out, transform 2s ease-out;
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-/* When visible, fade in and move up */
 .slider-container.visible {
     opacity: 1;
     transform: translateY(0);
@@ -83,20 +82,18 @@ padding: 20px;
 /* Individual bullet */
 .slider-indicators span {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-    background-color: #ccc;
+    width: 15px;
+    height: 15px;
+    margin: 0 10px;
+    background-color: var(--grey_default);
     border-radius: 50%;
     transition: background-color 0.3s ease-in-out;
 }
 
 /* Active bullet */
 .slider-indicators .active {
-    background-color: white;
+    background-color: var(--red_default);
 }
-
-
 
 
 

@@ -7,6 +7,7 @@
 * {
 
     font-family: 'beon';
+    
 
 
 }
@@ -31,6 +32,7 @@ nav {
 body {
 
     background-color: #000;
+    overflow-x: hidden;
 }
 h3 {
 color: var(--grey_default);/* Adjusted color */
