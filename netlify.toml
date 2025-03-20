@@ -1,0 +1,26 @@
+[build]
+  functions = "netlify/functions"
+  publish = "public"
+
+[functions]
+  external_node_modules = ["express", "ejs", "morgan"]
+  node_bundler = "esbuild"
+  included_files = ["views/", "public/", "lib/**"]
+
+
+[[redirects]]
+  from = "/public/*"
+  to = "/public/:splat"
+  status = 200
+
+
+[[redirects]]
+  from = "/lib/*"
+  to = "/lib/:splat"
+  status = 200
+
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/server/:splat"
+  status = 200

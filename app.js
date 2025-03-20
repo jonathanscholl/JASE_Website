@@ -2,14 +2,18 @@ import express from "express";
 import morgan from "morgan";
 import { supabase } from "./lib/supabase.js";
 
-import ratings from "./public/ratings.json" with { type: "json" };
+import { readFileSync } from 'fs';
+import path from 'path';
 
 import dotenv from 'dotenv';
 dotenv.config();
 
 
+const ratings = JSON.parse(readFileSync(path.join(process.cwd(), 'public/data/ratings.json'), 'utf-8'));
+const benefits = JSON.parse(readFileSync(path.join(process.cwd(), 'public/data/benefits.json'), 'utf-8'));
+
+
 const app = express()
-const PORT = 3000
 
 
 app.use(morgan("tiny"))
@@ -24,19 +28,22 @@ app.use('/lib', express.static('lib'));
 app.set('view engine', 'ejs')
 
 
-
-app.listen(PORT,() => {
-
-    console.log("Server started")
-})
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = 3000;
+  app.listen(PORT, () => {
+    console.log("Server started on port", PORT);
+  });
+}
 
 app.get('/', (request, response) => {
 
   const ratingsData = ratings.ratings
+  const benefitsData = benefits.benefits
 
 
   response.render('index', {
-      ratings: ratingsData
+      ratings: ratingsData,
+      benefits: benefitsData
   });
 });
 
@@ -70,7 +77,7 @@ app.get('/', (request, response) => {
 
 
   
-  app.get('/get-challenge', async (req, res) => {
+  app.get('/get-challenge', async (request, response) => {
     try {
 
       const challenge_nr = Math.floor(Math.random() * 150) + 1
@@ -82,10 +89,10 @@ app.get('/', (request, response) => {
         .single();
   
       if (error) throw error;
-      res.json(data);
+      response.json(data);
     } catch (error) {
       console.error('Error fetching challenge:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      response.status(500).json({ error: 'Internal Server Error' });
     }
   });
 
@@ -93,14 +100,14 @@ app.get('/', (request, response) => {
   app.get('*', (request, response) => {
 
 
-    console.log(request)
-
     const url = request.url
     const template_message = ` Error 404: The url  "${url}" could not be found.`
     response.render('template', {template_message: template_message} )
   })
 
 
+
   
 
 
+export default app
