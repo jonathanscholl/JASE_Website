@@ -3,9 +3,9 @@
   publish = "public"
 
 [functions]
-  external_node_modules = ["express", "ejs", "morgan"]
+  external_node_modules = ["express", "ejs", "morgan", "supabase-js"]
   node_bundler = "esbuild"
-  included_files = ["views/", "public/", "lib/**", "public/data/*.json"]
+  included_files = ["public/", "lib/**", "public/data/*.json", "netlify/functions/views/**"]
 
 
 [[redirects]]
