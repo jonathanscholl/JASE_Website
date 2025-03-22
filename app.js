@@ -86,7 +86,7 @@ app.get('/', (request, response) => {
   app.get('/get-challenge', async (request, response) => {
     try {
 
-      const challenge_nr = Math.floor(Math.random() * 150) + 1
+      const challenge_nr = Math.floor(Math.random() * 100) + 1
       const { data, error } = await supabase
         .from("challenges")
         .select("name, description")
