@@ -177,7 +177,6 @@ footer a {
 
 .menu-footer ul li a {
     color: var(--green_default);
-    text-shadow: var(--green_default);
     text-decoration: none;
     font-size: 13px;
 }
