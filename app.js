@@ -82,6 +82,15 @@ app.get('/', (request, response) => {
   })
 
 
+  app.get('/news', (request, response) => {
+
+    response.render('news')
+  })
+
+
+  
+
+
   
   app.get('/get-challenge', async (request, response) => {
     try {
@@ -98,6 +107,24 @@ app.get('/', (request, response) => {
       response.json(data);
     } catch (error) {
       console.error('Error fetching challenge:', error);
+      response.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
+
+  app.get('/get-news', async (request, response) => {
+    try {
+
+      const { data, error } = await supabase
+        .from("news")
+        .select("*")
+        .limit(1)
+        .single();
+  
+      if (error) throw error;
+      response.json(data);
+    } catch (error) {
+      console.error('Error fetching news:', error);
       response.status(500).json({ error: 'Internal Server Error' });
     }
   });

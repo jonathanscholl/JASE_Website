@@ -1,46 +1,74 @@
 <!doctype html>
 <html>
-
-
-<link rel="stylesheet" href="/stylesheets/download.css">
+<link rel="stylesheet" href="/stylesheets/news.css">
 
 <%- include('includes/head') %>
 
-
-
 <body>
-
     <%- include('includes/navbar') %>
 
+    <section class="news" id="news">
+        <div class="news-container">
+            <% const articles = [
+                {
+                    main: true,
+                    image: '/images/logo.jpg',
+                    headline: '',
+                    content: '',
+                    author: ''
+                },
+                {
+                    image: '/images/logo.jpg',
+                    headline: 'etesstseet',
+                    content: 'balbalablablablalala',
+                    author: 'ich'
+                },
+                {
+                  image: '/images/logo.jpg',
+                  headline: 'etesstseet',
+                  content: 'balbalablablablalala',
+                  author: 'ich'
+              },
+              {
+                image: '/images/logo.jpg',
+                headline: 'etesstseet',
+                content: 'balbalabl',
+                author: 'ich'
+            }
+            ] %>
 
-<section class="download" id="download">
+            <!-- Main Article -->
+            <% const mainArticle = articles[0] %>
+            <div class="main-article">
+                <div class="article-image" style="background-image: url('<%= mainArticle.image %>')"></div>
+                <div class="article-content">
+                    <h2 class="news-headline"><%= mainArticle.headline %></h2>
+                    <p class="news-content"><%= mainArticle.content %></p>
+                    <p class="news-author"><%= mainArticle.author %></p>
+                    <button class="neon-button">
+                        <span class="neon-button-text">Read More</span>
+                    </button>
+                </div>
+            </div>
 
+            <!-- Side Articles -->
+            <div class="side-articles">
+                <% articles.slice(1).forEach(article => { %>
+                    <div class="side-article">
+                        <div class="article-image" style="background-image: url('<%= article.image %>')"></div>
+                        <div class="article-content">
+                            <h3 class="news-headline"><%= article.headline %></h3>
+                            <p class="news-content"><%= article.content %></p>
+                            <p class="news-author"><%= article.author %></p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </section>
 
-
-  <div class="download-content">
-
-
-      <h2>Download now! </h2>
-
-      <div class="app-buttons">
-          <a href="/" tabIndex="0"><img class="appstore-button" src="/images/appstore-button.svg"alt="appstore-button"/></a>
-        <a href="/" tabIndex="0"><img class="playstore-button" src="/images/playstore-button.png" alt="playstore-button"/></a>
-
-      </div>
-
-    </div>
-
-
-
-
-
-
-</section>
-
-
-
+    <script src="/get-news.js"></script>
 </body>
 
 <%- include('includes/footer') %>
-
 </html>
