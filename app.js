@@ -118,8 +118,8 @@ app.get('/', (request, response) => {
       const { data, error } = await supabase
         .from("news")
         .select("*")
-        .limit(1)
-        .single();
+        .limit(4)
+
   
       if (error) throw error;
       response.json(data);

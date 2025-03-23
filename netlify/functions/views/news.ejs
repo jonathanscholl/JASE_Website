@@ -9,42 +9,13 @@
 
     <section class="news" id="news">
         <div class="news-container">
-            <% const articles = [
-                {
-                    main: true,
-                    image: '/images/logo.jpg',
-                    headline: '',
-                    content: '',
-                    author: ''
-                },
-                {
-                    image: '/images/logo.jpg',
-                    headline: 'etesstseet',
-                    content: 'balbalablablablalala',
-                    author: 'ich'
-                },
-                {
-                  image: '/images/logo.jpg',
-                  headline: 'etesstseet',
-                  content: 'balbalablablablalala',
-                  author: 'ich'
-              },
-              {
-                image: '/images/logo.jpg',
-                headline: 'etesstseet',
-                content: 'balbalabl',
-                author: 'ich'
-            }
-            ] %>
-
             <!-- Main Article -->
-            <% const mainArticle = articles[0] %>
             <div class="main-article">
-                <div class="article-image" style="background-image: url('<%= mainArticle.image %>')"></div>
+                <div class="article-image" id="main-image"></div>
                 <div class="article-content">
-                    <h2 class="news-headline"><%= mainArticle.headline %></h2>
-                    <p class="news-content"><%= mainArticle.content %></p>
-                    <p class="news-author"><%= mainArticle.author %></p>
+                    <h2 class="news-headline"></h2>
+                    <p class="news-content"></p>
+                    <p class="news-author"></p>
                     <button class="neon-button">
                         <span class="neon-button-text">Read More</span>
                     </button>
@@ -52,17 +23,8 @@
             </div>
 
             <!-- Side Articles -->
-            <div class="side-articles">
-                <% articles.slice(1).forEach(article => { %>
-                    <div class="side-article">
-                        <div class="article-image" style="background-image: url('<%= article.image %>')"></div>
-                        <div class="article-content">
-                            <h3 class="news-headline"><%= article.headline %></h3>
-                            <p class="news-content"><%= article.content %></p>
-                            <p class="news-author"><%= article.author %></p>
-                        </div>
-                    </div>
-                <% }) %>
+            <div class="side-articles" id="side-articles">
+                <!-- Side articles will be populated by JavaScript -->
             </div>
         </div>
     </section>
