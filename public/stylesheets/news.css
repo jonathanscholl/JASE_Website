@@ -40,6 +40,14 @@
     margin-bottom: 1rem;
 }
 
+
+.main-article .news-content {
+    font-size: 20px;
+    padding-top: 80px;
+}
+
+
+
 /* Side Articles Styles */
 .side-articles {
     flex: 1;
@@ -95,12 +103,17 @@
 }
 
 .article-content .neon-button {
-    margin-top: 1.5rem;
+    margin-top: 70px;
     width: 300px;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.article-content .neon-button-text {
+
+    font-size: 20px;
 }
 
 /* Media Queries */
@@ -135,6 +148,13 @@
         font-size: 24px;
     }
 
+
+    .main-article .news-content {
+        font-size: 18px;
+        padding-top: 40px;
+    }
+
+
     .side-article .article-image {
         height: 120px;
     }
@@ -146,4 +166,11 @@
     .article-content {
         padding: 1rem;
     }
+
+    .article-content .neon-button {
+    margin-top: 40px;
+    width: 200px;
+    height: 60px;
+
+}
 }

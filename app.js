@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import { supabase } from "./lib/supabase.js";
+import { getProfileData, supabaseLogin, supabaseSignup } from "./lib/auth/auth.services.js";
 
 import { readFileSync } from 'fs';
 import path from 'path';
@@ -26,6 +27,7 @@ app.use(express.static('public'));
 
 
 app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
 
 app.use(express.static('lib'));
 
@@ -63,9 +65,9 @@ app.get('/', (request, response) => {
 
 
   app.post('/contact', (request, response) => {
-    console.log('Contact form submission: ', request.body.Name)
+    console.log('Contact form submission: ', request.body.name)
     const name = request.body.Name
-    const template_message = `Thank you for your message ${name}.`
+    const template_message = `Thank you for your message ${name}. Your opinion matters a lot to us`
     response.render('template', {template_message: template_message})
   })
 
@@ -86,6 +88,60 @@ app.get('/', (request, response) => {
 
     response.render('news')
   })
+
+  app.get('/login', (request, response) => {
+
+    response.render('auth/login')
+  })
+
+  app.get('/signup', (request, response) => {
+
+    response.render('auth/signup')
+  })
+
+  
+
+  app.post('/login', async (request, response) => {
+    try {
+        const email = request.body.email
+        const password = request.body.password
+
+        const user_id = await supabaseLogin(email, password)
+
+        const profile_data = await getProfileData(user_id)
+
+
+        response.render('/auth/profile', {username: profile_data.username})
+
+    } catch (error) {
+        console.error('Unexpected error:', error);
+        response.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.post('/signup', async (request, response) => {
+  try {
+      const email = request.body.email
+      const password = request.body.password
+
+      const user_id = await supabaseSignup(email, password)
+
+
+      //todo: add username handling so the code below me works
+
+      const profile_data = await getProfileData(user_id)
+
+
+      response.render('/auth/profile', {username: profile_data.username})
+
+  } catch (error) {
+      console.error('Unexpected error:', error);
+      response.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+
 
 
   
@@ -128,6 +184,11 @@ app.get('/', (request, response) => {
       response.status(500).json({ error: 'Internal Server Error' });
     }
   });
+
+
+
+
+
 
 
   app.get('*', (request, response) => {

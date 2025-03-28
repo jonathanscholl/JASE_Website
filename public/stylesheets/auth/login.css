@@ -1,0 +1,86 @@
+.login {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 110px;
+    background-color: #000;
+}
+
+
+
+.login-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+
+}
+
+.login-content {
+
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+
+}
+
+.neon-button {
+
+
+    margin-top: 3rem;
+}
+
+
+
+    .field,
+    .field-text {
+        width: 80%;
+        padding: 0.5rem 1rem;
+        outline: none;
+        font-size: 15px;
+        margin-bottom: 22px;
+        background-color: #000;
+        border: 1px solid var(--red_shadow);
+        border-radius: 10px;
+        color: var(--red_default);
+        text-shadow: var(--red_default);
+        box-sizing: border-box;
+    }
+    
+    .field:focus,
+    .field-text:focus {
+        border-color: var(--red_default);
+    }
+
+.field-text {
+    resize: none;
+    height: 200px;
+
+}
+
+p {
+color: var(--grey_default);
+font-size: 16px;
+font-weight: 500;
+}
+
+a {
+
+    color: var(--red_default);
+    text-shadow: var(--red_shadow);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px black inset !important;
+    -webkit-text-fill-color: var(--red_default) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+input:autofill {
+    background-color: black !important;
+    color: var(--red_default) !important;
+}
