@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import { supabase } from "./lib/supabase.js";
-import { getProfileData, supabaseLogin, supabaseSignup } from "./lib/auth/auth.services.js";
+import { addUsernameDB, checkIfUsernameAvailable, getProfileData, supabaseLogin, supabaseSignup } from "./lib/auth/auth.services.js";
 
 import { readFileSync } from 'fs';
 import path from 'path';
@@ -111,7 +111,7 @@ app.get('/', (request, response) => {
         const profile_data = await getProfileData(user_id)
 
 
-        response.render('/auth/profile', {username: profile_data.username})
+        response.render('auth/profile', {username: profile_data.username, email: email, pb_path: profile_data.pb_path, games_played: profile_data.games_played, games_won: profile_data.games_won})
 
     } catch (error) {
         console.error('Unexpected error:', error);
@@ -123,16 +123,22 @@ app.post('/signup', async (request, response) => {
   try {
       const email = request.body.email
       const password = request.body.password
+      const username = request.body.username
 
       const user_id = await supabaseSignup(email, password)
 
 
-      //todo: add username handling so the code below me works
+      const isAvailable = await checkIfUsernameAvailable(username)
+
+      if (isAvailable) {
+
+        await addUsernameDB(username, user_id)
+      }
 
       const profile_data = await getProfileData(user_id)
 
 
-      response.render('/auth/profile', {username: profile_data.username})
+      response.render('auth/profile', {username: profile_data.username, email: email, pb_path: profile_data.pb_path, games_played: profile_data.games_played, games_won: profile_data.games_won})
 
   } catch (error) {
       console.error('Unexpected error:', error);

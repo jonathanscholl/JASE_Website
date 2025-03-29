@@ -3,15 +3,22 @@
 
 <%- include('../includes/head') %>
 
+<link rel="stylesheet" href="/stylesheets/auth/profile.css">
+
 <body>
 
     <%- include('../includes/navbar') %>
 
-    <section class="template" id="template">
+    <section class="profile" id="profile">
 
+    <h2><%= username %></h2>
 
+    <img src=" <%= pb_path%> " alt="Your profile picture" class="profile-picture">
 
-    <h2>Login successful, you can now edit pages! <%= username %></h2>
+    <p><%= email %></p>
+
+    <p><%= games_played %></p>
+    <p><%= games_won %></p>
 
 
 
