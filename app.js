@@ -77,10 +77,40 @@ app.get('/challenges', (request, response) => {
     response.render('template', {template_message: template_message})
   })
 
+  app.get('/feedback', async (request, response) => {
+    try {
 
-  app.get('/feedback', (request, response) => {
-    response.render('feedback')
-  })
+      const { data, error } = await supabase
+        .from("feedback")
+        .select("*")
+
+
+      if (error) throw error;
+      response.render("feedback", {feedback: data})
+    } catch (error) {
+      console.error('Error fetching feedback:', error);
+      response.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
+  app.post('/feedback', async (request, response) => {
+    try {
+        const message = request.body.text
+
+        const {data, error} = await supabase
+        .from("feedback")
+        .insert({
+          message: message
+        })
+
+        response.redirect("feedback")
+
+
+    } catch (error) {
+        console.error('Unexpected error:', error);
+        response.status(500).json({ error: 'Internal server error' });
+    }
+});
   
 
 
@@ -172,13 +202,6 @@ app.post('/signup', async (request, response) => {
   }
 });
 
-
-
-
-
-  
-
-
   
   app.get('/get-challenge', async (request, response) => {
     try {
@@ -216,25 +239,6 @@ app.post('/signup', async (request, response) => {
       response.status(500).json({ error: 'Internal Server Error' });
     }
   });
-
-  app.get('/get-feedback', async (request, response) => {
-    try {
-
-      const { data, error } = await supabase
-        .from("feedback")
-        .select("*")
-
-
-      if (error) throw error;
-      response.json(data);
-    } catch (error) {
-      console.error('Error fetching feedback:', error);
-      response.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
-
-
-
 
 
 

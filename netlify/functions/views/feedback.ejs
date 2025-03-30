@@ -44,24 +44,18 @@
     </div>
 
     <div class="feedback-messages">
-        <div class="feedback-col">
-            <p>"Great platform! I love the challenges." - Alex</p>
-        </div>
-        <div class="feedback-col">
-            <p>"Very engaging! My friends and I had so much fun." - Jordan</p>
-        </div>
-        <div class="feedback-col">
-            <p>"I would love to see more challenge categories!" - Sam</p>
-        </div>
+        <% feedback.forEach(function(item) { %>
+            <div class="feedback-col">
+                <p>"<%= item.message %>" - <%= item.author ? item.author : 'Anonymous' %></p>
+            </div>
+        <% }); %>
     </div>
+    
 
 </div>
 
 
     </section>
-
-    <script src="/get-feedback.js"></script>
-
 
 
 </body>
