@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import { supabase } from "./lib/supabase.js";
-import { addUsernameDB, checkIfUsernameAvailable, getProfileData, supabaseLogin, supabaseSignup } from "./lib/auth/auth.services.js";
+import { addUsernameDB, checkIfUsernameAvailable, getProfileData, getUserId, supabaseLogin, supabaseSignup } from "./lib/auth/auth.services.js";
 
 import { readFileSync } from 'fs';
 import path from 'path';
@@ -55,6 +55,12 @@ app.get('/', (request, response) => {
   });
 });
 
+
+app.get('/challenges', (request, response) => {
+
+  response.redirect('/#challenges')
+})
+
   app.get('/about', (request, response) => {
     response.render('about')
   })
@@ -72,10 +78,12 @@ app.get('/', (request, response) => {
   })
 
 
-  app.get('/challenges', (request, response) => {
-
-    response.redirect('/#challenges')
+  app.get('/feedback', (request, response) => {
+    response.render('feedback')
   })
+  
+
+
 
 
   app.get('/download', (request, response) => {
@@ -98,6 +106,24 @@ app.get('/', (request, response) => {
 
     response.render('auth/signup')
   })
+
+  app.get('/profile', async(request, response) => {
+
+
+    //todo: when user logged in, let him visit his profile page, if not logged in redirect to signup/login
+
+    
+    // const user_id = await getUserId()
+
+    // const email = "test@code.berin"
+
+    // const profile_data = await getProfileData(user_id)
+
+  
+    // response.render('auth/profile', {username: profile_data.username, email: email, pb_path: profile_data.pb_path, games_played: profile_data.games_played, games_won: profile_data.games_won})
+  })
+
+  
 
   
 
@@ -191,6 +217,21 @@ app.post('/signup', async (request, response) => {
     }
   });
 
+  app.get('/get-feedback', async (request, response) => {
+    try {
+
+      const { data, error } = await supabase
+        .from("feedback")
+        .select("*")
+
+
+      if (error) throw error;
+      response.json(data);
+    } catch (error) {
+      console.error('Error fetching feedback:', error);
+      response.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 
 
 

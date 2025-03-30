@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<link rel="stylesheet" href="/stylesheets/feedback.css">
+
+
+<%- include('includes/head') %>
+
+
+
+<body>
+
+    <%- include('includes/navbar') %>
+
+    <section class="feedback" id="feedback">
+
+    <div class="feedback-content">
+
+    <h2>Feedback</h2>
+
+    <div class="feedback-options">
+
+        <h3>Give us feedback</h3>
+        <h3>Submit your challenge idea</h3>
+    </div>
+
+    <div class="feedback-post">
+
+        <div class="feedback-col">
+
+            <p>Your opinion matters to us!</p>
+            <form class="feedback-post-content" action="/feedback" method="POST">
+    
+                <textarea class="field-text" lang="en" placeholder="Give us your feedback" name="text"></textarea>
+
+                <button class="nav-neon-button" id="login-button">
+                    <span class="nav-neon-button-text">
+                         Submit</span>
+                  </button>
+                
+            </form>
+        </div>
+
+    </div>
+
+    <div class="feedback-messages">
+        <div class="feedback-col">
+            <p>"Great platform! I love the challenges." - Alex</p>
+        </div>
+        <div class="feedback-col">
+            <p>"Very engaging! My friends and I had so much fun." - Jordan</p>
+        </div>
+        <div class="feedback-col">
+            <p>"I would love to see more challenge categories!" - Sam</p>
+        </div>
+    </div>
+
+</div>
+
+
+    </section>
+
+    <script src="/get-feedback.js"></script>
+
+
+
+</body>
+
+<%- include('includes/footer') %>
+
+</html>
