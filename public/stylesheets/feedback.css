@@ -85,6 +85,7 @@ border-width: 2px;
     align-items: center;
 
 
+
 }
 .votes-handling {
 
@@ -92,6 +93,7 @@ border-width: 2px;
     flex-direction: column;
     background-color: rgb(16, 16, 16);
     border-radius: 30px;
+    height: 80%;
     padding: 2%;
     align-items: center;
 }

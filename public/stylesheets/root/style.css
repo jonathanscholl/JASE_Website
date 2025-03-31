@@ -107,6 +107,16 @@ nav .fa-solid {
 }
 
 
+.nav-profile-picture {
+
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+}
+
+
 .hero-btn {
     display: inline-block;
     text-decoration: none;
@@ -172,9 +182,11 @@ footer a {
 .menu-footer ul li {
 
 
-    padding: 10px
+    padding: 10px;
+    list-style: none;
 
 }
+
 
 .menu-footer ul li a {
     color: var(--green_default);

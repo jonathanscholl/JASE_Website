@@ -172,18 +172,7 @@ app.post('/feedback/upvote', async (request, response) => {
 
   app.get('/profile', async(request, response) => {
 
-
-    //todo: when user logged in, let him visit his profile page, if not logged in redirect to signup/login
-
-    
-    // const user_id = await getUserId()
-
-    // const email = "test@code.berin"
-
-    // const profile_data = await getProfileData(user_id)
-
-  
-    // response.render('auth/profile', {username: profile_data.username, email: email, pb_path: profile_data.pb_path, games_played: profile_data.games_played, games_won: profile_data.games_won})
+    response.render('auth/profile')
   })
 
   
@@ -200,7 +189,7 @@ app.post('/feedback/upvote', async (request, response) => {
         const profile_data = await getProfileData(user_id)
 
 
-        response.render('auth/profile', {username: profile_data.username, email: email, pb_path: profile_data.pb_path, games_played: profile_data.games_played, games_won: profile_data.games_won})
+        response.render('auth/profile', {profile_data: profile_data, email: email})
 
     } catch (error) {
         console.error('Unexpected error:', error);
@@ -227,7 +216,7 @@ app.post('/signup', async (request, response) => {
       const profile_data = await getProfileData(user_id)
 
 
-      response.render('auth/profile', {username: profile_data.username, email: email, pb_path: profile_data.pb_path, games_played: profile_data.games_played, games_won: profile_data.games_won})
+      response.render('auth/profile', {profile_data: profile_data, email: email})
 
   } catch (error) {
       console.error('Unexpected error:', error);
