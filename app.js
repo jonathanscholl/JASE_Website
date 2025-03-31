@@ -105,13 +105,20 @@ app.get('/challenges', (request, response) => {
         const message = request.body.text
         const profile_id = request.body.profile_id
 
+        console.log(profile_id)
+
 
         const {data, error} = await supabase
         .from("feedback")
         .insert({
           message: message,
-          author: profile_id
+          profile_id: profile_id
         })
+
+        if (error) {
+
+          console.log(error)
+        }
 
         response.redirect("feedback")
 

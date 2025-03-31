@@ -51,6 +51,9 @@
             <div class="feedback-messages-col">
                 <p>"<%= item.message %>" - <%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
 
+                <p id="messageOwner"><%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
+
+
                 <div class="votes-handling">  
 
                     <button class="feedback-neon-button"  data-id="<%= item.id %>">
@@ -79,13 +82,42 @@
     <script src="/feedback.js"></script>
 
     <script>
+        // Retrieve profileId from localStorage
+        const profileId = localStorage.getItem("profileId");
+    
+        // Iterate through feedback messages and check ownership
+        document.querySelectorAll('#messageOwner').forEach((messageOwner) => {
+
+
+
+            console.log(messageOwner.textContent)
+
+            
+          
+
+
+
+
+    
+          if (messageOwner.textContent === profileId) {
+                 const textToChange = messageOwner
+                
+               textToChange.textContent="mine";
+        }
+        });
+    </script>
+    
+
+    
+
+    <script>
 
         let profile_id 
         
         profile_id = localStorage.getItem("profileId")
 
         if (!profile_id ) {
-               profile_id = NULL // Redirect if no profile data found
+               profile_id = null 
             }
 
             document.getElementById("profile_id").value = profile_id;
