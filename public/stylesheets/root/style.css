@@ -106,6 +106,7 @@ nav .fa-solid {
     display: none;
 }
 
+
 .hero-btn {
     display: inline-block;
     text-decoration: none;
@@ -233,7 +234,7 @@ footer a {
 
 
 /* Neon Button Styles */
-.neon-button .nav-neon-button {
+.neon-button, .nav-neon-button, .feedback-neon-button {
     position: relative;
     display: inline-block;
     overflow: hidden;
@@ -265,7 +266,16 @@ footer a {
 
   }
 
-  .neon-button-text, .nav-neon-button-text {
+  .feedback-neon-button {
+
+    width: 50px; /* Adjusted width */
+    height: 50px;
+    border: 1px solid var(--red_default); /*  Thicker border and color*/
+    background-color: rgba(12, 255, 101, 0.0); /* More transparent background */
+    box-shadow: 0 0 15px var(--red_default); /* Stronger shadow */
+
+  }
+  .neon-button-text, .nav-neon-button-text, .feedback-neon-button-text {
     position: relative;
     z-index: 2;
     text-align: center;
@@ -290,6 +300,14 @@ footer a {
     line-height: 20px; 
 
   }
+
+  .feedback-neon-button-text{
+
+    font-size: 30px; /* Adjusted font size */
+    color: var(--red_default); /* Adjusted color */
+    text-shadow: 0 0 7px var(--red_shadow); 
+    align-items: center;
+  }
   
   .neon-button:hover {
     box-shadow: 0 0 15px rgba(12, 255, 101, 1);
@@ -301,10 +319,10 @@ footer a {
 
 }
 
-    .nav-neon-button:hover {
+    .nav-neon-button:hover, .feedback-neon-button:hover {
 
         box-shadow: 0 0 15px var(--red_hover);
-        .neon-button-text{
+        .neon-button-text, .feedback-neon-button-text{
     
             color: var(--red_hover); /* Adjusted color */
             text-shadow: 0 0 7px var(--red_hover); /* Stronger text shadow */

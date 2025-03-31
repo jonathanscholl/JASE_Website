@@ -83,6 +83,7 @@ app.get('/challenges', (request, response) => {
       const { data, error } = await supabase
         .from("feedback")
         .select("*")
+        .order('votes', { ascending: false })
 
 
       if (error) throw error;
@@ -111,6 +112,38 @@ app.get('/challenges', (request, response) => {
         response.status(500).json({ error: 'Internal server error' });
     }
 });
+
+app.post('/feedback/upvote', async (request, response) => {
+  try {
+      const { id } = request.body;
+
+
+      const { data, error } = await supabase
+          .from("feedback")
+          .select("votes")
+          .eq("id", id)
+          .single();
+
+      if (error) throw error;
+
+
+      const newVotes = data.votes + 1;
+
+      
+      const { error: updateError } = await supabase
+          .from("feedback")
+          .update({ votes: newVotes })
+          .eq("id", id);
+
+      if (updateError) throw updateError;
+
+      response.json({ success: true, newVotes });
+  } catch (error) {
+      console.error('Error upvoting feedback:', error);
+      response.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
   
 
 

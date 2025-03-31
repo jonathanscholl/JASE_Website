@@ -27,7 +27,7 @@
 .feedback p {
     color: var(--red_default); /* Adjusted color */
     text-shadow: var(--red_shadow); /* Stronger text shadow */
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 22px;
     padding: 20px;
@@ -44,7 +44,7 @@
 }
 
 
-.feedback-col {
+.feedback-col, .feedback-messages-col {
 background: #000;
 border-radius: 30px;
 margin-bottom: 5%;
@@ -56,9 +56,47 @@ border-width: 2px;
 }
 
 .feedback-col:hover {
-box-shadow: 0 0 7px var(--grey_shadow);
-transition: 0.2s;
+    box-shadow: 0 0 7px var(--grey_shadow);
+    transition: 0.2s;
+    }
+
+.feedback-messages {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+.feedback-messages-col {
+
+    padding: 1%;
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    gap: 20px
+
+}
+
+.feedback-messages-col p {
+
+    background-color: rgb(16, 16, 16);
+    border-radius: 30px;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+
+
+}
+.votes-handling {
+
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(16, 16, 16);
+    border-radius: 30px;
+    padding: 2%;
+    align-items: center;
+}
+
+
 
 .field,
 .field-text {
@@ -81,16 +119,15 @@ transition: 0.2s;
 
 
 
-
 .feedback-neon-button {
 
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 100px;
-    padding-top: 30px
-
+    margin-top: 10%;
 }
+
+
+
+
+
 
 
 

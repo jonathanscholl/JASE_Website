@@ -20,7 +20,7 @@
 
     <div class="feedback-options">
 
-        <h3>Give us feedback</h3>
+        <h3>Give us feedback | </h3>
         <h3>Submit your challenge idea</h3>
     </div>
 
@@ -45,8 +45,23 @@
 
     <div class="feedback-messages">
         <% feedback.forEach(function(item) { %>
-            <div class="feedback-col">
+            <div class="feedback-messages-col">
                 <p>"<%= item.message %>" - <%= item.author ? item.author : 'Anonymous' %></p>
+
+                <div class="votes-handling">  
+
+                    <button class="feedback-neon-button"  data-id="<%= item.id %>">
+                        <span class="feedback-neon-button-text">
+                             ^</span>
+                      </button>
+                    
+                    <p id="votes-<%= item.id %>"><%= item.votes %></p>
+
+
+                
+                </div>
+
+              
             </div>
         <% }); %>
     </div>
@@ -55,7 +70,10 @@
 </div>
 
 
+
     </section>
+
+    <script src="/feedback.js"></script>
 
 
 </body>
