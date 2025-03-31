@@ -15,6 +15,18 @@
         <img id="profile-picture" class="profile-picture" alt="Your profile picture">
         <p><i class="fa-solid fa-gamepad"></i> Games played: <span id="games-played"></span></p>
         <p><i class="fa-solid fa-trophy"></i> Games won: <span id="games-won"></span></p>
+
+        <button class="neon-button" id="logout-button">
+            <span class="neon-button-text">
+                 Log out</span>
+          </button>
+
+          <br>
+          <br>
+          <br>
+          <br>
+
+
     </section>
 
     <script>
@@ -48,6 +60,8 @@
             document.getElementById("games-won").textContent = gamesWon || "0";
         });
     </script>
+
+    <script src="/logout.js""></script>
 
 </body>
 

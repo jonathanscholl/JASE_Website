@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import { supabase } from "./lib/supabase.js";
-import { addUsernameDB, checkIfUsernameAvailable, getProfileData, getUserId, supabaseLogin, supabaseSignup } from "./lib/auth/auth.services.js";
+import { addUsernameDB, checkIfUsernameAvailable, getProfileData, getUserId, supabaseLogin, supabaseLogout, supabaseSignup } from "./lib/auth/auth.services.js";
 
 import { readFileSync } from 'fs';
 import path from 'path';
@@ -82,11 +82,17 @@ app.get('/challenges', (request, response) => {
 
       const { data, error } = await supabase
         .from("feedback")
-        .select("*")
+        .select("id, message, votes, profile_id")
         .order('votes', { ascending: false })
+
+        console.log(data)
+
 
 
       if (error) throw error;
+
+
+      console.log(data)
       response.render("feedback", {feedback: data})
     } catch (error) {
       console.error('Error fetching feedback:', error);
@@ -97,11 +103,14 @@ app.get('/challenges', (request, response) => {
   app.post('/feedback', async (request, response) => {
     try {
         const message = request.body.text
+        const profile_id = request.body.profile_id
+
 
         const {data, error} = await supabase
         .from("feedback")
         .insert({
-          message: message
+          message: message,
+          author: profile_id
         })
 
         response.redirect("feedback")
@@ -175,10 +184,6 @@ app.post('/feedback/upvote', async (request, response) => {
     response.render('auth/profile')
   })
 
-  
-
-  
-
   app.post('/login', async (request, response) => {
     try {
         const email = request.body.email
@@ -223,6 +228,21 @@ app.post('/signup', async (request, response) => {
       response.status(500).json({ error: 'Internal server error' });
   }
 });
+
+app.post('/logout', async (request, response) => {
+  try {
+      
+
+      await supabaseLogout()
+
+      response.render('auth/login')
+
+  } catch (error) {
+      console.error('Unexpected error:', error);
+      response.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
   
   app.get('/get-challenge', async (request, response) => {

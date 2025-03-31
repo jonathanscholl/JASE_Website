@@ -30,9 +30,11 @@
         <div class="feedback-col">
 
             <p>Your opinion matters to us!</p>
-            <form class="feedback-post-content" action="/feedback" method="POST">
+            <form class="feedback-post-content" action="/feedback" method="POST" >
     
                 <textarea class="field-text" lang="en" placeholder="Give us your feedback" name="text"></textarea>
+                <input type="hidden" name="profile_id" id="profile_id" value="profile_id">
+
 
                 <button class="nav-neon-button" id="login-button">
                     <span class="nav-neon-button-text">
@@ -47,7 +49,7 @@
     <div class="feedback-messages">
         <% feedback.forEach(function(item) { %>
             <div class="feedback-messages-col">
-                <p>"<%= item.message %>" - <%= item.author ? item.author : 'Anonymous' %></p>
+                <p>"<%= item.message %>" - <%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
 
                 <div class="votes-handling">  
 
@@ -75,6 +77,23 @@
     </section>
 
     <script src="/feedback.js"></script>
+
+    <script>
+
+        let profile_id 
+        
+        profile_id = localStorage.getItem("profileId")
+
+        if (!profile_id ) {
+               profile_id = NULL // Redirect if no profile data found
+            }
+
+            document.getElementById("profile_id").value = profile_id;
+
+
+
+
+    </script>
 
 
 </body>
