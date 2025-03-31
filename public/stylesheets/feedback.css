@@ -127,12 +127,16 @@ border-width: 2px;
 }
 
 
+.profileId p {
+
+    display: none;
+}
 
 
+.profileId button {
 
-
-
-
+    display: none;
+}
 
 
 

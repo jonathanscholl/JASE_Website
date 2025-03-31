@@ -51,7 +51,16 @@
             <div class="feedback-messages-col">
                 <p>"<%= item.message %>" - <%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
 
-                <p id="messageOwner"><%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
+                <div class="profileId">
+                <p id="messageOwner" ><%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
+
+                <button class="deleteButton"  data-id="<%= item.id %>">
+                    <span class="feedback-neon-button-text">
+                         X</span>
+                  </button>
+
+            </div>
+
 
 
                 <div class="votes-handling">  
@@ -85,26 +94,15 @@
         // Retrieve profileId from localStorage
         const profileId = localStorage.getItem("profileId");
     
-        // Iterate through feedback messages and check ownership
-        document.querySelectorAll('#messageOwner').forEach((messageOwner) => {
+        document.querySelectorAll('.feedback-messages-col').forEach((messageCol) => {
+    const messageOwner = messageCol.querySelector('#messageOwner');
+    const deleteButton = messageCol.querySelector('.deleteButton');
 
+    if (messageOwner.textContent === profileId) {
 
-
-            console.log(messageOwner.textContent)
-
-            
-          
-
-
-
-
-    
-          if (messageOwner.textContent === profileId) {
-                 const textToChange = messageOwner
-                
-               textToChange.textContent="mine";
-        }
-        });
+        deleteButton.style.display = "flex";
+    }
+});
     </script>
     
 

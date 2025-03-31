@@ -160,6 +160,28 @@ app.post('/feedback/upvote', async (request, response) => {
   }
 });
 
+
+app.post('/feedback/delete', async (request, response) => {
+  try {
+      const { id } = request.body;
+
+
+      const { data, error } = await supabase
+          .from("feedback")
+          .delete()
+          .eq("id", id)
+
+
+      if (error) throw error;
+
+      response.json({ success: true });
+  } catch (error) {
+      console.error('Error upvoting feedback:', error);
+      response.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
   
 
 
