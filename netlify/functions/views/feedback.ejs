@@ -49,7 +49,7 @@
     <div class="feedback-messages">
         <% feedback.forEach(function(item) { %>
             <div class="feedback-messages-col">
-                <p>"<%= item.message %>" - <%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
+                <p><%= item.message %></p>
 
                 <div class="profileId">
                 <p id="messageOwner" ><%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
