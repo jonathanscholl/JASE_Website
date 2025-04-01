@@ -120,9 +120,27 @@ width: 90%
 }
 
 
-.profileId button {
+.deleteButton {
 
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    opacity: 1;
     display: none;
+    width: 50px; /* Adjusted width */
+    height: 50px;
+    background-color: rgba(12, 255, 101, 0.0); /* More transparent background */
+    border: none;
+
+}
+
+
+.delete-button-text  {
+
+    position: relative;
+    z-index: 2;
+    text-align: center;
 }
 
 

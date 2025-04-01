@@ -49,17 +49,19 @@
     <div class="feedback-messages">
         <% feedback.forEach(function(item) { %>
             <div class="feedback-messages-col">
-                <p><%= item.message %></p>
 
                 <div class="profileId">
-                <p id="messageOwner" ><%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
+                    <p id="messageOwner" ><%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
+    
+                    <button class="deleteButton"  data-id="<%= item.id %>">
+                        <span class="feedback-neon-button-text">
+                             X</span>
+                      </button>
+    
+                </div>
+                <p><%= item.message %></p>
 
-                <button class="deleteButton"  data-id="<%= item.id %>">
-                    <span class="feedback-neon-button-text">
-                         X</span>
-                  </button>
 
-            </div>
 
 
 
@@ -111,16 +113,18 @@
     <script>
 
         let profile_id 
+
         
         profile_id = localStorage.getItem("profileId")
 
         if (!profile_id ) {
-               profile_id = null 
+
+
+               profile_id = "empty"
+            
             }
 
             document.getElementById("profile_id").value = profile_id;
-
-
 
 
     </script>

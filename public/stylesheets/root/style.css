@@ -74,9 +74,9 @@ h1 {
 }
 
 .nav-links ul li  {
-    list-style: none;
     padding: 8px 12px;
     position: relative;
+    list-style: none;
 }
 
 nav img {

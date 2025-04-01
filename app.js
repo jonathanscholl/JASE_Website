@@ -12,7 +12,7 @@ dotenv.config();
 
 
 
-// Use an absolute path
+
 const ratings = JSON.parse(readFileSync(path.join(process.cwd(), 'public/data/ratings.json'), 'utf-8'));
 const benefits = JSON.parse(readFileSync(path.join(process.cwd(), 'public/data/benefits.json'), 'utf-8'));
 
@@ -36,12 +36,6 @@ app.set('views', path.join(process.cwd(), 'netlify/functions/views'));
 app.set('view engine', 'ejs')
 
 
-// if (process.env.NODE_ENV !== 'production') {
-//   const PORT = 3000;
-//   app.listen(PORT, () => {
-//     console.log("Server started on port", PORT);
-//   });
-// }
 
 app.get('/', (request, response) => {
 
@@ -80,6 +74,7 @@ app.get('/challenges', (request, response) => {
   app.get('/feedback', async (request, response) => {
     try {
 
+
       const { data, error } = await supabase
         .from("feedback")
         .select("id, message, votes, profile_id")
@@ -105,8 +100,13 @@ app.get('/challenges', (request, response) => {
         const message = request.body.text
         const profile_id = request.body.profile_id
 
-        console.log(profile_id)
+        console.log("Profile_ID: ", profile_id)
 
+        if (profile_id === "empty") {
+
+          response.render("auth/login")
+          return
+        }
 
         const {data, error} = await supabase
         .from("feedback")
