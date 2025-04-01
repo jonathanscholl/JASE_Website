@@ -1,0 +1,76 @@
+
+<nav>
+    <a href="/"> <img src="/images/logo.jpg" alt="Jase logo"></a>
+    <div class="nav-links" id="navLinks">
+        <i class="fa-regular fa-x" onclick="closeMenu()"></i>  
+        <ul id="menu">
+
+            <li><a href="/"><span lang="en">HOME</span></a></li>
+            
+            <li><a href="/#challenges" onclick="closeMenu()"><span lang="en">CHALLENGES</span></a></li>
+            <li><a href="/feedback"><span lang="en">FEEDBACK</span></a></li>
+            <li><a href="/news"><span lang="en">NEWS</span></a></li>
+            
+
+
+                <li>   
+                    <button class="nav-neon-button" onClick="getDownload()">  
+ 
+                        <span class="nav-neon-button-text">
+                     DOWNLOAD
+                    </span>
+                  
+                     </button>
+            
+                </li>
+
+
+                <li>
+
+                    <a href="/profile">
+                    <img src="https://opjhhvadureyhyfyignl.supabase.co/storage/v1/object/sign/profile_pictures/blank-profile-picture.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9maWxlX3BpY3R1cmVzL2JsYW5rLXByb2ZpbGUtcGljdHVyZS5wbmciLCJpYXQiOjE3NDI0MDgwNzMsImV4cCI6MjA1Nzc2ODA3M30.SbAqpl73DXLA7aa_IDP1RFZMGq7ABW4wMQ7yEkek6MM" 
+                    alt="Your profile picture" 
+                    class="nav-profile-picture"
+                    id="nav-profile-picture">
+                </a>
+                </li>
+
+        </ul>
+    </div>
+    <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+</nav>
+
+
+<script>
+
+    const profilePicture = localStorage.getItem("profilePicture");
+
+
+
+    if (profilePicture) {
+         document.getElementById("nav-profile-picture").src = profilePicture;
+     }
+
+</script>
+
+
+
+<script>
+
+var navLinks = document.getElementById("navLinks");
+var menu = document.getElementById("menu");
+
+function showMenu() {
+    navLinks.style.right = "0";
+}
+
+function closeMenu() {
+    navLinks.style.right = "-200px";
+}
+
+function getDownload() {
+
+    window.location.href = '/download';
+}
+
+</script>

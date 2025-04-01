@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<link rel="stylesheet" href="/stylesheets/news.css">
+
+<%- include('includes/head') %>
+
+<body>
+    <%- include('includes/navbar') %>
+
+    <section class="news" id="news">
+      <h1>News</h1>
+        <div class="news-container">
+
+
+            <!-- Main Article -->
+            <div class="main-article">
+                <div class="article-image" id="main-image"></div>
+                <div class="article-content">
+                    <h2 class="news-headline"></h2>
+                    <p class="news-content"></p>
+                    <p class="news-author"></p>
+                    <button class="neon-button" id="read-more-button">
+                        <span class="neon-button-text">Read More</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Side Articles -->
+            <div class="side-articles" id="side-articles">
+                <!-- Side articles created in get-news.js -->
+            </div>
+        </div>
+    </section>
+
+    <script src="/get-news.js"></script>
+</body>
+
+<%- include('includes/footer') %>
+</html>

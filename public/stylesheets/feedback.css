@@ -1,0 +1,329 @@
+
+.feedback {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 110px;
+    background-color: #000;
+    display: flex;
+
+}
+
+.feedback-options {
+
+
+    display: flex;
+    flex-direction: row;
+    gap: 20px
+
+}
+.feedback-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feedback p {
+    color: var(--red_default); /* Adjusted color */
+    text-shadow: var(--red_shadow); /* Stronger text shadow */
+    font-size: 20px;
+    font-weight: 500;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.feedback-post, .feedback-messages {
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.feedback-col, .feedback-messages-col {
+background: #000;
+border-radius: 30px;
+margin-bottom: 5%;
+padding: 10%;
+border-color: var(--grey_default);
+border-style: solid; 
+border-width: 2px; 
+width: 90%
+
+}
+
+.feedback-col:hover {
+    box-shadow: 0 0 7px var(--grey_shadow);
+    transition: 0.2s;
+    }
+
+    .feedback-messages-col {
+        /* Updated Styles */
+        padding: 1%;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .feedback-messages-col p {
+        background-color: rgb(16, 16, 16);
+        border-radius: 30px;
+        padding: 2%;
+        flex-grow: 1; /* Allow paragraph to take up available space */ /* Minimum height for consistent appearance */
+    }
+    .votes-handling {
+        display: flex;
+        flex-direction: column; /* Stack votes vertically */
+        background-color: rgb(16, 16, 16);
+        border-radius: 30px;
+        height: auto; /* Adjust height dynamically */
+        width: auto; /* Adjust width dynamically */
+    }
+    
+
+
+.field,
+.field-text {
+    width: 400px;
+    padding: 0.5rem 1rem;
+    outline: none;
+    font-size: 15px;
+    margin-bottom: 22px;
+    background-color: #000;
+    border: 1px solid var(--red_shadow);
+    border-radius: 10px;
+    color: var(--red_default);
+    text-shadow: var(--red_default);
+    resize: none;
+}
+
+.field:focus,
+.field-text:focus {
+    border-color: var(--red_default);
+}
+
+
+
+.feedback-neon-button {
+
+    margin-top: 10%;
+}
+
+
+.profileId p {
+
+    display: none;
+}
+
+
+.deleteButton {
+
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    display: none;
+    width: 50px; /* Adjusted width */
+    height: 50px;
+    background-color: rgba(12, 255, 101, 0.0); /* More transparent background */
+    border: none;
+
+}
+
+
+.delete-button-text  {
+
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+
+/* General Styles */
+.feedback {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 110px;
+    background-color: #000;
+    display: flex;
+}
+
+.feedback-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feedback-options {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* Adjust <p> styles */
+.feedback p {
+    color: var(--red_default);
+    text-shadow: var(--red_shadow);
+    font-size: 18px; /* Increased font size for readability */
+    font-weight: 500;
+    line-height: 22px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Feedback Post Form */
+.feedback-post {
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 5%;
+    display: flex;
+    justify-content: center; /* Center the form */
+    width: 80%
+}
+
+.feedback-col {
+    background: #000;
+    border-radius: 30px;
+    margin-bottom: 5%;
+    padding: 10%;
+    border-color: var(--grey_default);
+    border-style: solid; 
+    border-width: 2px; 
+}
+
+.feedback-col:hover {
+    box-shadow: 0 0 7px var(--grey_shadow);
+    transition: 0.2s;
+}
+
+/* Feedback Messages */
+.feedback-messages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%
+}
+
+.feedback-messages-col {
+    padding: 1%;
+    display: flex;
+    flex-direction: row; /* Default layout for larger screens */
+    width: 70%;
+    gap: 20px;
+}
+
+.feedback-messages-col p {
+    background-color: rgb(16, 16, 16);
+    border-radius: 30px;
+    padding: 2%;
+}
+
+.votes-handling {
+    display: flex;
+    flex-direction: column; /* Stack votes vertically */
+    background-color: rgb(16, 16, 16);
+    border-radius: 30px;
+    height: auto; /* Adjust height dynamically */
+}
+
+/* Input Fields */
+.field,
+.field-text {
+    width: 400px; /* Default size for larger screens */
+    padding: 0.5rem 1rem;
+}
+
+/* Neon Button Styles */
+.feedback-neon-button {
+    margin-top: 10%;
+    display: flex;
+}
+
+.feedback-post-content{
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Responsive Styles */
+
+/* Tablet (max-width = 1024px) */
+@media (max-width: 1024px) {
+    
+     /* h2 Elements Side-by-Side */
+     .feedback-options h2 {
+        font-size: 20px; /* Adjust font size */
+        text-align: center; 
+        display:inline-block; /* Align next to each other*/
+     }
+
+     
+    }
+
+
+    @media (max-width: 700px) {
+
+        .feedback-col {
+            padding: 5%; /* Reduced padding */
+            width: 90%;  /* Adjust width to fit */
+            margin: 0 auto; /* Center the form */
+            margin-bottom: 5%; /* Space below the form */
+        }
+    
+        .field-text {
+            width: 100%; /* Text area takes up full width */
+            box-sizing: border-box; /* Padding included in width */
+            font-size: 14px; /* Readable text size */
+        }
+    
+        .nav-neon-button {
+            width: 80%; /* Match button width to the form */
+            margin: 20px auto; /* Center button */
+            display: block; /* Ensure button takes full width */
+        }
+    
+        /* Optional: Adjust h2 and h3 sizes if needed */
+        h2 {
+            font-size: 21px;
+        }
+    
+        h3 {
+            font-size: 18px;
+        }
+
+        .feedback-messages{
+
+            width: 80%
+        }
+        .feedback-messages-col {
+            flex-direction: row; /* Stack content vertically on mobile */
+            width: 90%; /* Take up 80% of the width */
+            margin: 0 auto; /* Center the columns */
+            margin-bottom: 20px; /* Add some space between columns */
+        }
+    
+        .feedback-messages-col p {
+            font-size: 16px; /* Adjust font size for mobile */
+        }
+
+
+        .votes-handling {
+            flex-direction: column; /* Align voting buttons horizontally */
+            justify-content: space-between;
+            align-items: center; /* Align items vertically */
+            padding: 10px;
+        }
+    
+        .feedback-neon-button {
+            margin: 0; /* Remove unnecessary margin */
+        }
+    
+    }

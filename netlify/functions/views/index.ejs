@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+<link rel="stylesheet" href="/stylesheets/landingpage/home.css">
+<link rel="stylesheet" href="/stylesheets/landingpage/rating.css">
+<link rel="stylesheet" href="/stylesheets/landingpage/challenges.css">
+<link rel="stylesheet" href="/stylesheets/landingpage/benefits.css">
+
+<!-- <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
+<link rel="shortcut icon" href="/images/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="JASE" />
+<link rel="manifest" href="/images/favicon/site.webmanifest" /> -->
+
+<%- include('includes/head') %>
+
+
+
+<body>
+
+    <%- include('includes/navbar') %>
+
+<section class="home" id="home">
+    <div class="home-content">
+        <h2>Challenge your friends to an epic battle outside! </h2>
+        <div class="app-buttons">
+            <a href="/" tabIndex="0"><img class="appstore-button" src="/images/appstore-button.svg"alt="appstore-button"/></a>
+          <a href="/" tabIndex="0"><img class="playstore-button" src="/images/playstore-button.png" alt="playstore-button"/></a>
+
+        </div>
+    </div>
+    <img src="/images/mockup.png" alt="example screen from the app JASE" class="mockup">
+
+
+    
+</section>
+
+<section class="benefits" id="benefits">
+    <h2 lang="en">Why you should play</h2> 
+    <br> 
+    <div class="benefits-container">
+        <% benefits.forEach(function(benefit) { %>
+        <div class="benefits-col">
+            <i class="fa-solid <%= benefit.icon %>"></i>
+            <h3 lang="en"><%= benefit.name %></h3>
+            <p lang="en"><%= benefit.description %></p> 
+        </div>
+        <% }); %>
+    </div>
+</section>
+       
+       <h2>Try out here!</h2>
+       <section class="challenges" id="challenges">
+
+        <div class="iphone-mockup">
+            <div class="iphone-screen">
+                <img src="/images/logo.jpeg" alt="Jase logo" class="iphone-screen-logo">
+                <p class="challenge-name"></p>
+                <p class="challenge-description"></p>
+                <button class="neon-button" id="get-challenge-button">
+                    <span class="neon-button-text">
+                         Get New Challenge</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="rating" id="rating">
+        <h2 lang="en">Others said</h2> 
+        <br> 
+        <button class="prev">
+            <i class="fa-solid fa-less-than"></i>
+        </button>
+        <div class="slider-container">
+    
+            <div class="slider">
+                <% ratings.forEach(function(rating) { %>
+                    <div class="slider-col">
+                        <h3 lang="en">"<%= rating.quote %>"</h3>
+                        <p lang="en">- <%= rating.author %></p> 
+                        <div class="rating-icons">
+                            <% for(let i = 1; i <= 5; i++) { %>
+                                <% if (i <= rating.stars) { %>
+                                    <i class="fa fa-star" alt="star icon"></i>
+                                <% } else if (i - rating.stars === 0.5) { %>
+                                    <i class="fa-regular fa-star-half-stroke" alt="half star icon"></i>
+                                <% } else { %>
+                                    <i class="fa-regular fa-star" alt="empty star icon"></i>
+                                <% } %>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+    
+            <div class="slider-indicators"></div>
+    
+    
+    
+        </div>
+        <button class="next">
+            <i class="fa-solid fa-greater-than"></i>
+        </button>
+    </section>
+
+    <script src="/get-challenges.js"></script>
+    <script src="/slider.js"></script>
+    <script src="/animations.js"></script>
+
+
+
+
+
+</body>
+
+<%- include('includes/footer') %>
+
+</html>

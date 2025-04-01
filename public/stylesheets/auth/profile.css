@@ -1,0 +1,35 @@
+.profile {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 110px;
+    background-color: #000;
+
+}
+
+p {
+    color: var(--grey_default);
+    font-size: 22px;
+    font-weight: 500;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    }
+
+
+i, .fa, .fa-solid, .fa-regular {
+
+    color: var(--red_default);
+    text-shadow: var(--red_shadow);
+    margin-right: 1rem;
+    font-size: 30px;
+}
+
+.profile-picture {
+
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+

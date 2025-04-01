@@ -1,0 +1,20 @@
+{
+    "benefits": [
+      {
+        "name": "Reduce Social Anxiety",
+        "description": "Play our game and start your own rejection therapy",
+        "icon": "fa-star"
+      },
+      {
+        "name": "Socialise",
+        "description": "You and your friends will have a better bond after playing",
+                "icon": "fa-user"
+      },
+      {
+        "name": "Go outside",
+        "description": "The game is completely outside. No more sitting in your room all day!",
+        "icon": "fa-sun"
+      }
+
+    ]
+  }

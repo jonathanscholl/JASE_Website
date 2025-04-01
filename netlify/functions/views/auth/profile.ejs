@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+
+<%- include('../includes/head') %>
+
+<link rel="stylesheet" href="/stylesheets/auth/profile.css">
+
+<body>
+
+    <%- include('../includes/navbar') %>
+
+    <section class="profile" id="profile">
+        <h2 id="username"></h2>
+        <p id="email"></p>
+        <img id="profile-picture" class="profile-picture" alt="Your profile picture">
+        <p><i class="fa-solid fa-gamepad"></i> Games played: <span id="games-played"></span></p>
+        <p><i class="fa-solid fa-trophy"></i> Games won: <span id="games-won"></span></p>
+
+        <button class="neon-button" id="logout-button">
+            <span class="neon-button-text">
+                 Log out</span>
+          </button>
+
+          <br>
+          <br>
+          <br>
+          <br>
+
+
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check if profile data exists in the template
+            <% if (typeof profile_data !== 'undefined') { %>
+                localStorage.setItem("username", "<%= profile_data.username %>");
+                localStorage.setItem("profilePicture", "<%= profile_data.pb_path %>");
+                localStorage.setItem("profileId", "<%= profile_data.id %>");
+                localStorage.setItem("email", "<%= email %>");
+                localStorage.setItem("gamesPlayed", "<%= profile_data.games_played %>");
+                localStorage.setItem("gamesWon", "<%= profile_data.games_won %>");
+            <% } %>
+
+            // Retrieve from localStorage
+            const username = localStorage.getItem("username");
+            const profilePicture = localStorage.getItem("profilePicture");
+            const profileId = localStorage.getItem("profileId");
+            const email = localStorage.getItem("email");
+            const gamesPlayed = localStorage.getItem("gamesPlayed");
+            const gamesWon = localStorage.getItem("gamesWon");
+
+            if (!username || !profilePicture || !email) {
+                window.location.href = "/login"; // Redirect if no profile data found
+            }
+
+            document.getElementById("username").textContent = username;
+            document.getElementById("email").textContent = email;
+            document.getElementById("profile-picture").src = profilePicture;
+            document.getElementById("games-played").textContent = gamesPlayed || "0";
+            document.getElementById("games-won").textContent = gamesWon || "0";
+        });
+    </script>
+
+    <script src="/logout.js""></script>
+
+</body>
+
+<%- include('../includes/footer') %>
+
+</html>

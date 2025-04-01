@@ -1,0 +1,128 @@
+.rating {
+    position: relative; /* So buttons position relative to the entire section */
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 110px;
+    background-color: #000;
+}
+
+.slider-container {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.slider-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-col {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #111111; /* Black background */
+/* Optional: rounded corners */ /* Optional: soft shadow */
+}
+
+
+/* Adjust button positioning */
+.prev, .next {
+    position: absolute;
+    top: 60%;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* Position them relative to .rating instead of .slider-container */
+.prev {
+    left: -60px; /* Moves button further left */
+}
+
+.next {
+    right: -60px; /* Moves button further right */
+}
+
+.fa-solid {
+    font-size: 20px;
+    color: var(--red_default)
+}
+
+
+
+
+p {
+    color: rgb(137, 137, 137); /* Adjusted color */
+
+font-size: 16px;
+font-weight: 500;
+line-height: 22px;
+padding: 20px;
+}
+
+
+.slider-indicators {
+    display: none; /* Hide by default */
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Individual bullet */
+.slider-indicators span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 0 10px;
+    background-color: var(--grey_default);
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Active bullet */
+.slider-indicators .active {
+    background-color: var(--red_default);
+}
+
+
+
+@media (max-width: 1024px) { 
+    .slider-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 700px) { 
+
+
+    .slider-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .prev {
+        left: -50px; /* Moves button further left */
+    }
+    
+    .next {
+        right: -50px; /* Moves button further right */
+    }
+    
+    .slider-indicators {
+        display: block;
+    }
+
+}
+
+

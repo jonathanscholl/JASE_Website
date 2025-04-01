@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+<link rel="stylesheet" href="/stylesheets/feedback.css">
+
+
+<%- include('includes/head') %>
+
+
+
+<body>
+
+    <%- include('includes/navbar') %>
+
+    <section class="feedback" id="feedback">
+
+    <div class="feedback-content">
+
+    <h2>Feedback</h2>
+
+    <div class="feedback-options">
+
+        <h3>Give us feedback</h3>
+        <h3>|</h3>
+        <h3>Submit your challenge idea</h3>
+    </div>
+
+    <div class="feedback-post">
+
+        <div class="feedback-col">
+
+            <p>Your opinion matters to us!</p>
+            <form class="feedback-post-content" action="/feedback" method="POST" >
+    
+                <textarea class="field-text" lang="en" placeholder="Give us your feedback" name="text"></textarea>
+                <input type="hidden" name="profile_id" id="profile_id" value="profile_id">
+
+
+                <button class="nav-neon-button" id="login-button">
+                    <span class="nav-neon-button-text">
+                         Submit</span>
+                  </button>
+                
+            </form>
+        </div>
+
+    </div>
+
+    <div class="feedback-messages">
+        <% feedback.forEach(function(item) { %>
+            <div class="feedback-messages-col">
+
+                <div class="profileId">
+                    <p id="messageOwner" ><%= item.profile_id ? item.profile_id : 'Anonymous' %></p>
+    
+                    <button class="deleteButton"  data-id="<%= item.id %>">
+                        <span class="feedback-neon-button-text">
+                             X</span>
+                      </button>
+    
+                </div>
+                <p><%= item.message %></p>
+
+
+
+
+
+                <div class="votes-handling">  
+
+                    <button class="feedback-neon-button"  data-id="<%= item.id %>">
+                        <span class="feedback-neon-button-text">
+                             ^</span>
+                      </button>
+                    
+                    <p id="votes-<%= item.id %>"><%= item.votes %></p>
+
+
+                
+                </div>
+
+              
+            </div>
+        <% }); %>
+    </div>
+    
+
+</div>
+
+
+
+    </section>
+
+    <script src="/feedback.js"></script>
+
+    <script>
+        // Retrieve profileId from localStorage
+        const profileId = localStorage.getItem("profileId");
+    
+        document.querySelectorAll('.feedback-messages-col').forEach((messageCol) => {
+    const messageOwner = messageCol.querySelector('#messageOwner');
+    const deleteButton = messageCol.querySelector('.deleteButton');
+
+    if (messageOwner.textContent === profileId) {
+
+        deleteButton.style.display = "flex";
+    }
+});
+    </script>
+    
+
+    
+
+    <script>
+
+        let profile_id 
+
+        
+        profile_id = localStorage.getItem("profileId")
+
+        if (!profile_id ) {
+
+
+               profile_id = "empty"
+            
+            }
+
+            document.getElementById("profile_id").value = profile_id;
+
+
+    </script>
+
+
+</body>
+
+<%- include('includes/footer') %>
+
+</html>

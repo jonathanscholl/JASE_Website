@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<%- include('includes/head') %>
+
+<link rel="stylesheet" href="/stylesheets/contact.css">
+
+<body>
+
+    <%- include('includes/navbar') %>
+
+    <section class="contact">
+        <h2 lang="en">Contact </h2>
+        <div class="icons-links">
+            <a href=""><i class="fa fa-instagram" alt="instagram icon"></i></a>
+            <a href=""><i class="fa fa-whatsapp" alt="whatsapp icon"></i></a>
+            <a href=""><i class="fa fa-envelope" alt="mail icon"></i></a>
+        </div>
+            <div class="contact-box">
+                <form class="contact-content" action="/contact" method="POST">
+    
+                    <input type="text" class="field" lang="en" placeholder="Name" name="name">
+                    <input type="email" class="field" lang="en" placeholder="E-Mail" name="email">
+                    <textarea class="field-text" lang="en" placeholder="Message" name="text"></textarea>
+                    <button class="neon-button" id="contact-submit-button">
+                        <span class="neon-button-text">
+                             Submit</span>
+                      </button>
+                </form>
+
+            </div>
+
+            
+
+            <!-- <h2>Partner opportunites</h2> -->
+
+            <!-- <embed src="/data/partner_info.pdf" width="800px" height="800px" /> -->
+
+  
+    </section>
+    
+
+
+    
+</body>
+<%- include('includes/footer') %>
+
+</html>

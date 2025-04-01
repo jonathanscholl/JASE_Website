@@ -1,0 +1,10 @@
+:root{
+
+    --green_default: rgba(137, 253, 179, 0.8); 
+    --green_hover:  rgba(137, 253, 179, 1);
+    --red_default:  rgba(241, 124, 109, 0.963);
+    --red_shadow:    rgba(252, 109, 109, 0.85); 
+    --red_hover: rgba(245, 47, 47, 0.95); 
+    --grey_default: rgb(137, 137, 137);
+    --grey_shadow: 0 0 7px rgba(195, 195, 195, 0.85); 
+}
