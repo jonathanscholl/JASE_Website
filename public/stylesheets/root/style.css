@@ -375,6 +375,7 @@ footer a {
 
     .nav-links ul li {
         display: block;
+        margin-bottom: 10px;
     }
 
     .nav-links {
@@ -418,6 +419,7 @@ footer a {
     .nav-links ul {
         padding: 20px;
         color: black;
+        flex-direction: column;
 
     }
 
