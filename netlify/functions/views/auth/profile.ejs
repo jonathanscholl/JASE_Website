@@ -33,21 +33,21 @@
         document.addEventListener("DOMContentLoaded", function () {
             // Check if profile data exists in the template
             <% if (typeof profile_data !== 'undefined') { %>
-                localStorage.setItem("username", "<%= profile_data.username %>");
-                localStorage.setItem("profilePicture", "<%= profile_data.pb_path %>");
-                localStorage.setItem("profileId", "<%= profile_data.id %>");
-                localStorage.setItem("email", "<%= email %>");
-                localStorage.setItem("gamesPlayed", "<%= profile_data.games_played %>");
-                localStorage.setItem("gamesWon", "<%= profile_data.games_won %>");
+                sessionStorage.setItem("username", "<%= profile_data.username %>");
+                sessionStorage.setItem("profilePicture", "<%= profile_data.pb_path %>");
+                sessionStorage.setItem("profileId", "<%= profile_data.id %>");
+                sessionStorage.setItem("email", "<%= email %>");
+                sessionStorage.setItem("gamesPlayed", "<%= profile_data.games_played %>");
+                sessionStorage.setItem("gamesWon", "<%= profile_data.games_won %>");
             <% } %>
 
-            // Retrieve from localStorage
-            const username = localStorage.getItem("username");
-            const profilePicture = localStorage.getItem("profilePicture");
-            const profileId = localStorage.getItem("profileId");
-            const email = localStorage.getItem("email");
-            const gamesPlayed = localStorage.getItem("gamesPlayed");
-            const gamesWon = localStorage.getItem("gamesWon");
+            // Retrieve from sessionStorage
+            const username = sessionStorage.getItem("username");
+            const profilePicture = sessionStorage.getItem("profilePicture");
+            const profileId = sessionStorage.getItem("profileId");
+            const email = sessionStorage.getItem("email");
+            const gamesPlayed = sessionStorage.getItem("gamesPlayed");
+            const gamesWon = sessionStorage.getItem("gamesWon");
 
             if (!username || !profilePicture || !email) {
                 window.location.href = "/login"; // Redirect if no profile data found

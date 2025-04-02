@@ -93,8 +93,8 @@
     <script src="/feedback.js"></script>
 
     <script>
-        // Retrieve profileId from localStorage
-        const profileId = localStorage.getItem("profileId");
+        // Retrieve profileId from sessionStorage
+        const profileId = sessionStorage.getItem("profileId");
     
         document.querySelectorAll('.feedback-messages-col').forEach((messageCol) => {
     const messageOwner = messageCol.querySelector('#messageOwner');
@@ -115,7 +115,7 @@
         let profile_id 
 
         
-        profile_id = localStorage.getItem("profileId")
+        profile_id = sessionStorage.getItem("profileId")
 
         if (!profile_id ) {
 
