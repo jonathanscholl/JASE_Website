@@ -213,6 +213,12 @@ app.post('/feedback/delete', async (request, response) => {
     response.render('auth/profile')
   })
 
+  app.get('/privacy-policy', (request, response) => {
+
+    response.render('privacy_policy')
+  })
+
+
   app.post('/login', async (request, response) => {
     try {
         const email = request.body.email

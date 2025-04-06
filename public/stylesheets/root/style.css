@@ -60,6 +60,11 @@ h1 {
     text-shadow: 7px rgba(252, 109, 109, 0.85); /* Stronger text shadow */
     }
 
+p {
+
+    color: var(--grey_default);
+    text-shadow: var(--grey_shadow);
+}
 .nav-links {
     flex: 1;
     text-align: right;
@@ -223,6 +228,52 @@ footer a {
 
     color: var(--green_hover); /* Adjusted color */
     text-shadow: var(--green_hover); 
+
+}
+
+.terms-links {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+    
+.terms-links ul {
+
+    align-items: center;
+    display: inline-flex;
+    padding: 0
+    
+}
+
+.terms-links ul li {
+
+
+    padding: 10px;
+    list-style: none;
+
+}
+
+
+.terms-links ul li a {
+    color: var(--grey_default);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+.terms-links ul li:hover::after {
+    width: 100%;
+}
+
+
+.terms-links ul li a:hover {
+
+    color: var(--green_hover); /* Adjusted color */
+    text-shadow: var(--green_hover); /* Stronger text shadow */
 
 }
 
