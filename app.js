@@ -218,6 +218,15 @@ app.post('/feedback/delete', async (request, response) => {
     response.render('privacy_policy')
   })
 
+  app.get('/email-confirmed', (request, response) => {
+
+
+    const template_message = `Your email confirmation is completed! You can now return to the app`
+    response.render('template', {template_message: template_message} )
+  })
+
+  
+
 
   app.post('/login', async (request, response) => {
     try {
