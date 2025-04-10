@@ -3,13 +3,15 @@
 
 <%- include('includes/head') %>
 
-<link rel="stylesheet" href="/stylesheets/contact.css">
+<link rel="stylesheet" href="/stylesheets/expo_signup.css">
 
 <body>
 
     <%- include('includes/navbar') %>
 
-    <section class="contact">
+    <section class="expo_signup">
+
+
         <h1 lang="en">Signup for Jase at CODE Expo Day</h1>
 
         <p>Jase is a real-world challenge game that turns your surroundings into a playground.
@@ -18,19 +20,28 @@
             It's all about moving, exploring, and competing, with real-world adventure at the center of the experience.
             Get ready to team up, take action, and climb the leaderboard! </p>
 
-            <div class="contact-box">
-             <form class="contact-content" action="/expo-signup" method="POST">
+
+            <div class="icons-links">
+
+                <h2>Follow us on instagram</h2>
+                <a href="https://www.instagram.com/play.jase/"><i class="fa fa-instagram" alt="instagram icon"></i></a>
+            </div>
+
+            <div class="expo_signup-box">
+             <form class="expo_signup-content" action="/expo-signup" method="POST">
 
 
 
-                <h2>Name</h2>
+                <h2>Name <span class="required-text">(required)</span></h2>
+
 
                     <input type="text" class="field" lang="en" placeholder="Surname" name="surname" required>
 
        
                     <input type="text" class="field" lang="en" placeholder="Name" name="name" required>
 
-                    <h2>Email</h2>
+                    <h2>Email <span class="required-text">(required)</span></h2>
+
                     <input type="email" class="field" lang="en" placeholder="E-Mail" name="email" required>
 
 
@@ -92,23 +103,30 @@
                         </label>
                     </div>
 
+                    <br>
+                    <br>
+                    <br>
 
-                    <button class="neon-button" id="contact-submit-button">
+                    <button class="neon-button" id="expo_signup-submit-button">
                         <span class="neon-button-text">
                              Submit</span>
                       </button>
                 </form>
 
+
+
             </div>
 
             
 
-            <!-- <h2>Partner opportunites</h2> -->
-
-            <!-- <embed src="/data/partner_info.pdf" width="800px" height="800px" /> -->
-
   
     </section>
+
+
+
+    <br>
+    <br>
+    <br>
     
 
 
