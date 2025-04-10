@@ -289,11 +289,12 @@ footer a {
 .template {
 
     min-height: 65vh;
-    width: 100%;
+    width: 50%;
     background-color: black;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin: 0 auto
 
 }
 

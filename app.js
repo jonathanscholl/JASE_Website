@@ -64,8 +64,38 @@ app.get('/challenges', (request, response) => {
   })
 
 
+  app.get('/expo-signup', (request, response) => {
+    response.render('expo_signup')
+  })
+
+  app.post('/expo-signup', async(request, response) => {
+    console.log(request.body)
+
+
+    const {data, error} = await supabase
+    .from("expo_signup")
+    .insert({
+      surname: request.body.surname,
+      name: request.body.name,
+      email: request.body.email,
+      joining: request.body.joining,
+      team: request.body.team,
+      teammates: request.body.teammates,
+      operating_system: request.body.operating_system,
+      consent: request.body.consent
+    })
+
+    if (error) {
+
+      console.log(error)
+    }
+    const template_message = `Thank you ${request.body.surname} for signing up to expo day. We can't wait to test our game with you`
+    response.render('template', {template_message: template_message})
+  })
+
   app.post('/contact', (request, response) => {
-    console.log('Contact form submission: ', request.body.name)
+
+    console.log(request.body)
     const name = request.body.Name
     const template_message = `Thank you for your message ${name}. Your opinion matters a lot to us`
     response.render('template', {template_message: template_message})

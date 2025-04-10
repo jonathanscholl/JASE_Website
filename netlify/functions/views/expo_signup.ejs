@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+<%- include('includes/head') %>
+
+<link rel="stylesheet" href="/stylesheets/contact.css">
+
+<body>
+
+    <%- include('includes/navbar') %>
+
+    <section class="contact">
+        <h1 lang="en">Signup for Jase at CODE Expo Day</h1>
+
+        <p>Jase is a real-world challenge game that turns your surroundings into a playground.
+
+            Players team up and race against other teams to complete fun, real-life missions and create bonding memories!
+            It's all about moving, exploring, and competing, with real-world adventure at the center of the experience.
+            Get ready to team up, take action, and climb the leaderboard! </p>
+
+            <div class="contact-box">
+             <form class="contact-content" action="/expo-signup" method="POST">
+
+
+
+                <h2>Name</h2>
+
+                    <input type="text" class="field" lang="en" placeholder="Surname" name="surname" required>
+
+       
+                    <input type="text" class="field" lang="en" placeholder="Name" name="name" required>
+
+                    <h2>Email</h2>
+                    <input type="email" class="field" lang="en" placeholder="E-Mail" name="email" required>
+
+
+                    <h2>Will you play Jase with us during the Expo Day?</h2>
+
+
+                    <div class="form-radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="joining" value="yes" required>
+                            <span>Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="joining" value="no" required>
+                            <span>No</span>
+                        </label>
+                    </div>
+
+
+                    <h2>The game is played with teams of 4-5 people, do you want to form your own team or do you want to get matched?</h2>
+                    
+                    <div class="form-radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="team" value="has_team" required>
+                            <span>I have a team</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="team" value="no_team" required>
+                            <span>Match me</span>
+                        </label>
+                    </div>
+
+
+                    <h2>Who will be in your team? (please ask your teammates to fill this form as well)</h2>
+
+                    <textarea class="field-text" lang="en" placeholder="Message" name="teammates"></textarea>
+
+                    <h2>What kind of phone are you using? </h2>
+
+                    <div class="form-radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="operating_system" value="ios" required>
+                            <span>iOS</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="operating_system" value="android" required>
+                            <span>Android</span>
+                        </label>
+                    </div>
+                    <h2>Are you comfortable with us taking pictures and videos for social media? @play.jase (If you change your mind please let the Jase team know)</h2>
+
+                    <div class="form-radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="consent" value="yes" required>
+                            <span>Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="consent" value="no" required>
+                            <span>No</span>
+                        </label>
+                    </div>
+
+
+                    <button class="neon-button" id="contact-submit-button">
+                        <span class="neon-button-text">
+                             Submit</span>
+                      </button>
+                </form>
+
+            </div>
+
+            
+
+            <!-- <h2>Partner opportunites</h2> -->
+
+            <!-- <embed src="/data/partner_info.pdf" width="800px" height="800px" /> -->
+
+  
+    </section>
+    
+
+
+    
+</body>
+<%- include('includes/footer') %>
+
+</html>

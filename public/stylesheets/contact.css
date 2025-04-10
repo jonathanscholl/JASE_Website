@@ -1,7 +1,10 @@
 .contact {
-    width: 100%;
+    width: 80%;
     margin: auto;
     text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
     padding-top: 110px;
     background-color: #000;
 }
@@ -39,6 +42,11 @@
     transition: color 0.2s;
 }
 
+h2 {
+
+    font-size: 25px;
+}
+
 .contact a:after {
     content: '';
     width: 100%;
@@ -59,18 +67,22 @@
 }
 
 .contact-box {
+
+    width: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 5%;
+    margin: 0 auto;
+    padding-top: 50px;
+
 
 }
 
 .contact-content {
 
-    margin-bottom: 5%;
-    padding: 20px 12px;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
 }
 
 
@@ -101,6 +113,50 @@
 
 }
 
+.form-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+    color: var(--grey_default);
+    font-size: 22px;
+    width: 80%;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+/* Hide default radio button appearance */
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px; /* Set size */
+    height: 20px;
+    border: 2px solid var(--grey_default);
+    border-radius: 50%; /* Make it circular */
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Default state (not selected) */
+input[type="radio"]:not(:checked) {
+    border-color: var(--grey_default);
+}
+
+/* Selected state */
+input[type="radio"]:checked {
+    background-color: var(--red_default);
+    border-color: var(--red_default);
+}
+
+
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -114,4 +170,31 @@ input:-webkit-autofill:active {
 input:autofill {
     background-color: black !important;
     color: var(--red_default) !important;
+}
+
+
+
+@media (max-width: 700px) {
+
+
+    /* Optional: Adjust h2 and h3 sizes if needed */
+    h2 {
+        font-size: 21px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .contact-box{
+
+        width: 80%;
+
+    }
+
+
 }
