@@ -1,58 +1,67 @@
-.home {
-    width: 100%;
+
+  
+  .home {
+    width: 90%;
     max-width: 1200px;
-    margin: 0 auto;
+    min-height: 100vh;
+    margin: 60px auto 60px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center; 
     background-color: #000;
-    gap: 10%
-
-}
-
-.home-content {
+    gap: 5%
+  }
+  
+  .home-content {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 5
-}
+    align-items: center; 
+    text-align: center; 
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
 
-.home h2 {
-    color: white;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    line-height: 1.2;
-}
+    .home h2 {
+        color: var(--red_default);
+        font-size: 2rem; /* Smaller */
+        margin-bottom: 2rem;
+        text-align: left; /* Move left */
+        align-self: flex-start; /* Aligns h2 to the left side */
+        line-height: 1.3;
+        text-align: center;
+      }
+      
 
-.app-buttons {
+  .app-buttons {
     display: flex;
     gap: 1.5rem;
-    margin-top: 2.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin-top: 2rem;
+    justify-content: flex-start;
     position: relative;
-}
-
-.app-buttons::after {
+  }
+  
+  .app-buttons::after {
     content: '';
     position: absolute;
     width: 120%;
     height: 5px;
-    background: linear-gradient(90deg, rgba(0,0,0,0), rgba(241, 124, 109, 0.3), rgba(0,0,0,0));
+    background: linear-gradient(90deg, rgba(241, 124, 109, 0.3), rgba(241, 124, 109, 0.1), rgba(0,0,0,0));
     bottom: -20px;
-    left: -10%;
+    left: 0;
     border-radius: 50%;
-}
-
-.app-buttons a {
+  }
+  
+  .app-buttons a {
     position: relative;
     transition: all 0.3s ease;
-}
-
-.app-buttons a::before {
+    display: inline-block;
+  }
+  
+  .app-buttons a::before {
     content: '';
     position: absolute;
     top: -5px;
@@ -62,44 +71,275 @@
     border-radius: 10px;
     background: rgba(255, 255, 255, 0);
     transition: all 0.3s ease;
-}
-
-.app-buttons a:hover::before {
+  }
+  
+  .app-buttons a:hover::before {
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-}
-
-.app-buttons img {
+  }
+  
+  .app-buttons img {
     height: 55px;
     border-radius: 10px;
     transition: transform 0.3s ease;
     filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
-}
-
-.app-buttons img:hover {
+  }
+  
+  .app-buttons img:hover {
     transform: translateY(-5px);
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
-}
+  }
+  
+  .appstore-button {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .playstore-button {
+    width: 170px;
+    height: auto;
+    object-fit: contain;
+  }
 
 
 
-@media (max-width: 768px) {
+  
+  /* iPhone mockup styling improvements */
+  .iphone-mockup {
+    width: 320px;
+    height: 692px;
+    margin-right: 5%;
+    background-image: url('/images/empty_mockup.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .iphone-screen {
+    width: 218px;
+    height: 480px;
+    top: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .iphone-screen-logo {
+    width: 150px;
+    max-width: 100%;
+  }
+  
+  .challenge-name {
+    z-index: 2;
+    font-size: 24px;
+    color: var(--red_default);
+    text-shadow: 0 0 7px var(--red_shadow);
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .challenge-description {
+    z-index: 2;
+    font-size: 18px;
+    color: var(--grey_default);
+    text-shadow: 0 0 7px var(--grey_shadow);
+    text-align: center;
+    margin: 20px 0;
+    padding: 0 15px;
+  }
+  
+  
+  /* Responsive styles */
+  @media (max-width: 1024px) {
     .home {
-        flex-direction: column;
-        padding: 1rem;
+      padding: 0 40px;
+      margin-top: 100px;
     }
     
     .home h2 {
-        font-size: 1.8rem;
+      font-size: 2.2rem;
     }
-
+    
+    .iphone-mockup {
+      width: 350px;
+      height: 756px;
+    }
+    
+    .iphone-screen {
+      width: 238px;
+      height: 500px;
+      top: 65px;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .home {
+      flex-direction: column;
+      gap: 60px;
+      margin-top: 120px;
+      min-height: auto;
+      padding-bottom: 60px;
+    }
+    
+    .home-content {
+      align-items: center;
+      max-width: 100%;
+      padding: 0 20px;
+    }
+    
+    .home h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
     
     .app-buttons {
-        flex-direction: row;
+      justify-content: center;
+    }
+    
+    .app-buttons::after {
+      background: linear-gradient(90deg, rgba(0,0,0,0), rgba(241, 124, 109, 0.3), rgba(0,0,0,0));
+      left: -10%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .home {
+      margin-top: 100px;
+      padding: 0 20px 40px;
+    }
+    
+    .home h2 {
+      font-size: 1.8rem;
+      padding: 0 10px;
+    }
+    
+    .iphone-mockup {
+      width: 300px;
+      height: 650px;
+    }
+    
+    .iphone-screen {
+      width: 204px;
+      height: 428px;
+      top: 56px;
+    }
+    
+    .iphone-screen-logo {
+      width: 120px;
+    }
+    
+    .challenge-name {
+      font-size: 20px;
+    }
+    
+    .challenge-description {
+      font-size: 16px;
     }
     
     .app-buttons img {
-        height: 40px;
+      height: 45px;
     }
+    
+    .appstore-button {
+      width: 140px;
+    }
+    
+    .playstore-button {
+      width: 160px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .home {
+      margin-top: 80px;
+      padding: 20px 10px 40px;
 
-}
+    }
+    
+    .home h2 {
+      font-size: 1.6rem;
+    }
+    
+    .app-buttons {
+      gap: 1rem;
+    }
+    
+    .app-buttons img {
+      height: 40px;
+    }
+    
+    .appstore-button {
+      width: 120px;
+    }
+    
+    .playstore-button {
+      width: 140px;
+    }
+    
+    .iphone-mockup {
+      width: 280px;
+      height: 600px;
+    }
+    
+    .iphone-screen {
+      width: 190px;
+      height: 400px;
+      top: 52px;
+    }
+    
+    .challenge-name {
+      font-size: 18px;
+    }
+    
+    .challenge-description {
+      font-size: 14px;
+      padding: 0 10px;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .iphone-mockup {
+      width: 250px;
+      height: 540px;
+      margin: 0
+    }
+    
+    .iphone-screen {
+      width: 170px;
+      height: 360px;
+      top: 47px;
+    }
+    
+    .iphone-screen-logo {
+      width: 100px;
+    }
+    
+    .challenge-name {
+      font-size: 16px;
+    }
+    
+    .challenge-description {
+      font-size: 13px;
+    }
+    
+    .app-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .app-buttons::after {
+      display: none;
+    }
+  }
