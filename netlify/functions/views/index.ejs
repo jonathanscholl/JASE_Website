@@ -6,12 +6,7 @@
 <link rel="stylesheet" href="/stylesheets/landingpage/challenges.css">
 <link rel="stylesheet" href="/stylesheets/landingpage/benefits.css">
 
-<!-- <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
-<link rel="shortcut icon" href="/images/favicon/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="JASE" />
-<link rel="manifest" href="/images/favicon/site.webmanifest" /> -->
+
 
 <%- include('includes/head') %>
 
@@ -20,21 +15,26 @@
 <body>
 
     <%- include('includes/navbar') %>
-
-<section class="home" id="home">
-    <div class="home-content">
-        <h2>Challenge your friends to an epic battle outside! </h2>
-        <div class="app-buttons">
-            <a href="/" tabIndex="0"><img class="appstore-button" src="/images/appstore-button.svg"alt="appstore-button"/></a>
-          <a href="/" tabIndex="0"><img class="playstore-button" src="/images/playstore-button.png" alt="playstore-button"/></a>
+    <section class="home" id="home">
+        <div class="home-content">
+            <h2>Challenge your friends to an epic battle outside!</h2>
+            <div class="app-buttons">
+                <a href="/" tabIndex="0"><img class="appstore-button" src="/images/appstore-button.svg" alt="appstore-button"/></a>
+                <a href="/" tabIndex="0"><img class="playstore-button" src="/images/playstore-button.png" alt="playstore-button"/></a>
+            </div>
 
         </div>
-    </div>
-    <img src="/images/mockup.png" alt="example screen from the app JASE" class="mockup">
-
-
-    
-</section>
+        <div class="iphone-mockup">
+            <div class="iphone-screen">
+                <img src="/images/logo.jpeg" alt="Jase logo" class="iphone-screen-logo">
+                <p class="challenge-name"></p>
+                <p class="challenge-description"></p>
+                <button class="neon-button" id="get-challenge-button">
+                    <span class="neon-button-text">Get New Challenge</span>
+                </button>
+            </div>
+        </div>
+    </section>
 
 <section class="benefits" id="benefits">
     <h2 lang="en">Why you should play</h2> 
@@ -49,22 +49,7 @@
         <% }); %>
     </div>
 </section>
-       
-       <h2>Try out here!</h2>
-       <section class="challenges" id="challenges">
-
-        <div class="iphone-mockup">
-            <div class="iphone-screen">
-                <img src="/images/logo.jpeg" alt="Jase logo" class="iphone-screen-logo">
-                <p class="challenge-name"></p>
-                <p class="challenge-description"></p>
-                <button class="neon-button" id="get-challenge-button">
-                    <span class="neon-button-text">
-                         Get New Challenge</span>
-                </button>
-            </div>
-        </div>
-    </section>
+    
 
     <section class="rating" id="rating">
         <h2 lang="en">Others said</h2> 

@@ -1,15 +1,4 @@
 
-.challenges{
-    width: 100%;
-    margin: auto;
-    text-align: center; 
-    background-color: #000;
-    display: flex;
-    justify-content: center;
-    padding-top: 80px;
-
-
-}
 
 .iphone-mockup {
     width: 375px;
@@ -21,6 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10%;
 
 }
 

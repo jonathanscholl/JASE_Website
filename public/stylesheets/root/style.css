@@ -60,11 +60,7 @@ h1 {
     text-shadow: 7px rgba(252, 109, 109, 0.85); /* Stronger text shadow */
     }
 
-p {
 
-    color: var(--grey_default);
-    text-shadow: var(--grey_shadow);
-}
 .nav-links {
     flex: 1;
     text-align: right;

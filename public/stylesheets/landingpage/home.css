@@ -1,88 +1,105 @@
 .home {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-    padding-top: 110px;
-    background-color: #000;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    background-color: #000;
+    gap: 10%
+
 }
 
 .home-content {
-    width: 100%;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-top: 200px
+    justify-content: center;
+    margin: 5
 }
 
-.home p {
-    color: var(--grey_default);
-    text-shadow: var(--grey_shadow);
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 22px;
-    padding: 20px;
+.home h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
     text-align: center;
+    line-height: 1.2;
+}
+
+.app-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.app-buttons::after {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 5px;
+    background: linear-gradient(90deg, rgba(0,0,0,0), rgba(241, 124, 109, 0.3), rgba(0,0,0,0));
+    bottom: -20px;
+    left: -10%;
+    border-radius: 50%;
+}
+
+.app-buttons a {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.app-buttons a::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0);
+    transition: all 0.3s ease;
+}
+
+.app-buttons a:hover::before {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.app-buttons img {
+    height: 55px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+}
+
+.app-buttons img:hover {
+    transform: translateY(-5px);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
 }
 
 
 
-.mockup {
-    width: 800px;
-    height: 700px;
-    margin-left: 20%;
-}
-
-.section-divider {
-
-    padding-top: 100px;
-
-}
-
-
-
-
-@media (max-width: 1100px) {
-
-    .app-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-@media (max-width: 700px) {
-    html,
-    body {
-        overflow-x: hidden;
-        position: relative;
-        height: 100%;
-    }
-
+@media (max-width: 768px) {
     .home {
-
-        display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        width: 80%;
-        margin: auto;
-
+        padding: 1rem;
+    }
+    
+    .home h2 {
+        font-size: 1.8rem;
     }
 
-    .home-content {
-        width: 80%;
-        padding: 0
+    
+    .app-buttons {
+        flex-direction: row;
     }
-
-    .home p {
-        width: 100%;
-        padding: 20px;
-        font-size: 16px;
-    }
-
-    .mockup {
-        display: none;
+    
+    .app-buttons img {
+        height: 40px;
     }
 
 }

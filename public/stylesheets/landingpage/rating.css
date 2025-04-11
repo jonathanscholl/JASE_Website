@@ -63,15 +63,6 @@
 
 
 
-p {
-    color: rgb(137, 137, 137); /* Adjusted color */
-
-font-size: 16px;
-font-weight: 500;
-line-height: 22px;
-padding: 20px;
-}
-
 
 .slider-indicators {
     display: none; /* Hide by default */
