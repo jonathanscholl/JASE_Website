@@ -42,16 +42,6 @@
     position: relative;
   }
   
-  .app-buttons::after {
-    content: '';
-    position: absolute;
-    width: 120%;
-    height: 5px;
-    background: linear-gradient(90deg, rgba(241, 124, 109, 0.3), rgba(241, 124, 109, 0.1), rgba(0,0,0,0));
-    bottom: -20px;
-    left: 0;
-    border-radius: 50%;
-  }
   
   .app-buttons a {
     position: relative;
@@ -152,6 +142,55 @@
     margin: 20px 0;
     padding: 0 15px;
   }
+
+  .how-it-works {
+    background-color: #000;
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.how-it-works-title {
+
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.step-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 16px;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 1000px;
+    flex-wrap: wrap;
+}
+
+.step-box.reverse {
+    flex-direction: row-reverse;
+}
+
+.step-text {
+    flex: 1;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.step-title {
+    margin-bottom: 10px;
+color: var(--red_default)
+}
+
+.step-image.placeholder {
+    flex: 1;
+    width: 150px;
+    height: 150px;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    margin: 10px 20px;
+}
+
 
 
   @media (min-width: 1600px) {

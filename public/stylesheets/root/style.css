@@ -120,25 +120,6 @@ nav .fa-solid {
 }
 
 
-.hero-btn {
-    display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid #fff;
-    padding: 12px 34px;
-    font-size: 13px;
-    background: transparent;
-    position: relative;
-    cursor: pointer;
-}
-
-.hero-btn:hover {
-    border: 1px solid #FFABAD;
-    background: #FFB347;
-    transition: 0.5s;
-}
-
-
 footer {
     width: 100%;
     text-align: center;
