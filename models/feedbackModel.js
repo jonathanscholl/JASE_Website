@@ -1,4 +1,4 @@
-import e from "express";
+
 import { supabase } from "../services/supabase.js";
 
 
@@ -6,6 +6,7 @@ export const getFeedback = async() => {
 
 
     const { data, error } = await supabase
+
     .from("feedback")
     .select("id, message, votes, profile_id")
     .order('votes', { ascending: false })
@@ -21,7 +22,7 @@ export const getFeedback = async() => {
 }
 
 
-export const postFeedback = async(message, profile_id) => {
+export const updateFeedback = async(message, profile_id) => {
 
     const {error} = await supabase
     .from("feedback")
@@ -32,7 +33,7 @@ export const postFeedback = async(message, profile_id) => {
 
     if (error) {
 
-        console.log(error)
+        return error
     }
 
 
@@ -56,7 +57,7 @@ export const getFeedbackVotes = async (id) => {
 }
 
 
-export const updateFeedbackVotes = async (newVotes) => {
+export const updateFeedbackVotes = async (newVotes, id) => {
 
     const { error } = await supabase
 .from("feedback")

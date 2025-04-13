@@ -1,7 +1,6 @@
 import express from "express";
 import morgan from "morgan";
 import { supabase } from "./services/supabase.js";
-import { addUsernameDB, checkIfUsernameAvailable, getProfileData, getUserId, supabaseLogin, supabaseLogout, supabaseSignup } from "./models/authModel.js";
 
 import { readFileSync } from 'fs';
 import path from 'path';
@@ -41,7 +40,7 @@ app.set('view engine', 'ejs')
 
 app.use("/", authRoutes);
 
-app.use("/", feedbackRoutes);
+app.use("/feedback", feedbackRoutes);
 
 
 app.get('/', (request, response) => {
