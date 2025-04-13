@@ -10,6 +10,9 @@ import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 
+import authRoutes from "./routes/authRoutes.js";
+
+
 
 
 
@@ -29,12 +32,13 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
-app.use(express.static('lib'));
-
 
 app.set('views', path.join(process.cwd(), 'netlify/functions/views'));
 app.set('view engine', 'ejs')
 
+
+
+app.use("/", authRoutes);
 
 
 app.get('/', (request, response) => {
@@ -219,20 +223,7 @@ app.post('/feedback/delete', async (request, response) => {
     response.render('news')
   })
 
-  app.get('/login', (request, response) => {
 
-    response.render('auth/login')
-  })
-
-  app.get('/signup', (request, response) => {
-
-    response.render('auth/signup')
-  })
-
-  app.get('/profile', async(request, response) => {
-
-    response.render('auth/profile')
-  })
 
   app.get('/privacy-policy', (request, response) => {
 
@@ -247,68 +238,6 @@ app.post('/feedback/delete', async (request, response) => {
   })
 
   
-
-
-  app.post('/login', async (request, response) => {
-    try {
-        const email = request.body.email
-        const password = request.body.password
-
-        const user_id = await supabaseLogin(email, password)
-
-        const profile_data = await getProfileData(user_id)
-
-
-        response.render('auth/profile', {profile_data: profile_data, email: email})
-
-    } catch (error) {
-        console.error('Unexpected error:', error);
-        response.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.post('/signup', async (request, response) => {
-  try {
-      const email = request.body.email
-      const password = request.body.password
-      const username = request.body.username
-
-      const user_id = await supabaseSignup(email, password)
-
-
-      const isAvailable = await checkIfUsernameAvailable(username)
-
-      if (isAvailable) {
-
-        await addUsernameDB(username, user_id)
-      }
-
-      const profile_data = await getProfileData(user_id)
-
-
-      response.render('auth/profile', {profile_data: profile_data, email: email})
-
-  } catch (error) {
-      console.error('Unexpected error:', error);
-      response.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-app.post('/logout', async (request, response) => {
-  try {
-      
-
-      await supabaseLogout()
-
-      response.render('auth/login')
-
-  } catch (error) {
-      console.error('Unexpected error:', error);
-      response.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-
   
   app.get('/get-challenge', async (request, response) => {
     try {
