@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
-import { supabase } from "./lib/supabase.js";
-import { addUsernameDB, checkIfUsernameAvailable, getProfileData, getUserId, supabaseLogin, supabaseLogout, supabaseSignup } from "./lib/auth/auth.services.js";
+import { supabase } from "./services/supabase.js";
+import { addUsernameDB, checkIfUsernameAvailable, getProfileData, getUserId, supabaseLogin, supabaseLogout, supabaseSignup } from "./models/authModel.js";
 
 import { readFileSync } from 'fs';
 import path from 'path';
@@ -49,15 +49,6 @@ app.get('/', (request, response) => {
   });
 });
 
-
-app.get('/challenges', (request, response) => {
-
-  response.redirect('/#challenges')
-})
-
-  app.get('/about', (request, response) => {
-    response.render('about')
-  })
 
   app.get('/contact', (request, response) => {
     response.render('contact')
