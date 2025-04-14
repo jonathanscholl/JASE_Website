@@ -1,19 +1,19 @@
 import express from "express";
 
-import { showFeedback, postFeedback, upvoteFeedback, handleDeleteFeedback } from "../controllers/feedbackController";
+import { showFeedback, postFeedback, upvoteFeedback, handleDeleteFeedback } from "../controllers/feedbackController.js"
 
 
 
-const router = express.Router();
+const feedbackRouter = express.Router();
 
-router.get('/', showFeedback);
+feedbackRouter.get('/', showFeedback);
 
-router.post('/', postFeedback);
+feedbackRouter.post('/', postFeedback);
 
-router.post('/upvote', upvoteFeedback);
+feedbackRouter.post('/upvote', upvoteFeedback);
 
-router.post('/delete', handleDeleteFeedback);
+feedbackRouter.post('/delete', handleDeleteFeedback);
 
 
-export default router;
+export default feedbackRouter;
 

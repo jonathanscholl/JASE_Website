@@ -1,37 +1,35 @@
 import express from "express";
 
-import { showIndex, showContact, showDownload, showPrivacyPolicy, showEmailConfirmed, showExpoSignup, postExpoSignup, showNews, getChallenge, getNews} from "../controllers/generalController";
+import { showIndex, showContact, showDownload, showPrivacyPolicy, showEmailConfirmed, showExpoSignup, postExpoSignup, showNews, getChallenge, getNews} from "../controllers/generalController.js";
 
 
 
-const router = express.Router();
+const generalRouter = express.Router();
 
 
-router.get('/', showIndex) 
+generalRouter.get('/', showIndex) 
 
 
-router.get("/get-challenge", getChallenge)
+generalRouter.get("/get-challenge", getChallenge)
   
 
-router.get('/contact', showContact );
-router.get('/download', showDownload );
-router.get('/privacy-policy', showPrivacyPolicy );
-router.get('/email-confirmed', showEmailConfirmed );
+generalRouter.get('/contact', showContact );
+generalRouter.get('/download', showDownload );
+generalRouter.get('/privacy-policy', showPrivacyPolicy );
+generalRouter.get('/email-confirmed', showEmailConfirmed );
 
 
-router.get('/news', showNews)
+generalRouter.get('/news', showNews)
 
 
-router.get('/get-news', getNews)
+generalRouter.get('/get-news', getNews)
 
 
-router.get('/expo-signup', showExpoSignup);
+generalRouter.get('/expo-signup', showExpoSignup);
 
-router.post('/expo-signup', postExpoSignup)
-
-
+generalRouter.post('/expo-signup', postExpoSignup)
 
 
 
-export default router;
+export default generalRouter;
 

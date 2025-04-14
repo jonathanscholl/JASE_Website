@@ -1,5 +1,5 @@
-import { insertExpoSignup, fetchChallenge, fetchNews } from "../models/generalModel";
-import { ratings, benefits } from "../app";
+import { insertExpoSignup, fetchChallenge, fetchNews } from "../models/generalModel.js";
+import { ratings, benefits } from "../app.js";
 
 
 export const showIndex = (req, res) => {

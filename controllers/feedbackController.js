@@ -1,4 +1,4 @@
-import  {getFeedback, updateFeedback, getFeedbackVotes, updateFeedbackVotes, deleteFeedback } from "../models/feedbackModel"
+import  {getFeedback, updateFeedback, getFeedbackVotes, updateFeedbackVotes, deleteFeedback } from "../models/feedbackModel.js"
 
 
 

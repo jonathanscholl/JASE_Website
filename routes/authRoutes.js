@@ -6,19 +6,19 @@ import {
   handleSignup,
   handleLogout,
   showProfile,
-} from "../controllers/authController.js";
+}from "../controllers/authController.js"
 
-const router = express.Router();
+const authRouter = express.Router();
 
-router.get("/login", showLogin);
-router.get("/signup", showSignup);
-
-
-router.post("/login", handleLogin);
-router.post("/signup", handleSignup);
-router.post("/logout", handleLogout);
+authRouter.get("/login", showLogin);
+authRouter.get("/signup", showSignup);
 
 
-router.get("/profile", showProfile);
+authRouter.post("/login", handleLogin);
+authRouter.post("/signup", handleSignup);
+authRouter.post("/logout", handleLogout);
 
-export default router;
+
+authRouter.get("/profile", showProfile);
+
+export default authRouter;

@@ -31,11 +31,10 @@ app.set('view engine', 'ejs')
 
 
 
+
 app.use("/", authRoutes);
-
-app.use("/feedback", feedbackRoutes);
-
 app.use("/", generalRoutes);
+app.use("/feedback", feedbackRoutes);
 
 
   app.get('*', (request, response) => {
