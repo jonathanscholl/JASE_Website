@@ -1,24 +1,17 @@
 import express from "express";
 import morgan from "morgan";
-import { supabase } from "./services/supabase.js";
-
 import { readFileSync } from 'fs';
 import path from 'path';
-
-
 import dotenv from 'dotenv';
 dotenv.config();
 
 import authRoutes from "./routes/authRoutes.js";
 import feedbackRoutes from "./routes/feedbackRoutes.js"
+import generalRoutes from "./routes/generalRoutes.js"
 
 
-
-
-
-const ratings = JSON.parse(readFileSync(path.join(process.cwd(), 'public/data/ratings.json'), 'utf-8'));
-const benefits = JSON.parse(readFileSync(path.join(process.cwd(), 'public/data/benefits.json'), 'utf-8'));
-
+export const ratings = JSON.parse(readFileSync(path.join(process.cwd(), 'public/data/ratings.json'), 'utf-8'));
+export const benefits = JSON.parse(readFileSync(path.join(process.cwd(), 'public/data/benefits.json'), 'utf-8'));
 
 
 const app = express()
@@ -42,127 +35,7 @@ app.use("/", authRoutes);
 
 app.use("/feedback", feedbackRoutes);
 
-
-app.get('/', (request, response) => {
-
-  const ratingsData = ratings.ratings
-  const benefitsData = benefits.benefits
-
-
-  response.render('index', {
-      ratings: ratingsData,
-      benefits: benefitsData
-  });
-});
-
-
-  app.get('/contact', (request, response) => {
-    response.render('contact')
-  })
-
-
-  app.get('/expo-signup', (request, response) => {
-    response.render('expo_signup')
-  })
-
-  app.post('/expo-signup', async(request, response) => {
-    console.log(request.body)
-
-
-    const {data, error} = await supabase
-    .from("expo_signup")
-    .insert({
-      surname: request.body.surname,
-      name: request.body.name,
-      email: request.body.email,
-      joining: request.body.joining,
-      team: request.body.team,
-      teammates: request.body.teammates,
-      operating_system: request.body.operating_system,
-      consent: request.body.consent
-    })
-
-    if (error) {
-
-      console.log(error)
-    }
-    const template_message = `Thank you ${request.body.surname} for signing up to expo day. We can't wait to test our game with you`
-    response.render('template', {template_message: template_message})
-  })
-
-  app.post('/contact', (request, response) => {
-
-    console.log(request.body)
-    const name = request.body.Name
-    const template_message = `Thank you for your message ${name}. Your opinion matters a lot to us`
-    response.render('template', {template_message: template_message})
-  })
-
-
-  app.get('/download', (request, response) => {
-
-    response.render('download')
-  })
-
-
-  app.get('/news', (request, response) => {
-
-    response.render('news')
-  })
-
-
-
-  app.get('/privacy-policy', (request, response) => {
-
-    response.render('privacy_policy')
-  })
-
-  app.get('/email-confirmed', (request, response) => {
-
-
-    const template_message = `Your email confirmation is completed! You can now return to the app`
-    response.render('template', {template_message: template_message} )
-  })
-
-  
-  
-  app.get('/get-challenge', async (request, response) => {
-    try {
-
-      const challenge_nr = Math.floor(Math.random() * 100) + 1
-      const { data, error } = await supabase
-        .from("challenges")
-        .select("name, description")
-        .eq("challenge_nr", challenge_nr)
-        .limit(1)
-        .single();
-  
-      if (error) throw error;
-      response.json(data);
-    } catch (error) {
-      console.error('Error fetching challenge:', error);
-      response.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
-
-
-  app.get('/get-news', async (request, response) => {
-    try {
-
-      const { data, error } = await supabase
-        .from("news")
-        .select("*")
-        .limit(4)
-
-  
-      if (error) throw error;
-      response.json(data);
-    } catch (error) {
-      console.error('Error fetching news:', error);
-      response.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
-
+app.use("/", generalRoutes);
 
 
   app.get('*', (request, response) => {
@@ -172,10 +45,6 @@ app.get('/', (request, response) => {
     const template_message = ` Error 404: The url  "${url}" could not be found.`
     response.render('template', {template_message: template_message} )
   })
-
-
-
-  
 
 
 export default app
