@@ -20,7 +20,7 @@ export const getChallenge = async(req, res) => {
 
         try {
     
-          const challenge_nr = Math.floor(Math.random() * 100) + 1
+          const challenge_nr = Math.floor(Math.random() * 200) + 1
           const challenge_data  = await fetchChallenge(challenge_nr)
    
       

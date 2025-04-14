@@ -86,6 +86,12 @@
     background-color: var(--red_default);
 }
 
+@media (min-width: 1440px) {
+    .rating {
+      width: 70%;
+    }
+
+}
 
 
 @media (max-width: 1024px) { 
