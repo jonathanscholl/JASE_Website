@@ -12,6 +12,7 @@
 p {
 
     text-shadow: none;
+    color: var(--grey_default)
 }
 
 ul {

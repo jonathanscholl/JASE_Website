@@ -43,7 +43,7 @@ padding: 20px 12px;
 box-sizing: border-box;
 border-color: rgba(241, 124, 109, 0.963); 
 border-style: solid; 
-border-width: 2px; 
+
 
 }
 
@@ -53,6 +53,16 @@ transition: 0.2s;
 }
 
 
+
+@media (min-width: 1400px) {
+
+    .benefits {
+
+    
+        width: 70%;
+    
+    }
+}
 
 
 @media (max-width: 700px) {

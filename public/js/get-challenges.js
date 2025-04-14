@@ -28,8 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       
       if (clickCount <= 4) {
+        const buttonText = challengeButton.querySelector('.neon-button-text');
+        buttonText.textContent = 'Get new challenge!';
           await getChallenge();
       } else {
+
           const buttonText = challengeButton.querySelector('.neon-button-text');
           buttonText.textContent = 'Download';
           document.querySelector('.challenge-name').textContent = 'Want to see more?';
