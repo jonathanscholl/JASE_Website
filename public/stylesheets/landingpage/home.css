@@ -395,6 +395,18 @@ color: var(--red_default)
     .playstore-button {
       width: 160px;
     }
+    .step-box,
+    .step-box.reverse {
+      flex-direction: column;
+      text-align: center;
+      width: 90%;
+    }
+  
+    .step-box .step-text,
+    .step-box-reverse .step-text {
+      text-align: center;
+    }
+
   }
   
   @media (max-width: 480px) {
