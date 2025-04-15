@@ -9,6 +9,8 @@ This is the official Website for the mobile App "Jase: IRL Challenges App" and m
 ## 📌 Features
 
 - Landingpage with demo of the app, benefits of the app, how it works and feedback from users
+- Feedback with CRUD functions
+- News page with Database integreation
 - User authentication and session management  
 - Interactive user interface with responsive design  
 - Server-side rendering using EJS templates  
@@ -75,8 +77,10 @@ This is the official Website for the mobile App "Jase: IRL Challenges App" and m
     5.2 Start local development server:
 
    ```bash
-   git checkout render_deployment
+   npm start
     ```
+
+    The application will be running at `http://localhost:3000`.
 
 
 ---
@@ -88,7 +92,7 @@ JASE_Website/
 ├── controllers/        # Route handlers
 ├── models/             # Data layer communicaton
 ├── netlify/functions/  # Serverless functions for Netlify
-    ├── views/              # EJS templates
+    ├── views/              # EJS views
 ├── public/             # Static assets (CSS, JS, images)
 ├── routes/             # Express route definitions
 ├── services/           # External service integrations (supabase)
@@ -97,3 +101,14 @@ JASE_Website/
 ├── package.json        # Project metadata and scripts
 └── netlify.toml        # Netlify deployment configuration
 ```
+
+## Usage of AI
+
+In this project I used AI for 
+
+- CSS styling (Iphone Mockup, News Layout, How it works...)
+- Animations
+- Feedback Slider
+- to help me setting up the deployment to Netlify
+
+
