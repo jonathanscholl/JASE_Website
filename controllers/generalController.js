@@ -47,7 +47,7 @@ export const showContact = (req, res) => {
 
   export const showEmailConfirmed = (req, res) => {
 
-    const template_message = `Your email confirmation is completed! You can now return to the app`
+    const template_message = `Your email confirmation is completed! You can now continue`
     res.render('template', {template_message: template_message} )
   }
 
