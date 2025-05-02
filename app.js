@@ -37,12 +37,12 @@ app.use("/", generalRoutes);
 app.use("/feedback", feedbackRoutes);
 
 
-  app.get('*', (request, response) => {
+  app.get('*', (req, res) => {
 
 
-    const url = request.url
+    const url = req.url
     const template_message = ` Error 404: The url  "${url}" could not be found.`
-    response.render('template', {template_message: template_message} )
+    res.render('template', {template_message: template_message} )
   })
 
 

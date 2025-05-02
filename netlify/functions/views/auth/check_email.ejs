@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<%- include('../includes/head') %>
+
+    <link rel="stylesheet" href="/stylesheets/auth/login.css">
+
+    <body>
+
+        <%- include('../includes/navbar') %>
+
+            <section class="login">
+                <h2 lang="en">Confirm Your Email</h2>
+
+                <div class="login-box">
+                    <div class="login-content" style="text-align: center;">
+                        <p>We just sent you a confirmation link.</p>
+                        <p>Please check your email and click the link to confirm your account.</p>
+                        <br>
+                        <form action="/complete_signup" method="POST">
+                           
+                            <input type="text" class="field" placeholder="Email" name="email" value="<%-email%>" style="display: none;">
+                            <input type="text" class="field" placeholder="Password" name="password" value="<%-password%>" style="display: none;">
+                            <input type="text" class="field" placeholder="Username" name="username" value="<%-username%>" style="display: none;">
+
+                            
+                            <button class="neon-button" id="confirmed-button">
+
+                                <span class="neon-button-text">I have confirmed my email</span>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </section>
+
+    </body>
+
+    <%- include('../includes/footer') %>
+
+</html>

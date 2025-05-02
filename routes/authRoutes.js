@@ -6,7 +6,8 @@ import {
   handleSignup,
   handleLogout,
   showProfile,
-}from "../controllers/authController.js"
+  handleCompleteSignup
+} from "../controllers/authController.js";
 
 const authRouter = express.Router();
 
@@ -14,9 +15,11 @@ authRouter.get("/login", showLogin);
 authRouter.get("/signup", showSignup);
 
 
-authRouter.post("/login", handleLogin);
-authRouter.post("/signup", handleSignup);
-authRouter.post("/logout", handleLogout);
+router.post("/login", handleLogin);
+router.post("/signup", handleSignup);
+router.post("/logout", handleLogout);
+
+router.post("/complete_signup", handleCompleteSignup)
 
 
 authRouter.get("/profile", showProfile);

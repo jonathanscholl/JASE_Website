@@ -3,45 +3,58 @@
 
 <%- include('../includes/head') %>
 
-<link rel="stylesheet" href="/stylesheets/auth/login.css">
+    <link rel="stylesheet" href="/stylesheets/auth/login.css">
 
-<body>
+    <body>
 
-    <%- include('../includes/navbar') %>
+        <%- include('../includes/navbar') %>
 
-    <section class="login">
-        <h2 lang="en">Signup </h2>
+            <section class="login">
+                <h2 lang="en">Signup</h2>
 
-            <div class="login-box">
-                <form class="login-content" action="/signup" method="POST">
-    
-                    <input type="email" class="field" lang="en" placeholder="E-Mail" name="email">
-                    <input type="password" class="field" placeholder="Password" name ="password">
-                    <input type="text" class="field" placeholder="Username" name ="username">
+                <div class="login-box">
+                    <form class="login-content" action="/signup" method="POST">
+                        <input type="email" class="field" lang="en" placeholder="E-Mail" name="email" required>
+                        <input type="password" class="field" placeholder="Password" name="password" required>
+                        <input type="text" class="field" placeholder="Username" name="username" required>
 
-                    <button class="neon-button" id="login-button">
-                        <span class="neon-button-text">
-                             Sign up</span>
-                      </button>
-                    
+                        <button class="neon-button" id="signup-button">
+                            <span class="neon-button-text">Sign up</span>
+                        </button>
 
-                      <p>Already have an account? <a href="/login">Log in here</a></p>
-                </form>
+                        <p>Already have an account? <a href="/login">Log in here</a></p>
+                    </form>
+                </div>
+            </section>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const form = document.querySelector(".login-content");
+                    const passwordInput = form.querySelector('input[name="password"]');
+
+                    form.addEventListener("submit", function (event) {
+                        const password = passwordInput.value;
+
+                        if (!validatePassword(password)) {
+                            event.preventDefault(); 
+                            alert("Password must be at least 8 characters long, contain at least one capital letter, one number, and one symbol.");
+                        }
+                    });
+
+                    function validatePassword(password) {
+                        const minLength = 8;
+                        const hasUppercase = /[A-Z]/.test(password);
+                        const hasNumber = /[0-9]/.test(password);
+                        const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+                        return password.length >= minLength && hasUppercase && hasNumber && hasSymbol;
+                    }
+                });
+            </script>
 
 
+    </body>
 
-
- 
-
-            </div>
-
-
-  
-    </section>
-
-
-    
-</body>
-<%- include('../includes/footer') %>
+    <%- include('../includes/footer') %>
 
 </html>
