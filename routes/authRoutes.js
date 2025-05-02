@@ -9,10 +9,10 @@ import {
   handleCompleteSignup
 } from "../controllers/authController.js";
 
-const authRouter = express.Router();
+const  router = express.Router();
 
-authRouter.get("/login", showLogin);
-authRouter.get("/signup", showSignup);
+router.get("/login", showLogin);
+router.get("/signup", showSignup);
 
 
 router.post("/login", handleLogin);
@@ -22,6 +22,6 @@ router.post("/logout", handleLogout);
 router.post("/complete_signup", handleCompleteSignup)
 
 
-authRouter.get("/profile", showProfile);
+router.get("/profile", showProfile);
 
-export default authRouter;
+export default router;
