@@ -1,5 +1,5 @@
-import { insertExpoSignup, fetchChallenge, fetchNews } from "../models/generalModel";
-import { ratings, benefits } from "../app";
+import { insertExpoSignup, fetchChallenge, fetchNews } from "../models/generalModel.js";
+import { ratings, benefits } from "../app.js";
 
 
 export const showIndex = (req, res) => {
@@ -49,6 +49,11 @@ export const showContact = (req, res) => {
 
     const template_message = `Your email confirmation is completed! You can now continue`
     res.render('template', {template_message: template_message} )
+  }
+
+  export const showDeleteUser = (req, res) => {
+
+    res.render('delete_user')
   }
 
   export const showNews = (req, res) => {

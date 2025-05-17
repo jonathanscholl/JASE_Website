@@ -1,6 +1,6 @@
 import express from "express";
 
-import { showIndex, showContact, showDownload, showPrivacyPolicy, showEmailConfirmed, showExpoSignup, postExpoSignup, showNews, getChallenge, getNews} from "../controllers/generalController";
+import { showIndex, showContact, showDownload, showPrivacyPolicy, showEmailConfirmed, showDeleteUser, showExpoSignup, postExpoSignup, showNews, getChallenge, getNews} from "../controllers/generalController";
 
 
 
@@ -17,7 +17,7 @@ router.get('/contact', showContact );
 router.get('/download', showDownload );
 router.get('/privacy-policy', showPrivacyPolicy );
 router.get('/email-confirmed', showEmailConfirmed );
-
+router.get('/delete-user', showDeleteUser );
 
 router.get('/news', showNews)
 
