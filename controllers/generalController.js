@@ -51,6 +51,11 @@ export const showContact = (req, res) => {
     res.render('template', {template_message: template_message} )
   }
 
+  export const showDeleteUser = (req, res) => {
+
+    res.render('delete_user')
+  }
+
   export const showNews = (req, res) => {
 
 

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<%- include('includes/head') %>
+
+    <link rel="stylesheet" href="/stylesheets/expo_signup.css">
+
+    <body>
+
+        <%- include('includes/navbar') %>
+
+            <section class="expo_signup">
+
+
+                <h1 lang="en">Delete User</h1>
+
+                <p>Are you sure you want to delete your account?
+                    This action is irreversible.
+                </p>
+
+
+                <p>To delete your account, please enter your email address below.</p>
+
+                <form id="delete-user-form" method="post">
+                    <input type="email" name="email" placeholder="Email">
+                    <button type="submit">Delete User</button>
+                </form>
+
+
+
+            </section>
+
+
+
+            <br>
+            <br>
+            <br>
+
+
+
+
+    </body>
+    <%- include('includes/footer') %>
+
+</html>

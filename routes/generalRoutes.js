@@ -1,6 +1,6 @@
 import express from "express";
 
-import { showIndex, showContact, showDownload, showPrivacyPolicy, showEmailConfirmed, showExpoSignup, postExpoSignup, showNews, getChallenge, getNews} from "../controllers/generalController.js";
+import { showIndex, showContact, showDownload, showPrivacyPolicy, showEmailConfirmed, showDeleteUser, showExpoSignup, postExpoSignup, showNews, getChallenge, getNews} from "../controllers/generalController.js";
 
 
 
@@ -17,6 +17,7 @@ generalRouter.get('/contact', showContact );
 generalRouter.get('/download', showDownload );
 generalRouter.get('/privacy-policy', showPrivacyPolicy );
 generalRouter.get('/email-confirmed', showEmailConfirmed );
+generalRouter.get('/delete-user', showDeleteUser );
 
 
 generalRouter.get('/news', showNews)
