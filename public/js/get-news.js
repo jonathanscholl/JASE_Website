@@ -11,7 +11,6 @@
 
                 document.querySelector('.main-article .news-headline').textContent = mainArticle.headline;
                 document.querySelector('.main-article .news-content').textContent = mainArticle.content;
-                document.querySelector('.main-article .news-author').textContent = mainArticle.author;
                 document.getElementById('main-image').style.backgroundImage = `url('${mainArticle.thumbnail || ''}')`;
 
 
@@ -29,8 +28,7 @@
                         <div class="article-image" style="background-image: url('${article.thumbnail || ''}')"></div>
                         <div class="article-content">
                             <h3 class="news-headline">${article.headline}</h3>
-                            <p class="news-content">${article.content}</p>
-                            <p class="news-author">${article.author}</p>
+                            <p class="news-content">${article.content}</p> 
                         </div>
                     `;
                     sideArticlesContainer.appendChild(articleElement);
