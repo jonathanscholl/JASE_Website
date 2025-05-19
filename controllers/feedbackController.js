@@ -30,14 +30,16 @@ export const postFeedback = async (req, res) => {
 
 
         const error = await updateFeedback(message, profile_id)
+        
 
         if (error) {
 
           console.log(error)
         }
 
-        res.redirect("feedback")
+        const data = await getFeedback()
 
+        res.render("feedback", {feedback: data})
 
     } catch (error) {
         console.error('Unexpected error:', error);
