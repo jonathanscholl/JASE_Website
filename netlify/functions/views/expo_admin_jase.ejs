@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+
+<%- include('includes/head') %>
+
+<link rel="stylesheet" href="/stylesheets/expo_signup.css">
+<style>
+    .evidence-table, .teams-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+    }
+    .evidence-table th, .evidence-table td,
+    .teams-table th, .teams-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        background-color: #fff;
+    }
+    .evidence-table th, .teams-table th {
+        background-color: #f4f4f4;
+    }
+    .evidence-table tr:nth-child(even),
+    .teams-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    .evidence-table tr:hover,
+    .teams-table tr:hover {
+        background-color: #f5f5f5;
+    }
+    .team-row {
+        cursor: pointer;
+    }
+    .team-row:hover {
+        background-color: #e9e9e9;
+    }
+    .evidence-section {
+        display: none;
+        margin-top: 30px;
+    }
+    .evidence-section.active {
+        display: block;
+    }
+    .evidence-image {
+        max-width: 200px;
+        max-height: 200px;
+        cursor: pointer;
+    }
+    .evidence-video {
+        max-width: 200px;
+        max-height: 200px;
+    }
+</style>
+
+<body>
+    <%- include('includes/navbar') %>
+
+    <section class="expo_signup">
+        <h1>Expo Day Admin Jase</h1>    
+
+        <!-- Teams Table -->
+        <h2>Teams</h2>
+        <table class="teams-table">
+            <thead>
+                <tr>
+                    <th>Team Name</th>
+                    <th>Team ID</th>
+                    <th>Game ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% 
+                const uniqueTeams = new Map();
+                evidenceData.forEach(evidence => {
+                    if (!uniqueTeams.has(evidence.teams.id)) {
+                        uniqueTeams.set(evidence.teams.id, evidence.teams);
+                    }
+                });
+                uniqueTeams.forEach(team => { 
+                %>
+                    <tr class="team-row" data-team-id="<%= team.id %>">
+                        <td><%= team.name %></td>
+                        <td><%= team.id %></td>
+                        <td><%= team.game_id %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+        <!-- Evidence Table -->
+        <div id="evidence-section" class="evidence-section">
+            <h2>Team Evidence</h2>
+            <table class="evidence-table">
+                <thead>
+                    <tr>
+                        <th>Challenge</th>
+                        <th>Evidence</th>
+                    </tr>
+                </thead>
+                <tbody id="evidence-body">
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const teamRows = document.querySelectorAll('.team-row');
+            const evidenceSection = document.getElementById('evidence-section');
+            const evidenceBody = document.getElementById('evidence-body');
+            const evidenceData = <%- JSON.stringify(evidenceData) %>;
+
+            teamRows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const teamId = this.dataset.teamId;
+                    const teamEvidences = evidenceData.filter(evidence => evidence.team_id === teamId);
+                    
+                    // Clear previous evidence
+                    evidenceBody.innerHTML = '';
+                    
+                    // Add new evidence
+                    teamEvidences.forEach(evidence => {
+                        const row = document.createElement('tr');
+                        
+                        // Challenge name cell
+                        const challengeCell = document.createElement('td');
+                        challengeCell.textContent = evidence.team_challenges?.challenges?.name || 'N/A';
+                        row.appendChild(challengeCell);
+                        
+                        // Evidence cell
+                        const evidenceCell = document.createElement('td');
+                        if (evidence.signed_url) {
+                            if (evidence.path.endsWith('.mp4')) {
+                                const video = document.createElement('video');
+                                video.controls = true;
+                                video.className = 'evidence-video';
+                                video.innerHTML = `<source src="${evidence.signed_url}" type="video/mp4">`;
+                                evidenceCell.appendChild(video);
+                            } else {
+                                const img = document.createElement('img');
+                                img.src = evidence.signed_url;
+                                img.className = 'evidence-image';
+                                img.onclick = () => window.open(evidence.signed_url, '_blank');
+                                evidenceCell.appendChild(img);
+                            }
+                        } else {
+                            evidenceCell.textContent = 'No evidence available';
+                        }
+                        row.appendChild(evidenceCell);
+                        
+                        evidenceBody.appendChild(row);
+                    });
+                    
+                    // Show evidence section
+                    evidenceSection.classList.add('active');
+                });
+            });
+        });
+    </script>
+
+    <br>
+    <br>
+    <br>
+</body>
+<%- include('includes/footer') %>
+
+</html>

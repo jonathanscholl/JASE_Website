@@ -53,3 +53,27 @@ export const fetchNews = async () => {
     return data
 }
 
+export const fetchEvidenceWithDetails = async () => {
+    const { data, error } = await supabase
+        .from("evidence")
+        .select(`
+            *,
+            team_challenges!inner (
+                challenge_id,
+                challenges (
+                    name
+                )
+            ),
+            teams:team_id (*)
+        `)
+
+    console.log(data)
+
+    if (error) {
+        console.log(error);
+        return null;
+    }
+
+    return data;
+}
+

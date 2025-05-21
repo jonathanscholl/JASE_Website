@@ -1,6 +1,6 @@
 import express from "express";
 
-import { showIndex, showContact, showDownload, showPrivacyPolicy, showEmailConfirmed, showDeleteUser, showExpoSignup, postExpoSignup, showNews, getChallenge, getNews} from "../controllers/generalController";
+import { showIndex, showContact, showDownload, showPrivacyPolicy, showEmailConfirmed, showDeleteUser, showExpoSignup, postExpoSignup, showExpoDayAdminJase, showNews, getChallenge, getNews} from "../controllers/generalController";
 
 
 
@@ -23,6 +23,9 @@ router.get('/news', showNews)
 
 
 router.get('/get-news', getNews)
+
+
+router.get("/expo-day-admin-jase", showExpoDayAdminJase)
 
 
 router.get('/expo-signup', showExpoSignup);

@@ -1,4 +1,4 @@
-import { insertExpoSignup, fetchChallenge, fetchNews } from "../models/generalModel.js";
+import { insertExpoSignup, fetchChallenge, fetchNews, fetchEvidenceWithDetails } from "../models/generalModel.js";
 import { ratings, benefits } from "../app.js";
 
 
@@ -95,6 +95,12 @@ export const showContact = (req, res) => {
         res.render('template', {template_message: template_message})
 
 
+      }
+
+
+      export const showExpoDayAdminJase = async (req, res) => {
+        const evidenceData = await fetchEvidenceWithDetails();
+        res.render('expo_admin_jase', { evidenceData });
       }
 
 
