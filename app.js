@@ -1,9 +1,10 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from "express";
 import morgan from "morgan";
 import { readFileSync } from 'fs';
 import path from 'path';
-import dotenv from 'dotenv';
-dotenv.config();
 
 import authRoutes from "./routes/authRoutes.js";
 import feedbackRoutes from "./routes/feedbackRoutes.js"

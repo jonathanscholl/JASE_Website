@@ -277,7 +277,7 @@ footer a {
 
 
 /* Neon Button Styles */
-.neon-button, .nav-neon-button, .feedback-neon-button {
+.neon-button, .nav-neon-button, .feedback-neon-button, .neon-button-red {
     position: relative;
     display: inline-block;
     overflow: hidden;
@@ -295,6 +295,15 @@ footer a {
     background-color: rgba(12, 255, 101, 0.0); /* More transparent background */
     box-shadow: 0 0 15px rgba(12, 255, 101, 0.85); /* Stronger shadow */
     
+  }
+
+  .neon-button-red {
+
+    width: 200px; /* Adjusted width */
+    height: 7cap; /* Adjusted height */
+    border: 2px solid var(--red_default); /*  Thicker border and color*/
+    background-color: rgba(12, 255, 101, 0.0); /* More transparent background */
+    box-shadow: 0 0 15px var(--red_default); /* Stronger shadow */
   }
 
   .nav-neon-button{
@@ -334,6 +343,14 @@ footer a {
 
   }
 
+  .neon-button-red-text{
+
+    font-size: 13px; /* Adjusted font size */
+    color: var(--red_default); /* Adjusted color */
+    text-shadow: 0 0 7px var(--red_shadow); 
+    line-height: 1; 
+
+  }
   .nav-neon-button-text{
 
 

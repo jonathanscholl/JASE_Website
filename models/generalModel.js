@@ -1,4 +1,4 @@
-import { supabase } from "../services/supabase.js";
+import { supabase, supabaseAdmin } from "../services/supabase.js";
 
 
 export const fetchChallenge = async(challenge_nr) => {
@@ -77,3 +77,15 @@ export const fetchEvidenceWithDetails = async () => {
     return data;
 }
 
+
+export const deleteUser = async (user_id) => {
+    const { data, error } = await supabaseAdmin.auth.admin.deleteUser(
+        user_id
+    )
+
+    if (error) {
+        console.log(error)
+    }
+
+    return data
+}   

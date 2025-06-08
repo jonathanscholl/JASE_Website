@@ -17,13 +17,35 @@ import {
   
   export const handleLogin = async (req, res) => {
     try {
-      const { email, password } = req.body;
+      const { email, password, redirectToDelete } = req.body;
       const user_id = await supabaseLogin(email, password);
+      
+      if (!user_id) {
+        if (redirectToDelete === 'true') {
+          res.render("delete_user", { error: "Invalid credentials. Please try again." });
+        } else {
+          res.render("auth/login", { error: "Invalid credentials. Please try again." });
+        }
+        return;
+      }
+
       const profile_data = await getProfileData(user_id);
-      res.render("auth/profile", { profile_data, email });
+      
+      if (redirectToDelete === 'true') {
+        res.redirect(`/delete-user?userId=${user_id}&username=${profile_data.username}`);
+        return;
+      }
+      
+      res.render("auth/profile", { profile_data, email, user_id });
     } catch (error) {
       console.error("Login error:", error);
-      res.status(500).json({ error: "Internal server error" });
+      // Check if redirectToDelete exists in the request body
+      const isDeleteRedirect = req.body.redirectToDelete === 'true';
+      if (isDeleteRedirect) {
+        res.render("delete_user", { error: "An error occurred. Please try again." });
+      } else {
+        res.render("auth/login", { error: "An error occurred. Please try again." });
+      }
     }
   };
   

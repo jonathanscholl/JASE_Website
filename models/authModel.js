@@ -1,7 +1,6 @@
 import { supabase } from "../services/supabase.js";
 
 export const supabaseLogin = async(email, password) => {
-
     console.log(`Login attempt for: ${email}`);
 
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -11,12 +10,11 @@ export const supabaseLogin = async(email, password) => {
     
     if (error) {
         console.error('Login error:', error);
-        return response.status(401).json({ error: 'Invalid credentials' });
+        return null;
     }
     
     console.log("Login successful:", data);
-
-    return data.user.id
+    return data.user.id;
 }
 
 export const supabaseSignup = async(email, password) => {

@@ -4,42 +4,67 @@
 <%- include('includes/head') %>
 
     <link rel="stylesheet" href="/stylesheets/expo_signup.css">
+    <link rel="stylesheet" href="/stylesheets/auth/login.css">
 
     <body>
 
         <%- include('includes/navbar') %>
 
             <section class="expo_signup">
-
-
                 <h1 lang="en">Delete User</h1>
 
-                <p>Are you sure you want to delete your account?
+                <p id="delete-message">To delete your account, please confirm your identity by logging in first.
                     This action is irreversible.
                 </p>
 
+                <div id="login-section" class="login-box">
+                    <form class="login-content" action="/login" method="POST">
+                        <% if (typeof error !== 'undefined') { %>
+                            <div class="error-message" style="color: var(--red_default); margin-bottom: 1rem;">
+                                <%= error %>
+                            </div>
+                        <% } %>
+                        <input type="email" class="field" lang="en" placeholder="E-Mail" name="email" required>
+                        <input type="password" class="field" placeholder="Password" name="password" required>
+                        <input type="hidden" name="redirectToDelete" value="true">
+                        <button class="neon-button" type="submit">
+                            <span class="neon-button-text">Confirm Identity</span>
+                        </button>
+                    </form>
+                </div>
 
-                <p>To delete your account, please enter your email address below.</p>
+                <div id="delete-section" style="display: none;">
+                    <form id="delete-user-form" method="post" action="/delete-user">
+                        <input type="hidden" id="profile-id" name="profileId">
+                        <button class="neon-button-red" id="delete-user-button">
+                            <span class="neon-button-red-text">Delete Account</span>
+                        </button>
+                    </form>
+                </div>
 
-                <form id="delete-user-form" method="post">
-                    <input type="email" name="email" placeholder="Email">
-                    <button type="submit">Delete User</button>
-                </form>
-
-
-
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Check if we have a user ID in the URL (set after successful login)
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const userId = urlParams.get('userId');
+                        const username = urlParams.get('username');
+                        
+                        if (userId && username) {
+                            document.getElementById('profile-id').value = userId;
+                            document.getElementById('login-section').style.display = 'none';
+                            document.getElementById('delete-section').style.display = 'block';
+                            document.getElementById('delete-message').textContent = `Hello ${username}. Are you sure you want to delete your account? This action is irreversible.`;
+                        }
+                    });
+                </script>
             </section>
 
-
-
             <br>
             <br>
             <br>
-
-
-
 
     </body>
+
     <%- include('includes/footer') %>
 
 </html>

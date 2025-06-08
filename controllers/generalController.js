@@ -1,4 +1,4 @@
-import { insertExpoSignup, fetchChallenge, fetchNews, fetchEvidenceWithDetails } from "../models/generalModel.js";
+import { insertExpoSignup, fetchChallenge, fetchNews, fetchEvidenceWithDetails, deleteUser } from "../models/generalModel.js";
 import { ratings, benefits } from "../app.js";
 
 
@@ -104,6 +104,13 @@ export const showContact = (req, res) => {
       }
 
 
+
+      export const handleDeleteUser = async (req, res) => {
+        const profileId = req.body.profileId;
+        console.log(profileId);
+        await deleteUser(profileId);
+        res.redirect('/delete-success');
+      }
 
 
 
