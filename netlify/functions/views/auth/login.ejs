@@ -20,29 +20,43 @@
                         </div>
                     <% } %>
                     <input type="email" class="field" lang="en" placeholder="E-Mail" name="email">
-                    <input type="password" class="field" placeholder="Password" name ="password">
+                    <input type="password" class="field" placeholder="Password" name="password">
 
                     <button class="neon-button" id="login-button">
-                        <span class="neon-button-text">
-                             Login</span>
-                      </button>
-                    
+                        <span class="neon-button-text">Login</span>
+                    </button>
 
-                      <p>Don't have an account yet? <a href="/signup">Sign up here</a></p>
+                    <div class="divider" style="margin: 1rem 0; text-align: center; color: var(--grey_default);">
+                        <span>or</span>
+                    </div>
+
+                    <button type="button" id="apple-signin-button" class="apple-button" style="width: 100%; padding: 0.5rem; background: black; border: 1px solid var(--red_default); border-radius: 10px; color: var(--red_default); cursor: pointer; margin-bottom: 1rem;">
+                        <i class="fab fa-apple" style="margin-right: 0.5rem;"></i>
+                        Sign in with Apple
+                    </button>
+
+                    <p>Don't have an account yet? <a href="/signup">Sign up here</a></p>
                 </form>
-
-
-
-
- 
-
             </div>
-
-
-  
     </section>
 
+    <script>
+        document.getElementById('apple-signin-button').addEventListener('click', async () => {
+            try {
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: 'apple',
+                    options: {
+                        redirectTo: window.location.origin + '/auth/callback'
+                    }
+                });
 
+                if (error) throw error;
+            } catch (error) {
+                console.error('Apple sign in error:', error);
+                alert('Error signing in with Apple. Please try again.');
+            }
+        });
+    </script>
     
 </body>
 <%- include('../includes/footer') %>

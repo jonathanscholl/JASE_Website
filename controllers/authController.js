@@ -6,6 +6,7 @@ import {
     addUsernameDB,
     checkIfUsernameAvailable,
   } from "../models/authModel.js";
+import { supabase } from "../services/supabase.js";
 
     export const showLogin = (req, res) => {
     res.render("auth/login");
@@ -85,3 +86,57 @@ import {
     res.render("auth/profile");
   };
   
+  export const handleOAuthCallback = async (req, res) => {
+    try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (error) throw error;
+        
+        if (session) {
+            const user_id = session.user.id;
+            const profile_data = await getProfileData(user_id);
+            
+            // Check if this is a delete user flow
+            const redirectToDelete = req.query.redirectToDelete === 'true';
+            
+            if (redirectToDelete) {
+                if (profile_data) {
+                    res.redirect(`/delete-user?userId=${user_id}&username=${profile_data.username}`);
+                } else {
+                    res.redirect('/delete-user?error=No profile found');
+                }
+                return;
+            }
+            
+            if (profile_data) {
+                res.render("auth/profile", { profile_data, email: session.user.email, user_id });
+            } else {
+                // If no profile exists, redirect to signup to create one
+                res.redirect('/signup');
+            }
+        } else {
+            res.redirect('/login');
+        }
+    } catch (error) {
+        console.error('OAuth callback error:', error);
+        res.redirect('/login');
+    }
+  };
+  
+  export const handleAppleSignIn = async (req, res) => {
+  try {
+    console.log('Redirecting to Supabase Apple OAuth...');
+
+    // Use the Supabase callback URL
+    const redirectTo = encodeURIComponent('https://opjhhvadureyhyfyignl.supabase.co/auth/v1/callback');
+
+    const authorizeURL = `https://opjhhvadureyhyfyignl.supabase.co/auth/v1/authorize?provider=apple&redirect_to=${redirectTo}`;
+
+    res.redirect(authorizeURL);
+  } catch (error) {
+    console.error('Apple sign-in redirect error:', error);
+    res.render("delete_user", {
+      error: "Error signing in with Apple. Please try again.",
+    });
+  }
+};

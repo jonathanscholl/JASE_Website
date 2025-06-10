@@ -6,7 +6,9 @@ import {
   handleSignup,
   handleLogout,
   showProfile,
-  handleCompleteSignup
+  handleCompleteSignup,
+  handleOAuthCallback,
+  handleAppleSignIn
 } from "../controllers/authController.js";
 
 const router = express.Router();
@@ -23,5 +25,7 @@ router.post("/complete_signup", handleCompleteSignup)
 
 
 router.get("/profile", showProfile);
+router.get("/auth/callback", handleOAuthCallback);
+router.post("/auth/apple", handleAppleSignIn);
 
 export default router;
