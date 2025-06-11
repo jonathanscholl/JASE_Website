@@ -70,7 +70,7 @@
                         if (token) {
                             try {
                                 // Verify token with Supabase
-                                const response = await fetch('/.netlify/functions/server/auth/verify-token', {
+                                const response = await fetch('/auth/verify-token', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
