@@ -91,9 +91,16 @@ import { createServerClient } from '@supabase/ssr';
     console.log('OAuth callback received');
     const { code, state, error: oauthError, error_description } = req.query;
     
-    // Verify state matches what we stored
-    if (state !== req.session?.oauthState) {
-      console.error('State mismatch in OAuth callback');
+    // Decode and verify state
+    let stateData;
+    try {
+      stateData = JSON.parse(Buffer.from(state, 'base64').toString());
+      // Verify state is not too old (e.g., 15 minutes)
+      if (Date.now() - stateData.timestamp > 15 * 60 * 1000) {
+        throw new Error('State expired');
+      }
+    } catch (error) {
+      console.error('Invalid state:', error);
       return res.redirect('/?error=' + encodeURIComponent('Invalid authentication state'));
     }
 
@@ -113,12 +120,8 @@ import { createServerClient } from '@supabase/ssr';
         }
 
         if (data?.user) {
-          // Clear the OAuth state from session
-          delete req.session.oauthState;
-          
-          // Handle redirect based on stored session data
-          if (req.session.redirectToDelete) {
-            delete req.session.redirectToDelete;
+          // Handle redirect based on state data
+          if (stateData.redirectToDelete) {
             return res.redirect(`/delete-user?userId=${data.user.id}&username=${data.user.user_metadata?.username || 'User'}`);
           }
           
@@ -141,13 +144,11 @@ import { createServerClient } from '@supabase/ssr';
       const redirectToDelete = req.body.redirectToDelete === 'true';
       const redirectUrl = 'https://playjase.com/auth/callback';
       
-      // Generate a random state
-      const state = Math.random().toString(36).substring(7);
-      
-      // Store the state and redirect info in the session
-      req.session = req.session || {};
-      req.session.oauthState = state;
-      req.session.redirectToDelete = redirectToDelete;
+      // Generate a random state and encode the redirect information
+      const state = Buffer.from(JSON.stringify({
+        redirectToDelete,
+        timestamp: Date.now()
+      })).toString('base64');
 
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'apple',
