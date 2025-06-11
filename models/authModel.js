@@ -91,6 +91,9 @@ export const getProfileData = async (user_id) => {
     .eq("user_id", user_id)
     .single();
 
+
+    console.log(profile_data)
+
     return profile_data
 }
 

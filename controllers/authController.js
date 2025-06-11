@@ -210,6 +210,9 @@ import { createServerClient } from '@supabase/ssr';
         return res.render("delete_user", { error: "Invalid token" });
       }
 
+
+      console.log(user)
+
       // Get user profile data
       const profile_data = await getProfileData(user.id);
       
