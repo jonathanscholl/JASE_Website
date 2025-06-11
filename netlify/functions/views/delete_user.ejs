@@ -3,94 +3,107 @@
 
 <%- include('includes/head') %>
 
-    <link rel="stylesheet" href="/stylesheets/expo_signup.css">
-    <link rel="stylesheet" href="/stylesheets/auth/login.css">
+<link rel="stylesheet" href="/stylesheets/expo_signup.css">
+<link rel="stylesheet" href="/stylesheets/auth/login.css">
 
-    <body>
+<body>
 
-        <%- include('includes/navbar') %>
+    <%- include('includes/navbar') %>
 
-            <section class="expo_signup">
-                <h1 lang="en">Delete User</h1>
+    <section class="expo_signup">
+        <h1 lang="en">Delete User</h1>
 
-                <div id="loading-section" style="display: <%= typeof showDeleteSection !== 'undefined' ? 'none' : 'block' %>">
-                    <p>Verifying your identity...</p>
-                </div>
+        <div id="loading-section">
+            <p>Verifying your identity...</p>
+        </div>
 
-                <div id="token-verification-section" style="display: <%= typeof showDeleteSection !== 'undefined' ? 'none' : 'none' %>">
-                    <form method="POST" action="/verify-token">
-                        <input type="hidden" name="token" id="token-input">
-                        <button class="neon-button" type="submit">
-                            <span class="neon-button-text">Delete Account</span>
-                        </button>
-                    </form>
-                </div>
+        <div id="token-verification-section">
+            <form method="POST" action="/verify-token">
+                <input type="hidden" name="token" id="token-input">
+                <button class="neon-button" type="submit">
+                    <span class="neon-button-text">Delete Account</span>
+                </button>
+            </form>
+        </div>
 
-                <div id="login-section" class="login-box" style="display: <%= typeof showDeleteSection !== 'undefined' ? 'none' : 'none' %>">
-                    <p id="delete-message">To delete your account, please confirm your identity by logging in first.</p>
-                    <form class="login-content" action="/login" method="POST">
-                        <% if (typeof error !== 'undefined') { %>
-                            <div class="error-message" style="color: var(--red_default); margin-bottom: 1rem;">
-                                <%= error %>
-                            </div>
-                        <% } %>
-                        <input type="email" class="field" lang="en" placeholder="E-Mail" name="email" required>
-                        <input type="password" class="field" placeholder="Password" name="password" required>
-                        <input type="hidden" name="redirectToDelete" value="true">
-
-                        <button class="neon-button" type="submit">
-                            <span class="neon-button-text">Confirm Identity</span>
-                        </button>
-                    </form>
-                    <div class="divider" style="margin: 1rem 0; text-align: center; color: var(--grey_default);">
-                        <span>or</span>
+        <div id="login-section" class="login-box">
+            <p id="delete-message">To delete your account, please confirm your identity by logging in first.</p>
+            <form class="login-content" action="/login" method="POST">
+                <% if (typeof error !== 'undefined') { %>
+                    <div class="error-message" style="color: var(--red_default); margin-bottom: 1rem;">
+                        <%= error %>
                     </div>
-                    
-                    <form action="/auth/apple" method="POST" style="margin-bottom: 1rem;">
-                        <input type="hidden" name="redirectToDelete" value="true">
-                        <button type="submit" class="apple-button"
-                            style="width: 100%; height: 40px; background-color: #fff; border-radius: 5px; border: none; color: #000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px;">
-                                <path fill="#000"
-                                    d="M17.05 20.28c-.98.95-2.05.88-3.08.41-1.09-.47-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.41C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.78 1.18-.19 2.31-.89 3.51-.84 1.54.07 2.7.61 3.44 1.57-3.14 1.88-2.29 5.13.22 6.41-.65 1.29-1.51 2.58-2.25 4.05zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
-                            </svg>
-                            Continue with Apple
-                        </button>
-                    </form>
-                </div>
+                <% } %>
+                <input type="email" class="field" lang="en" placeholder="E-Mail" name="email" required>
+                <input type="password" class="field" placeholder="Password" name="password" required>
+                <input type="hidden" name="redirectToDelete" value="true">
 
-                <div id="delete-section" style="display: <%= typeof showDeleteSection !== 'undefined' ? 'block' : 'none' %>">
-                    <form id="delete-user-form" method="post" action="/delete-user">
-                        <input type="hidden" id="profile-id" name="profileId" value="<%= typeof userId !== 'undefined' ? userId : '' %>">
-                        <p id="delete-message">Hello <%= typeof username !== 'undefined' ? username : 'User' %>. Are you sure you want to delete your account? This action is irreversible.</p>
-                        <button class="neon-button-red" id="delete-user-button">
-                            <span class="neon-button-red-text">Delete Account</span>
-                        </button>
-                    </form>
-                </div>
+                <button class="neon-button" type="submit">
+                    <span class="neon-button-text">Confirm Identity</span>
+                </button>
+            </form>
+            <div class="divider" style="margin: 1rem 0; text-align: center; color: var(--grey_default);">
+                <span>or</span>
+            </div>
 
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        // Check for token in URL
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const token = urlParams.get('token');
-                        
-                        if (token) {
-                            // Show token verification form
-                            document.getElementById('loading-section').style.display = 'none';
-                            document.getElementById('token-verification-section').style.display = 'block';
-                            document.getElementById('token-input').value = token;
-                        }
-                    });
-                </script>
-            </section>
+            <form action="/auth/apple" method="POST" style="margin-bottom: 1rem;">
+                <input type="hidden" name="redirectToDelete" value="true">
+                <button type="submit" class="apple-button"
+                    style="width: 100%; height: 40px; background-color: #fff; border-radius: 5px; border: none; color: #000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px;">
+                        <path fill="#000"
+                            d="M17.05 20.28c-.98.95-2.05.88-3.08.41-1.09-.47-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.41C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.78 1.18-.19 2.31-.89 3.51-.84 1.54.07 2.7.61 3.44 1.57-3.14 1.88-2.29 5.13.22 6.41-.65 1.29-1.51 2.58-2.25 4.05zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+                    </svg>
+                    Continue with Apple
+                </button>
+            </form>
+        </div>
 
-            <br>
-            <br>
-            <br>
+        <div id="delete-section">
+            <form id="delete-user-form" method="post" action="/delete-user">
+                <input type="hidden" id="profile-id" name="profileId" value="<%= typeof userId !== 'undefined' ? userId : '' %>">
+                <p id="delete-message">Hello <%= typeof username !== 'undefined' ? username : 'User' %>. Are you sure you want to delete your account? This action is irreversible.</p>
+                <button class="neon-button-red" id="delete-user-button">
+                    <span class="neon-button-red-text">Delete Account</span>
+                </button>
+            </form>
+        </div>
 
-    </body>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const token = urlParams.get('token');
 
-    <%- include('includes/footer') %>
+                const loadingSection = document.getElementById('loading-section');
+                const tokenVerificationSection = document.getElementById('token-verification-section');
+                const loginSection = document.getElementById('login-section');
+                const deleteSection = document.getElementById('delete-section');
+
+                // Hide all sections initially
+                loadingSection.style.display = 'none';
+                tokenVerificationSection.style.display = 'none';
+                loginSection.style.display = 'none';
+                deleteSection.style.display = 'none';
+
+                if (token) {
+                    // Show token verification section
+                    tokenVerificationSection.style.display = 'block';
+                    document.getElementById('token-input').value = token;
+                } else if (<%= typeof showDeleteSection !== 'undefined' %>) {
+                    // Show delete confirmation section
+                    deleteSection.style.display = 'block';
+                } else {
+                    // Show login form section
+                    loginSection.style.display = 'block';
+                }
+            });
+        </script>
+    </section>
+
+    <br><br><br>
+
+</body>
+
+<%- include('includes/footer') %>
 
 </html>
