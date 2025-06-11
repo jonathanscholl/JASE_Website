@@ -91,25 +91,32 @@ import { createServerClient } from '@supabase/ssr';
     console.log('OAuth callback received');
     const { code, state, error: oauthError, error_description } = req.query;
     
-    // Decode and verify state
-    let stateData;
-    try {
-      stateData = JSON.parse(Buffer.from(state, 'base64').toString());
-      // Verify state is not too old (e.g., 15 minutes)
-      if (Date.now() - stateData.timestamp > 15 * 60 * 1000) {
-        throw new Error('State expired');
-      }
-    } catch (error) {
-      console.error('Invalid state:', error);
-      return res.redirect('/?error=' + encodeURIComponent('Invalid authentication state'));
-    }
-
+    // Handle OAuth errors first
     if (oauthError) {
       console.error('OAuth error:', oauthError, error_description);
       return res.redirect('/?error=' + encodeURIComponent(error_description));
     }
 
+    // If we have a code, we need a valid state
     if (code) {
+      if (!state) {
+        console.error('Missing state parameter');
+        return res.redirect('/?error=' + encodeURIComponent('Invalid authentication state'));
+      }
+
+      // Decode and verify state
+      let stateData;
+      try {
+        stateData = JSON.parse(Buffer.from(state, 'base64').toString());
+        // Verify state is not too old (e.g., 15 minutes)
+        if (Date.now() - stateData.timestamp > 15 * 60 * 1000) {
+          throw new Error('State expired');
+        }
+      } catch (error) {
+        console.error('Invalid state:', error);
+        return res.redirect('/?error=' + encodeURIComponent('Invalid authentication state'));
+      }
+
       try {
         // Exchange the code for a session
         const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
@@ -136,7 +143,8 @@ import { createServerClient } from '@supabase/ssr';
       }
     }
 
-    return res.redirect('/');
+    // If we get here, something went wrong
+    return res.redirect('/?error=' + encodeURIComponent('Invalid authentication request'));
   };
   
   export const handleAppleSignIn = async (req, res) => {
