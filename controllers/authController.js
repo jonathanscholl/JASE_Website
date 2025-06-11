@@ -6,7 +6,7 @@ import {
     addUsernameDB,
     checkIfUsernameAvailable,
   } from "../models/authModel.js";
-import { supabase } from "../services/supabase.js";
+import { supabase, supabaseAdmin } from "../services/supabase.js";
 import { createServerClient } from '@supabase/ssr';
 
     export const showLogin = (req, res) => {
@@ -202,8 +202,8 @@ import { createServerClient } from '@supabase/ssr';
         return res.render("delete_user", { error: "No token provided" });
       }
 
-      // Verify the token with Supabase
-      const { data: { user }, error } = await supabase.auth.getUser(token);
+      // Verify the token with Supabase Admin
+      const { data: { user }, error } = await supabaseAdmin.auth.getUser(token);
 
       if (error || !user) {
         console.error('Token verification error:', error);
