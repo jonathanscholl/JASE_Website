@@ -89,18 +89,22 @@ import { createServerClient } from '@supabase/ssr';
   
   export const handleOAuthCallback = async (req, res) => {
     console.log('OAuth callback received');
-    const code = req.query.code;
-    const next = req.query.next ?? "/";
-    const error = req.query.error;
-    const errorDescription = req.query.error_description;
+    const { code, state, error: oauthError, error_description } = req.query;
+    
+    // Verify state matches what we stored
+    if (state !== req.session?.oauthState) {
+      console.error('State mismatch in OAuth callback');
+      return res.redirect('/?error=' + encodeURIComponent('Invalid authentication state'));
+    }
 
-    if (error) {
-      console.error('OAuth error:', error, errorDescription);
-      return res.redirect('/?error=' + encodeURIComponent(errorDescription));
+    if (oauthError) {
+      console.error('OAuth error:', oauthError, error_description);
+      return res.redirect('/?error=' + encodeURIComponent(error_description));
     }
 
     if (code) {
       try {
+        // Exchange the code for a session
         const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
         
         if (exchangeError) {
@@ -109,11 +113,16 @@ import { createServerClient } from '@supabase/ssr';
         }
 
         if (data?.user) {
-          // If we have a user, redirect to the appropriate page
-          if (next === '/delete-user') {
+          // Clear the OAuth state from session
+          delete req.session.oauthState;
+          
+          // Handle redirect based on stored session data
+          if (req.session.redirectToDelete) {
+            delete req.session.redirectToDelete;
             return res.redirect(`/delete-user?userId=${data.user.id}&username=${data.user.user_metadata?.username || 'User'}`);
           }
-          return res.redirect(303, `/${next.slice(1)}`);
+          
+          return res.redirect('/');
         } else {
           console.error('No user data received after code exchange');
           return res.redirect('/?error=' + encodeURIComponent('Authentication failed. Please try again.'));
@@ -130,17 +139,23 @@ import { createServerClient } from '@supabase/ssr';
   export const handleAppleSignIn = async (req, res) => {
     try {
       const redirectToDelete = req.body.redirectToDelete === 'true';
-      const redirectUrl = redirectToDelete 
-        ? 'https://playjase.com/auth/callback?next=/delete-user'
-        : 'https://playjase.com/auth/callback';
+      const redirectUrl = 'https://playjase.com/auth/callback';
+      
+      // Generate a random state
+      const state = Math.random().toString(36).substring(7);
+      
+      // Store the state and redirect info in the session
+      req.session = req.session || {};
+      req.session.oauthState = state;
+      req.session.redirectToDelete = redirectToDelete;
 
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'apple',
         options: {
           redirectTo: redirectUrl,
           queryParams: {
-            response_mode: 'form_post',
-            response_type: 'code'
+            response_type: 'code',
+            state: state
           },
           skipBrowserRedirect: false
         }
