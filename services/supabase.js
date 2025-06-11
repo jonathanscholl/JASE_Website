@@ -2,13 +2,13 @@ import { createClient } from '@supabase/supabase-js';
 
 // Debug environment variables
 console.log('Environment variables:', {
-    supabaseUrl: process.env.SUPABASE_URL,
-    supabaseKey: process.env.SUPABASE_ANON_KEY ? 'exists' : 'missing',
+    supabaseUrl: process.env.supabaseUrl,
+    supabaseKey: process.env.supabaseKey ? 'exists' : 'missing',
     supabaseServiceRoleKey: process.env.supabaseServiceRoleKey ? 'exists' : 'missing'
 });
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabaseUrl = process.env.supabaseKey;
+const supabaseKey = process.env.supabaseKey;
 const supabaseServiceKey = process.env.supabaseServiceRoleKey;
 
 if (!supabaseUrl || !supabaseKey) {
