@@ -44,8 +44,7 @@ app.set('view engine', 'ejs')
 
 
 
-// Mount auth routes without prefix since it's handled by Netlify redirects
-app.use(authRoutes);
+app.use("/", authRoutes);
 
 app.use("/feedback", feedbackRoutes);
 

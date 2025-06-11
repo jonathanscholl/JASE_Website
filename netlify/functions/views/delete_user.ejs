@@ -13,11 +13,20 @@
             <section class="expo_signup">
                 <h1 lang="en">Delete User</h1>
 
-                <div id="loading-section">
+                <div id="loading-section" style="display: <%= typeof showDeleteSection !== 'undefined' ? 'none' : 'block' %>">
                     <p>Verifying your identity...</p>
                 </div>
 
-                <div id="login-section" class="login-box" style="display: none;">
+                <div id="token-verification-section" style="display: <%= typeof showDeleteSection !== 'undefined' ? 'none' : 'none' %>">
+                    <form method="POST" action="/auth/verify-token">
+                        <input type="hidden" name="token" id="token-input">
+                        <button class="neon-button" type="submit">
+                            <span class="neon-button-text">Delete Account</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="login-section" class="login-box" style="display: <%= typeof showDeleteSection !== 'undefined' ? 'none' : 'none' %>">
                     <p id="delete-message">To delete your account, please confirm your identity by logging in first.</p>
                     <form class="login-content" action="/login" method="POST">
                         <% if (typeof error !== 'undefined') { %>
@@ -50,9 +59,10 @@
                     </form>
                 </div>
 
-                <div id="delete-section" style="display: none;">
+                <div id="delete-section" style="display: <%= typeof showDeleteSection !== 'undefined' ? 'block' : 'none' %>">
                     <form id="delete-user-form" method="post" action="/delete-user">
-                        <input type="hidden" id="profile-id" name="profileId">
+                        <input type="hidden" id="profile-id" name="profileId" value="<%= typeof userId !== 'undefined' ? userId : '' %>">
+                        <p id="delete-message">Hello <%= typeof username !== 'undefined' ? username : 'User' %>. Are you sure you want to delete your account? This action is irreversible.</p>
                         <button class="neon-button-red" id="delete-user-button">
                             <span class="neon-button-red-text">Delete Account</span>
                         </button>
@@ -60,52 +70,16 @@
                 </div>
 
                 <script>
-                    document.addEventListener('DOMContentLoaded', async function() {
+                    document.addEventListener('DOMContentLoaded', function() {
                         // Check for token in URL
                         const urlParams = new URLSearchParams(window.location.search);
                         const token = urlParams.get('token');
-                        const userId = urlParams.get('userId');
-                        const username = urlParams.get('username');
                         
                         if (token) {
-                            try {
-                                // Verify token with Supabase
-                                const response = await fetch('/auth/verify-token', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify({ token })
-                                });
-
-                                const data = await response.json();
-                                
-                                if (data.success) {
-                                    // Token is valid, show delete section
-                                    document.getElementById('loading-section').style.display = 'none';
-                                    document.getElementById('delete-section').style.display = 'block';
-                                    document.getElementById('profile-id').value = data.userId;
-                                    document.getElementById('delete-message').textContent = `Hello ${data.username}. Are you sure you want to delete your account? This action is irreversible.`;
-                                } else {
-                                    // Token is invalid, show login section
-                                    document.getElementById('loading-section').style.display = 'none';
-                                    document.getElementById('login-section').style.display = 'block';
-                                }
-                            } catch (error) {
-                                console.error('Error verifying token:', error);
-                                document.getElementById('loading-section').style.display = 'none';
-                                document.getElementById('login-section').style.display = 'block';
-                            }
-                        } else if (userId && username) {
-                            // Handle regular web login flow
-                            document.getElementById('profile-id').value = userId;
-                            document.getElementById('login-section').style.display = 'none';
-                            document.getElementById('delete-section').style.display = 'block';
-                            document.getElementById('delete-message').textContent = `Hello ${username}. Are you sure you want to delete your account? This action is irreversible.`;
-                        } else {
-                            // No token or user info, show login section
+                            // Show token verification form
                             document.getElementById('loading-section').style.display = 'none';
-                            document.getElementById('login-section').style.display = 'block';
+                            document.getElementById('token-verification-section').style.display = 'block';
+                            document.getElementById('token-input').value = token;
                         }
                     });
                 </script>

@@ -199,7 +199,7 @@ import { createServerClient } from '@supabase/ssr';
       const { token } = req.body;
       
       if (!token) {
-        return res.status(400).json({ success: false, error: 'No token provided' });
+        return res.render("delete_user", { error: "No token provided" });
       }
 
       // Verify the token with Supabase
@@ -207,25 +207,25 @@ import { createServerClient } from '@supabase/ssr';
 
       if (error || !user) {
         console.error('Token verification error:', error);
-        return res.status(401).json({ success: false, error: 'Invalid token' });
+        return res.render("delete_user", { error: "Invalid token" });
       }
 
       // Get user profile data
       const profile_data = await getProfileData(user.id);
       
       if (!profile_data) {
-        return res.status(404).json({ success: false, error: 'User profile not found' });
+        return res.render("delete_user", { error: "User profile not found" });
       }
 
-      // Return success with user data
-      return res.json({
-        success: true,
+      // Render the delete user page with the user's information
+      return res.render("delete_user", {
         userId: user.id,
-        username: profile_data.username
+        username: profile_data.username,
+        showDeleteSection: true
       });
 
     } catch (error) {
       console.error('Error verifying token:', error);
-      return res.status(500).json({ success: false, error: 'Internal server error' });
+      return res.render("delete_user", { error: "An error occurred while verifying your identity" });
     }
   };
