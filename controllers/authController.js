@@ -87,56 +87,48 @@ import { supabase } from "../services/supabase.js";
   };
   
   export const handleOAuthCallback = async (req, res) => {
-    try {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        
-        if (error) throw error;
-        
-        if (session) {
-            const user_id = session.user.id;
-            const profile_data = await getProfileData(user_id);
-            
-            // Check if this is a delete user flow
-            const redirectToDelete = req.query.redirectToDelete === 'true';
-            
-            if (redirectToDelete) {
-                if (profile_data) {
-                    res.redirect(`/delete-user?userId=${user_id}&username=${profile_data.username}`);
-                } else {
-                    res.redirect('/delete-user?error=No profile found');
-                }
-                return;
-            }
-            
-            if (profile_data) {
-                res.render("auth/profile", { profile_data, email: session.user.email, user_id });
-            } else {
-                // If no profile exists, redirect to signup to create one
-                res.redirect('/signup');
-            }
-        } else {
-            res.redirect('/login');
-        }
-    } catch (error) {
-        console.error('OAuth callback error:', error);
-        res.redirect('/login');
-    }
-  };
+    console.log('OAuth callback received')
+const code = req.query.code
+  const next = req.query.next ?? "/"
+  if (code) {
+    const supabase = createServerClient(
+      process.env.supabaseUrl,
+      process.env.supabaseKey, {
+    cookies: {
+      getAll() {
+        return parseCookieHeader(context.req.headers.cookie ?? '')
+      },
+      setAll(cookiesToSet) {
+        cookiesToSet.forEach(({ name, value, options }) =>
+          context.res.appendHeader('Set-Cookie', serializeCookieHeader(name, value, options))
+        )
+      },
+    },
+  })
+    await supabase.auth.exchangeCodeForSession(code)
+  }
+  res.redirect(303, `/${next.slice(1)}`)
+}
   
   export const handleAppleSignIn = async (req, res) => {
   try {
-    console.log('Redirecting to Supabase Apple OAuth...');
 
-    // Use the Supabase callback URL
-    const redirectTo = encodeURIComponent('https://opjhhvadureyhyfyignl.supabase.co/auth/v1/callback');
+    const data = await supabase.auth.signInWithOAuth({
+      provider: 'apple',
+      options: {
+        redirectTo: 'https://playjase.com/auth/callback'
+      }
+    })
 
-    const authorizeURL = `https://opjhhvadureyhyfyignl.supabase.co/auth/v1/authorize?provider=apple&redirect_to=${redirectTo}`;
+    console.log(data.data.url)
 
-    res.redirect(authorizeURL);
+    if (data.data.url) {
+      res.redirect(data.data.url)
+    } else {
+      res.render("delete_user", { error: "Error signing in with Apple. Please try again." })
+    }
+    
   } catch (error) {
-    console.error('Apple sign-in redirect error:', error);
-    res.render("delete_user", {
-      error: "Error signing in with Apple. Please try again.",
-    });
+    console.error('Apple sign-in error:', error)
   }
 };
