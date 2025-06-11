@@ -101,29 +101,26 @@ import { createServerClient } from '@supabase/ssr';
 
     if (code) {
       try {
-        const supabase = createServerClient(
-          process.env.SUPABASE_URL,
-          process.env.SUPABASE_ANON_KEY,
-          {
-            cookies: {
-              get(name) {
-                return req.cookies[name];
-              },
-              set(name, value, options) {
-                res.cookie(name, value, options);
-              },
-              remove(name, options) {
-                res.cookie(name, '', { ...options, maxAge: 0 });
-              },
-            },
-          }
-        );
+        const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
+        
+        if (exchangeError) {
+          console.error('Error exchanging code:', exchangeError);
+          return res.redirect('/?error=' + encodeURIComponent('Authentication failed. Please try again.'));
+        }
 
-        await supabase.auth.exchangeCodeForSession(code);
-        return res.redirect(303, `/${next.slice(1)}`);
+        if (data?.user) {
+          // If we have a user, redirect to the appropriate page
+          if (next === '/delete-user') {
+            return res.redirect(`/delete-user?userId=${data.user.id}&username=${data.user.user_metadata?.username || 'User'}`);
+          }
+          return res.redirect(303, `/${next.slice(1)}`);
+        } else {
+          console.error('No user data received after code exchange');
+          return res.redirect('/?error=' + encodeURIComponent('Authentication failed. Please try again.'));
+        }
       } catch (error) {
-        console.error('Error exchanging code for session:', error);
-        return res.redirect('/?error=' + encodeURIComponent('Failed to authenticate'));
+        console.error('Error in OAuth callback:', error);
+        return res.redirect('/?error=' + encodeURIComponent('An unexpected error occurred. Please try again.'));
       }
     }
 
@@ -142,8 +139,10 @@ import { createServerClient } from '@supabase/ssr';
         options: {
           redirectTo: redirectUrl,
           queryParams: {
-            response_mode: 'form_post'
-          }
+            response_mode: 'form_post',
+            response_type: 'code'
+          },
+          skipBrowserRedirect: false
         }
       });
 
@@ -155,6 +154,7 @@ import { createServerClient } from '@supabase/ssr';
       }
 
       if (data?.url) {
+        console.log('Redirecting to Apple auth URL:', data.url);
         return res.redirect(data.url);
       } else {
         console.error('No URL returned from Apple sign-in');
