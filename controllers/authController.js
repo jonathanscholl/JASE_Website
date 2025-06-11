@@ -210,8 +210,16 @@ import { createServerClient } from '@supabase/ssr';
         return res.render("delete_user", { error: "Invalid token" });
       }
 
+      // Set up a session for the user
+      const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
+        access_token: token,
+        refresh_token: token
+      });
 
-      console.log(user)
+      if (sessionError) {
+        console.error('Session setup error:', sessionError);
+        return res.render("delete_user", { error: "Failed to set up user session" });
+      }
 
       // Get user profile data
       const profile_data = await getProfileData(user.id);
