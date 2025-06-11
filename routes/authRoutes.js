@@ -8,7 +8,8 @@ import {
   showProfile,
   handleCompleteSignup,
   handleOAuthCallback,
-  handleAppleSignIn
+  handleAppleSignIn,
+  handleVerifyToken
 } from "../controllers/authController.js";
 
 const router = express.Router();
@@ -16,13 +17,12 @@ const router = express.Router();
 router.get("/login", showLogin);
 router.get("/signup", showSignup);
 
-
 router.post("/login", handleLogin);
 router.post("/signup", handleSignup);
 router.post("/logout", handleLogout);
+router.post("/verify-token", handleVerifyToken);
 
 router.post("/complete_signup", handleCompleteSignup)
-
 
 router.get("/profile", showProfile);
 router.get("/auth/callback", handleOAuthCallback);

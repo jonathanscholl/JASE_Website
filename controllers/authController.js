@@ -193,3 +193,39 @@ import { createServerClient } from '@supabase/ssr';
       });
     }
   };
+
+  export const handleVerifyToken = async (req, res) => {
+    try {
+      const { token } = req.body;
+      
+      if (!token) {
+        return res.status(400).json({ success: false, error: 'No token provided' });
+      }
+
+      // Verify the token with Supabase
+      const { data: { user }, error } = await supabase.auth.getUser(token);
+
+      if (error || !user) {
+        console.error('Token verification error:', error);
+        return res.status(401).json({ success: false, error: 'Invalid token' });
+      }
+
+      // Get user profile data
+      const profile_data = await getProfileData(user.id);
+      
+      if (!profile_data) {
+        return res.status(404).json({ success: false, error: 'User profile not found' });
+      }
+
+      // Return success with user data
+      return res.json({
+        success: true,
+        userId: user.id,
+        username: profile_data.username
+      });
+
+    } catch (error) {
+      console.error('Error verifying token:', error);
+      return res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+  };
