@@ -7,15 +7,20 @@
   node_bundler = "esbuild"
   included_files = ["public/**", "public/data/*.json", "netlify/functions/views/**"]
 
-
 [[redirects]]
   from = "/public/*"
   to = "/public/:splat"
   status = 200
   force = true
 
+# Route auth requests to Express
+[[redirects]]
+  from = "/auth/*"
+  to = "/.netlify/functions/server/:splat"
+  status = 200
+
 # Route other requests to Express
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/server/"
+  to = "/.netlify/functions/server/:splat"
   status = 200

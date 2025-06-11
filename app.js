@@ -44,7 +44,7 @@ app.set('view engine', 'ejs')
 
 
 
-app.use("/", authRoutes);
+app.use("/auth", authRoutes);
 
 app.use("/feedback", feedbackRoutes);
 
