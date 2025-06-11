@@ -18,7 +18,7 @@
                 </div>
 
                 <div id="token-verification-section" style="display: <%= typeof showDeleteSection !== 'undefined' ? 'none' : 'none' %>">
-                    <form method="POST" action="/auth/verify-token">
+                    <form method="POST" action="/verify-token">
                         <input type="hidden" name="token" id="token-input">
                         <button class="neon-button" type="submit">
                             <span class="neon-button-text">Delete Account</span>
