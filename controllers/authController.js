@@ -7,6 +7,7 @@ import {
     checkIfUsernameAvailable,
   } from "../models/authModel.js";
 import { supabase } from "../services/supabase.js";
+import { createServerClient } from '@supabase/ssr';
 
     export const showLogin = (req, res) => {
     res.render("auth/login");
@@ -87,48 +88,84 @@ import { supabase } from "../services/supabase.js";
   };
   
   export const handleOAuthCallback = async (req, res) => {
-    console.log('OAuth callback received')
-const code = req.query.code
-  const next = req.query.next ?? "/"
-  if (code) {
-    const supabase = createServerClient(
-      process.env.supabaseUrl,
-      process.env.supabaseKey, {
-    cookies: {
-      getAll() {
-        return parseCookieHeader(context.req.headers.cookie ?? '')
-      },
-      setAll(cookiesToSet) {
-        cookiesToSet.forEach(({ name, value, options }) =>
-          context.res.appendHeader('Set-Cookie', serializeCookieHeader(name, value, options))
-        )
-      },
-    },
-  })
-    await supabase.auth.exchangeCodeForSession(code)
-  }
-  res.redirect(303, `/${next.slice(1)}`)
-}
+    console.log('OAuth callback received');
+    const code = req.query.code;
+    const next = req.query.next ?? "/";
+    const error = req.query.error;
+    const errorDescription = req.query.error_description;
+
+    if (error) {
+      console.error('OAuth error:', error, errorDescription);
+      return res.redirect('/?error=' + encodeURIComponent(errorDescription));
+    }
+
+    if (code) {
+      try {
+        const supabase = createServerClient(
+          process.env.SUPABASE_URL,
+          process.env.SUPABASE_ANON_KEY,
+          {
+            cookies: {
+              get(name) {
+                return req.cookies[name];
+              },
+              set(name, value, options) {
+                res.cookie(name, value, options);
+              },
+              remove(name, options) {
+                res.cookie(name, '', { ...options, maxAge: 0 });
+              },
+            },
+          }
+        );
+
+        await supabase.auth.exchangeCodeForSession(code);
+        return res.redirect(303, `/${next.slice(1)}`);
+      } catch (error) {
+        console.error('Error exchanging code for session:', error);
+        return res.redirect('/?error=' + encodeURIComponent('Failed to authenticate'));
+      }
+    }
+
+    return res.redirect('/');
+  };
   
   export const handleAppleSignIn = async (req, res) => {
-  try {
+    try {
+      const redirectToDelete = req.body.redirectToDelete === 'true';
+      const redirectUrl = redirectToDelete 
+        ? 'https://playjase.com/auth/callback?next=/delete-user'
+        : 'https://playjase.com/auth/callback';
 
-    const data = await supabase.auth.signInWithOAuth({
-      provider: 'apple',
-      options: {
-        redirectTo: 'https://playjase.com/auth/callback'
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'apple',
+        options: {
+          redirectTo: redirectUrl,
+          queryParams: {
+            response_mode: 'form_post'
+          }
+        }
+      });
+
+      if (error) {
+        console.error('Apple sign-in error:', error);
+        return res.render("delete_user", { 
+          error: "Error signing in with Apple. Please try again." 
+        });
       }
-    })
 
-    console.log(data.data.url)
-
-    if (data.data.url) {
-      res.redirect(data.data.url)
-    } else {
-      res.render("delete_user", { error: "Error signing in with Apple. Please try again." })
+      if (data?.url) {
+        return res.redirect(data.url);
+      } else {
+        console.error('No URL returned from Apple sign-in');
+        return res.render("delete_user", { 
+          error: "Error signing in with Apple. Please try again." 
+        });
+      }
+    } catch (error) {
+      console.error('Apple sign-in error:', error);
+      return res.render("delete_user", { 
+        error: "An unexpected error occurred. Please try again." 
+      });
     }
-    
-  } catch (error) {
-    console.error('Apple sign-in error:', error)
-  }
-};
+  };
