@@ -7,7 +7,7 @@ console.log('Environment variables:', {
     supabaseServiceRoleKey: process.env.supabaseServiceRoleKey ? 'exists' : 'missing'
 });
 
-const supabaseUrl = process.env.supabaseKey;
+const supabaseUrl = process.env.supabaseUrl;
 const supabaseKey = process.env.supabaseKey;
 const supabaseServiceKey = process.env.supabaseServiceRoleKey;
 
